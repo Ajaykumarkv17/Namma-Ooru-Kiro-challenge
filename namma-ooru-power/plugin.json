@@ -1,0 +1,25 @@
+{
+  "name": "namma-ooru-power",
+  "displayName": "Namma Ooru Travel Power",
+  "version": "0.1.0",
+  "description": "Reusable Tamil Nadu travel-domain expertise for Namma Ooru: destination curation, itinerary planning, travel content, and review analysis. Encodes data-quality, grounding, and source-attribution rules so Kiro produces reliable, source-attributed travel outputs.",
+  "keywords": [
+    "Tamil Nadu",
+    "destination",
+    "itinerary",
+    "travel",
+    "temple",
+    "trip",
+    "tourism"
+  ],
+  "author": "Namma Ooru (Kiro University Challenge 2026)",
+  "license": "MIT",
+  "skills": [
+    "skills/destination-curation",
+    "skills/itinerary-planning",
+    "skills/tamil-nadu-travel-content",
+    "skills/review-analysis"
+  ],
+  "steering": [],
+  "mcpServers": {}
+}

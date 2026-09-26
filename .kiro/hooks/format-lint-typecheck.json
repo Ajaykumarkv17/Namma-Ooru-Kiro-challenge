@@ -1,0 +1,15 @@
+{
+  "version": "v1",
+  "hooks": [
+    {
+      "name": "Format, Lint & Type-check on Save",
+      "trigger": "PostFileSave",
+      "description": "Runs formatter, linter, and type-checker after a TypeScript or Python file is saved (Kiro University Lesson 3, Hook A).",
+      "matcher": "\\.(ts|tsx|py)$",
+      "action": {
+        "type": "agent",
+        "prompt": "A source file was just saved. Run the appropriate formatter, linter, and type-checker for the changed file and fix any issues. For .ts/.tsx run prettier + eslint + `tsc --noEmit` in frontend/. For .py run black + ruff + mypy in backend/ (or infra/). Report only problems that need attention."
+      }
+    }
+  ]
+}

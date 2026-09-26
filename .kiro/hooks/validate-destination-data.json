@@ -1,0 +1,16 @@
+{
+  "version": "v1",
+  "hooks": [
+    {
+      "name": "Validate Destination Data",
+      "trigger": "PostFileSave",
+      "description": "Validates the destination dataset (required fields, valid districts/categories, coordinates, duplicates, ratings, sources, URLs) after dataset changes (Kiro University Lesson 3, Hook C).",
+      "matcher": "data[\\\\/](destinations|schema)[\\\\/].*\\.json$",
+      "action": {
+        "type": "command",
+        "command": "python data/scripts/validate.py",
+        "timeout": 120
+      }
+    }
+  ]
+}

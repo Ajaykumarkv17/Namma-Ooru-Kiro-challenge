@@ -1,0 +1,16 @@
+{
+  "version": "v1",
+  "hooks": [
+    {
+      "name": "Run Backend Tests on Change",
+      "trigger": "PostFileSave",
+      "description": "Runs backend unit and property-based tests after backend Python changes (Kiro University Lesson 3, Hook B).",
+      "matcher": "backend[\\\\/].*\\.py$",
+      "action": {
+        "type": "command",
+        "command": "python -m pytest backend/tests -q",
+        "timeout": 300
+      }
+    }
+  ]
+}
