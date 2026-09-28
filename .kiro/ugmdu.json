@@ -1,56 +1,57 @@
 {
-    "campaignId": "kiro-university-2026",
-    "participantId": "b4f814a8-4081-70f2-a674-5f537db69938",
-    "project": "Namma Ooru — Tamil Nadu AI Travel Explorer & Planner",
-    "lessons": [
-        {
-            "id": 1,
-            "name": "Spec-Driven Development",
-            "evidence": ".kiro/specs/namma-ooru/"
-        },
-        {
-            "id": 2,
-            "name": "Steering",
-            "evidence": ".kiro/steering/"
-        },
-        {
-            "id": 3,
-            "name": "Hooks",
-            "evidence": ".kiro/hooks/"
-        },
-        {
-            "id": 4,
-            "name": "Property-Based Testing",
-            "evidence": ".kiro/specs/namma-ooru/property-tests.md"
-        },
-        {
-            "id": 5,
-            "name": "Powers",
-            "evidence": "namma-ooru-power/"
-        },
-        {
-            "id": 6,
-            "name": "MCP",
-            "evidence": ".kiro/evidence/mcp.md"
-        },
-        {
-            "id": 7,
-            "name": "Custom Agents",
-            "evidence": ".kiro/agents/"
-        }
-    ],
-    "surfaces": [
-        "specs",
-        "steering",
-        "hooks",
-        "property-based-testing",
-        "powers",
-        "mcp",
-        "custom-agents"
-    ],
-    "notes": {
-        "seventhLesson": "Custom Agents — identified from Kiro's official seven building blocks (the brief enumerated the other six).",
-        "evidenceIndex": ".kiro/evidence/kiro-university.md",
-        "bonusEvaluation": "tasks.md Phase 14.4"
-    }
+    "campaignId":  "kiro-university-2026",
+    "participantId":  "b4f814a8-4081-70f2-a674-5f537db69938",
+    "project":  "Namma Ooru â€” Tamil Nadu AI Travel Explorer \u0026 Planner",
+    "lessons":  [
+                    {
+                        "id":  1,
+                        "name":  "Spec-Driven Development",
+                        "evidence":  ".kiro/specs/namma-ooru/"
+                    },
+                    {
+                        "id":  2,
+                        "name":  "Steering",
+                        "evidence":  ".kiro/steering/"
+                    },
+                    {
+                        "id":  3,
+                        "name":  "Hooks",
+                        "evidence":  ".kiro/hooks/"
+                    },
+                    {
+                        "id":  4,
+                        "name":  "Property-Based Testing",
+                        "evidence":  ".kiro/specs/namma-ooru/property-tests.md"
+                    },
+                    {
+                        "id":  5,
+                        "name":  "Powers",
+                        "evidence":  "namma-ooru-power/"
+                    },
+                    {
+                        "id":  6,
+                        "name":  "MCP",
+                        "evidence":  ".kiro/evidence/mcp.md"
+                    },
+                    {
+                        "id":  7,
+                        "name":  "Custom Agents",
+                        "evidence":  ".kiro/agents/"
+                    }
+                ],
+    "surfaces":  [
+                     "specs",
+                     "steering",
+                     "hooks",
+                     "property-based-testing",
+                     "powers",
+                     "mcp",
+                     "custom-agents"
+                 ],
+    "notes":  {
+                  "seventhLesson":  "Custom Agents â€” identified from Kiro\u0027s official seven building blocks (the brief enumerated the other six).",
+                  "evidenceIndex":  ".kiro/evidence/kiro-university.md",
+                  "bonusEvaluation":  "tasks.md Phase 14.4"
+              },
+    "repoUrl":  "https://github.com/Ajaykumarkv17/Namma-Ooru-Kiro-challenge"
 }
