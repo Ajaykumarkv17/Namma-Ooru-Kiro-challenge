@@ -90,7 +90,10 @@ Run backend locally (or against the deployed API), then the frontend dev server;
 local URL.
 
 ## Testing
-- Property-based (primary): `pytest backend/tests/property` (properties P1–P26).
+Property-based tests follow Kiro's correctness workflow: properties are extracted from the EARS
+requirements (inline in `requirements.md`) and run as **optional** subtasks after each feature's
+core implementation. `property-tests.md` is the traceability index.
+- Property-based: `pytest backend/tests/property` (properties P1–P26).
 - Unit/integration: `pytest backend/tests`, `pytest infra/tests`, `cdk synth`.
 - Data validation: `python data/scripts/validate.py`.
 - Frontend: `npm test`, `tsc --noEmit`, `eslint`.

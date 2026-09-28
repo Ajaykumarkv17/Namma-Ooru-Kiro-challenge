@@ -11,6 +11,13 @@ Legend for traceability tags:
 - `[AI]` — requirement depends on the AI/RAG layer (Bedrock).
 - `[DATA]` — requirement depends on the researched destination dataset.
 
+**Property-based testing note.** Following Kiro's correctness workflow, universal properties are
+extracted directly from the EARS acceptance criteria below and listed inline in a
+*Correctness / Properties* block under each requirement that has them. Kiro surfaces these during
+the design phase (linked to the requirement and its task) and runs them during task execution —
+**optional by default**, after the core implementation. `property-tests.md` is the consolidated
+traceability index (requirement ↔ property ↔ task).
+
 ---
 
 ## Requirement 1 — Discover Tamil Nadu (Home Experience)
@@ -54,6 +61,16 @@ new categories and destinations can be added without code changes to components.
 5. WHEN a destination is validated THEN it SHALL reference a valid district and a valid category. `[PBT] [DATA]`
 6. THE system SHALL retain source attribution (source_urls, source name, source type, retrieval date) for every factual destination record. `[DATA]`
 
+### Correctness / Properties
+- **P15** every destination's district is in the official TN district list. _(from AC 5)_
+- **P16** every destination's category is in the allowed enum. _(from AC 2, 5)_
+- **P17** every destination has all required non-nullable fields. _(from AC 1)_
+- **P18** latitude ∈ [8.0, 13.6] and longitude ∈ [76.2, 80.4] (TN box) or is null. _(from AC 1, 3)_
+- **P19** no two destinations share an id; alias sets do not collide. _(from AC 1)_
+- **P20** every factual record has ≥1 source reference. _(from AC 6)_
+- **P21** description fields are non-empty when present. _(from AC 1)_
+- _Validated by optional PBT task **2.5**; overlaps `data/scripts/validate.py` for a second check._
+
 ---
 
 ## Requirement 4 — AI Natural-Language Search
@@ -68,6 +85,12 @@ destinations without knowing exact names or filters.
 4. WHEN a filter is removed THEN the result set SHALL NOT contain destinations that violate a still-active filter. `[PBT]`
 5. IF intent extraction fails or the model is unavailable THEN the system SHALL fall back to keyword/tag search and inform the user.
 6. WHILE a search is running THE system SHALL show a loading state.
+
+### Correctness / Properties
+- **P22** for any active filter set, every result satisfies every active filter (soundness). _(from AC 3)_
+- **P23** removing one filter never introduces a result violating another still-active filter. _(from AC 4)_
+- **P24** filtering is monotonic: adding a filter never grows the result set. _(from AC 3)_
+- _Validated by optional PBT task **4.4** (runs against the pure filter engine; no AWS needed)._
 
 ---
 
@@ -100,6 +123,15 @@ trip logically without manual research.
 6. WITHIN a single itinerary no destination SHALL be duplicated unless explicitly allowed. `[PBT]`
 7. EACH activity SHALL have a positive duration and valid, non-overlapping ordered times within a day. `[PBT]`
 
+### Correctness / Properties
+- **P1** for any N, a generated itinerary has exactly N days. _(from AC 2)_
+- **P2** no destination repeats within an itinerary unless explicitly allowed. _(from AC 6)_
+- **P3** every activity references an id present in the catalog. _(from AC 5)_
+- **P4** every activity duration is strictly positive. _(from AC 7)_
+- **P5** within a day, start times are strictly increasing and non-overlapping given durations. _(from AC 7)_
+- **P6** day ordering is 1..N with no gaps or repeats. _(from AC 2, 7)_
+- _Validated by optional PBT task **6.4** (runs against the deterministic itinerary core)._
+
 ---
 
 ## Requirement 7 — Conversational Itinerary Editing
@@ -113,6 +145,12 @@ refine it without regenerating from scratch.
 3. AFTER an edit THE itinerary SHALL still satisfy all itinerary invariants in Requirement 6 (day count preserved unless the edit changes it, valid references, positive durations, valid ordering). `[PBT]`
 4. IF an edit cannot be satisfied (e.g. no nearby alternative) THEN the system SHALL explain why and leave the itinerary unchanged.
 
+### Correctness / Properties
+- **P7** after any single edit op, all itinerary invariants P2–P6 still hold. _(from AC 3)_
+- **P8** a `remove` edit changes nothing other than removing the target. _(from AC 2)_
+- **P9** a `replace` edit changes exactly one activity to a valid, distinct destination. _(from AC 1, 2)_
+- _Validated by optional PBT task **7.4** (edit ops applied through the deterministic core)._
+
 ---
 
 ## Requirement 8 — Personalized Discovery & Surprise Me
@@ -124,6 +162,10 @@ feels personal.
 1. WHEN a user selects interests (temples, history, food, nature, beaches, adventure, photography, culture, hidden gems) THEN the system SHALL recommend destinations matching those interests. `[DATA]`
 2. WHEN a user clicks "Surprise Me" THEN the system SHALL recommend an unexpected destination with destination, why-it-matches, category, suggested duration, and short description. `[DATA]`
 3. THE recommendations SHALL only include destinations present in the catalog. `[PBT] [DATA]`
+
+### Correctness / Properties
+- **P26** every recommendation / Surprise Me result exists in the catalog. _(from AC 3)_
+- _Validated by optional PBT task **4.4**._
 
 ---
 
@@ -149,6 +191,10 @@ destinations spatially.
 3. WHEN a user clicks a marker THEN the system SHALL open a destination preview and allow navigation to the detail page.
 4. THE map layer SHALL be replaceable (abstraction) so a lightweight implementation can be swapped for a production provider without changing feature logic.
 
+### Correctness / Properties
+- **P25** map markers under a category/city filter only include matching destinations. _(from AC 2)_
+- _Validated by optional PBT task **4.4**._
+
 ---
 
 ## Requirement 11 — Reviews & Ratings
@@ -163,6 +209,14 @@ destination experiences.
 4. WHEN a destination page renders THEN the system SHALL display average rating, rating distribution, review count, and recent reviews. `[PBT]`
 5. WHERE a destination has enough reviews THE system SHALL display an AI-generated review summary listing frequently mentioned positives and common concerns. `[AI]`
 6. THE system SHALL clearly label AI-generated summaries as distinct from individual user reviews. `[AI]`
+
+### Correctness / Properties
+- **P10** a persisted review always has an integer rating in [1,5]. _(from AC 1)_
+- **P11** any rating outside [1,5] (incl. non-integers/negatives) is rejected, never persisted. _(from AC 2)_
+- **P12** every stored review references an existing destination id. _(from AC 3)_
+- **P13** reported average equals the mean of stored ratings (float tolerance). _(from AC 4)_
+- **P14** rating distribution counts sum to the review count. _(from AC 4)_
+- _Validated by optional PBT task **8.5** (runs against the review service with an in-memory store)._
 
 ---
 

@@ -1,12 +1,31 @@
-# Namma Ooru — Property-Based Testing Plan (Lesson 4)
+# Namma Ooru — Property-Based Testing Traceability Index (Lesson 4)
 
-This document maps requirements to universal properties, following Kiro's correctness workflow:
-natural-language requirements → executable properties → generated test cases. Properties target
-the **deterministic cores** (itinerary engine, filter engine, validators, review rules) so they
-can be checked without invoking Bedrock.
+This is the **consolidated traceability index** for property-based testing. It is not a separate
+phase of work. The properties themselves are extracted from the EARS acceptance criteria and live
+**inline** in `requirements.md` under each requirement's *Correctness / Properties* block, exactly
+as Kiro's correctness workflow surfaces them (requirement → executable property → linked task).
 
-Tooling: **Hypothesis** (Python) in `backend/tests/property/`. Each property below cites the
-requirement it verifies and names the generators (strategies) used.
+How this follows the official Kiro workflow:
+- **Properties come from requirements** (design phase surfaces them, linked to requirement + task).
+- **PBTs run during task execution and are optional by default** — each feature's core
+  implementation subtasks are done first, then an `(optional PBT)` subtask runs the properties.
+  See the per-phase optional PBT subtasks in `tasks.md` (2.5, 4.4, 6.4, 7.4, 8.5) and the
+  consolidation step 13.1.
+
+Tooling: **Hypothesis** (Python) in `backend/tests/property/`. Properties target the
+**deterministic cores** (itinerary engine, filter engine, validators, review rules) so most can
+be checked without invoking Bedrock.
+
+## Property → task map
+| Properties | Requirement | Optional PBT task |
+|---|---|---|
+| P1–P6 | Req 6 (itinerary) | 6.4 |
+| P7–P9 | Req 7 (itinerary edit) | 7.4 |
+| P10–P14 | Req 11 (reviews) | 8.5 |
+| P15–P21 | Req 3 / 14 (dataset) | 2.5 |
+| P22–P24 | Req 4 (search/filter) | 4.4 |
+| P25 | Req 10 (map filter) | 4.4 |
+| P26 | Req 8 (recommendations) | 4.4 |
 
 ---
 

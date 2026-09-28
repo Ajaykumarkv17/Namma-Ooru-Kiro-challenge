@@ -246,8 +246,11 @@ frontend locally against the deployed backend URL; once verified, deploy `fronte
 
 ## 8. Testing Strategy (Req 4, 6, 7, 11, 14; Lesson 4)
 
-- **Property-based tests (Hypothesis, Python)** target the deterministic cores — see
-  `property-tests.md` for the requirement→property mapping. Examples: itinerary invariants,
+- **Property-based tests (Hypothesis, Python)** target the deterministic cores. Following Kiro's
+  correctness workflow, properties are extracted from the EARS requirements (inline
+  *Correctness / Properties* blocks in `requirements.md`) and run as **optional** subtasks placed
+  **after** each feature's core implementation subtasks in `tasks.md` (2.5, 4.4, 6.4, 7.4, 8.5).
+  `property-tests.md` is the consolidated traceability index. Examples: itinerary invariants,
   review rating bounds, filter soundness, dataset validity.
 - **Example-based unit tests** for API contracts and edge cases.
 - **Integration tests** for API endpoints (FastAPI TestClient) and CDK assertions
