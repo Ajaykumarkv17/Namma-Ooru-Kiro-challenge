@@ -1,0 +1,53 @@
+{
+  "pbtResults": {},
+  "executionHistory": {
+    "1.1 Create the React TypeScript Vite frontend structure with Tailwind, React Query, routing, and accessible shared loading, empty, and error components.": [
+      {
+        "executionId": "d4d9a4f1-ec43-4e31-bf65-295b906dea90",
+        "chatSessionId": "sess_5f436bbb-0ea0-46e7-9bab-1ffb4197983c",
+        "timestamp": 1790673883115
+      },
+      {
+        "executionId": "d4d9a4f1-ec43-4e31-bf65-295b906dea90",
+        "chatSessionId": "sess_5f436bbb-0ea0-46e7-9bab-1ffb4197983c",
+        "timestamp": 1790674474199
+      }
+    ],
+    "1.2 Create the Python 3.11 FastAPI backend structure with Pydantic request models, dependency injection, structured exception mapping, and LocalMockAIProvider.": [
+      {
+        "executionId": "d4d9a4f1-ec43-4e31-bf65-295b906dea90",
+        "chatSessionId": "sess_5f436bbb-0ea0-46e7-9bab-1ffb4197983c",
+        "timestamp": 1790673883410
+      },
+      {
+        "executionId": "d4d9a4f1-ec43-4e31-bf65-295b906dea90",
+        "chatSessionId": "sess_5f436bbb-0ea0-46e7-9bab-1ffb4197983c",
+        "timestamp": 1790674475511
+      }
+    ],
+    "1.3 Add frontend and backend formatter, linter, type-check, unit-test, and property-test configuration.": [
+      {
+        "executionId": "d4d9a4f1-ec43-4e31-bf65-295b906dea90",
+        "chatSessionId": "sess_5f436bbb-0ea0-46e7-9bab-1ffb4197983c",
+        "timestamp": 1790673884413
+      },
+      {
+        "executionId": "d4d9a4f1-ec43-4e31-bf65-295b906dea90",
+        "chatSessionId": "sess_5f436bbb-0ea0-46e7-9bab-1ffb4197983c",
+        "timestamp": 1790674474468
+      }
+    ],
+    "1.4 Add `.env.example` and `.gitignore` rules that document non-secret configuration without committing credentials.": [
+      {
+        "executionId": "d4d9a4f1-ec43-4e31-bf65-295b906dea90",
+        "chatSessionId": "sess_5f436bbb-0ea0-46e7-9bab-1ffb4197983c",
+        "timestamp": 1790673884455
+      },
+      {
+        "executionId": "d4d9a4f1-ec43-4e31-bf65-295b906dea90",
+        "chatSessionId": "sess_5f436bbb-0ea0-46e7-9bab-1ffb4197983c",
+        "timestamp": 1790674475560
+      }
+    ]
+  }
+}

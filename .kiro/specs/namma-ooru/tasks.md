@@ -9,14 +9,14 @@ that a property test may be deferred for an MVP, but it remains in the plan and 
 challenge evidence. No property test invokes Bedrock or AWS services.
 
 ## Tasks
-- [ ] 1. Establish project foundations
-  - [ ] 1.1 Create the React TypeScript Vite frontend structure with Tailwind, React Query, routing, and accessible shared loading, empty, and error components.
+- [x] 1. Establish project foundations
+  - [x] 1.1 Create the React TypeScript Vite frontend structure with Tailwind, React Query, routing, and accessible shared loading, empty, and error components.
     - _Requirements: 1.1, 1.3, 1.4, 2.3, 11.4_
-  - [ ] 1.2 Create the Python 3.11 FastAPI backend structure with Pydantic request models, dependency injection, structured exception mapping, and LocalMockAIProvider.
+  - [x] 1.2 Create the Python 3.11 FastAPI backend structure with Pydantic request models, dependency injection, structured exception mapping, and LocalMockAIProvider.
     - _Requirements: 4.1, 5.3, 11.1, 11.3_
-  - [ ] 1.3 Add frontend and backend formatter, linter, type-check, unit-test, and property-test configuration.
+  - [x] 1.3 Add frontend and backend formatter, linter, type-check, unit-test, and property-test configuration.
     - _Requirements: 13.3, 13.6_
-  - [ ] 1.4 Add `.env.example` and `.gitignore` rules that document non-secret configuration without committing credentials.
+  - [x] 1.4 Add `.env.example` and `.gitignore` rules that document non-secret configuration without committing credentials.
     - _Requirements: 11.2_
 
 - [ ] 2. Implement the source-attributed destination catalog

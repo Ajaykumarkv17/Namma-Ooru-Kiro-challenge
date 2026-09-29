@@ -1,0 +1,50 @@
+# Local environment configuration and credentials
+.env
+.env.*
+!.env.example
+!.env.*.example
+.envrc
+.secrets/
+.aws/
+
+# Sensitive key and certificate files
+*.pem
+*.key
+*.p12
+*.pfx
+
+# Frontend generated files
+/Namma_Ooru/frontend/node_modules/
+/Namma_Ooru/frontend/dist/
+/Namma_Ooru/frontend/build/
+/Namma_Ooru/frontend/coverage/
+/Namma_Ooru/frontend/.vite/
+/Namma_Ooru/frontend/*.log
+/Namma_Ooru/frontend/npm-debug.log*
+/Namma_Ooru/frontend/yarn-debug.log*
+/Namma_Ooru/frontend/yarn-error.log*
+/Namma_Ooru/frontend/pnpm-debug.log*
+
+# Backend Python environments and generated files
+/Namma_Ooru/backend/.venv/
+/Namma_Ooru/backend/venv/
+/Namma_Ooru/backend/env/
+/Namma_Ooru/backend/__pycache__/
+/Namma_Ooru/backend/**/*.py[cod]
+/Namma_Ooru/backend/.pytest_cache/
+/Namma_Ooru/backend/.mypy_cache/
+/Namma_Ooru/backend/.ruff_cache/
+/Namma_Ooru/backend/.hypothesis/
+/Namma_Ooru/backend/.coverage
+/Namma_Ooru/backend/.coverage.*
+/Namma_Ooru/backend/coverage.xml
+/Namma_Ooru/backend/htmlcov/
+/Namma_Ooru/backend/coverage/
+/Namma_Ooru/backend/build/
+/Namma_Ooru/backend/dist/
+
+# IDE and operating-system metadata
+.idea/
+*.iml
+.DS_Store
+Thumbs.db

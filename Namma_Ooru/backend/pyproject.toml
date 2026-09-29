@@ -1,0 +1,51 @@
+[tool.black]
+line-length = 100
+target-version = ["py311"]
+exclude = '''
+/(
+    \.git
+  | \.mypy_cache
+  | \.pytest_cache
+  | \.ruff_cache
+  | __pycache__
+  | build
+  | dist
+)/
+'''
+
+[tool.ruff]
+target-version = "py311"
+line-length = 100
+extend-exclude = [".mypy_cache", ".pytest_cache", ".ruff_cache", "build", "dist"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP"]
+
+[tool.ruff.lint.isort]
+known-first-party = ["app"]
+
+[tool.mypy]
+python_version = "3.11"
+files = ["app", "tests"]
+strict = true
+warn_unused_configs = true
+exclude = ["^build/", "^dist/"]
+
+[[tool.mypy.overrides]]
+module = ["hypothesis", "hypothesis.*"]
+ignore_missing_imports = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+addopts = "-ra"
+markers = [
+  "property: deterministic property-based tests mapped to the Namma Ooru design properties",
+]
+hypothesis_profile = "default"
+
+[tool.hypothesis]
+max_examples = 100
+deadline = 1000
