@@ -21,7 +21,7 @@
                     {
                         "id":  4,
                         "name":  "Property-Based Testing",
-                        "evidence":  ".kiro/specs/namma-ooru/property-tests.md"
+                        "evidence":  ".kiro/specs/namma-ooru/design.md#correctness-properties"
                     },
                     {
                         "id":  5,

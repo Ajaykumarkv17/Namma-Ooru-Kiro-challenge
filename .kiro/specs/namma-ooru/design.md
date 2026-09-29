@@ -1,284 +1,313 @@
-# Namma Ooru — Technical Design
+# Namma Ooru Technical Design
 
-This design implements the requirements in `requirements.md`. It favours a clean, realistically
-completable architecture over unnecessary complexity (no microservices, Kubernetes, Kafka,
-Redis, complex auth, or over-engineered infra). Local/mock data is used early while keeping the
-architecture ready for the real Amazon Bedrock + S3 + S3 Vectors integration.
+## Overview
+Namma Ooru is a responsive web application for discovering Tamil Nadu destinations and planning
+trips. It combines a browsable, source-attributed Destination Catalog with AI-assisted search,
+a grounded Bedrock chatbot, multi-day itinerary generation, conversational itinerary edits,
+recommendations, map discovery, and reviews.
 
----
+The design deliberately separates deterministic travel logic from generative AI. Catalog filtering,
+itinerary validation and scheduling, review validation, and recommendation membership are pure or
+in-memory business rules. Amazon Bedrock is responsible for retrieval, intent interpretation, and
+narrative generation, but cannot bypass the deterministic rules. This division gives the product a
+credible local-demo mode and makes the universal business rules suitable for property-based tests.
 
-## 1. Architecture Overview
+The first deployment path is: deploy the backend, configure a local frontend with the CloudFormation
+API URL, validate the integration, then deploy the frontend with AWS Amplify Hosting. No AWS
+credential is stored in source control.
 
-```
-                         ┌─────────────────────────────────────────────┐
-                         │                Users (Web)                   │
-                         └───────────────────────┬─────────────────────┘
-                                                 │ HTTPS
-                         ┌───────────────────────▼─────────────────────┐
-                         │  Frontend — React + TypeScript + Vite        │
-                         │  (Tailwind, Framer Motion, MapLibre)         │
-                         │  Hosted on AWS Amplify Hosting               │
-                         └───────────────────────┬─────────────────────┘
-                                                 │ REST/JSON
-                         ┌───────────────────────▼─────────────────────┐
-                         │  Backend — FastAPI (Python 3.11)             │
-                         │  API: search, chat, itinerary, reviews,      │
-                         │  destinations, recommendations               │
-                         │  Deployed via API Gateway + Lambda (Mangum)  │
-                         └──────┬───────────────────────┬───────────────┘
-                                │                       │
-             ┌──────────────────▼──────┐     ┌──────────▼───────────────────────┐
-             │ Destination Data Store  │     │ AI / RAG Layer                    │
-             │ (JSON dataset → later    │     │ Amazon Bedrock (LLM + embeddings) │
-             │ DynamoDB) + reviews      │     │ Bedrock Knowledge Base            │
-             └─────────────────────────┘     │  ├── S3 (KB source documents)     │
-                                             │  └── S3 Vectors (vector store)    │
-                                             └───────────────────────────────────┘
-```
+## Architecture
 
-### Key decisions
-- **Frontend:** React + TypeScript + Vite; Tailwind CSS for styling; Framer Motion for
-  transitions; MapLibre GL (open, replaceable) behind a `MapProvider` abstraction (Req 10.4).
-- **Backend:** FastAPI. Runs locally for early development and deploys to AWS Lambda behind API
-  Gateway using Mangum. This satisfies "test with deployed backend + local frontend, then deploy
-  frontend to Amplify" (Req 15.5).
-- **Data:** Start with a versioned JSON dataset (`data/destinations/*.json`) validated by a
-  Python validator. The repository model abstracts storage so it can move to DynamoDB without
-  changing feature logic (Req 3.4).
-- **AI:** Amazon Bedrock foundation model for generation + Titan embeddings; a Bedrock Knowledge
-  Base with S3 as the document source and S3 Vectors as the vector store for RAG (Req 5).
-- **IaC:** AWS CDK v2 (Python) under `infra/` with separate stacks (Req 15).
-
----
-
-## 2. Repository Structure
-
-```
-.
-├── .kiro/
-│   ├── specs/namma-ooru/{requirements.md,design.md,tasks.md,property-tests.md}
-│   ├── steering/*.md
-│   ├── hooks/*.json
-│   ├── agents/*.json                 # Lesson 7 — Custom Agents
-│   ├── settings/mcp.json             # Lesson 6 — MCP
-│   ├── evidence/kiro-university.md   # Lesson mapping + evidence
-│   └── ugmdu.json
-├── namma-ooru-power/                 # Lesson 5 — custom Power
-│   ├── plugin.json
-│   └── skills/{destination-curation,itinerary-planning,tamil-nadu-travel-content,review-analysis}/
-├── frontend/                         # React + TS + Vite app
-├── backend/                          # FastAPI app + tests (incl. property-based)
-├── data/                             # researched dataset + schema + validator
-│   ├── schema/destination.schema.json
-│   ├── destinations/*.json
-│   ├── kb/                           # RAG-ready documents/chunks for S3
-│   └── scripts/{validate.py,build_kb.py}
-├── infra/                            # AWS CDK v2 (Python)
-│   ├── app.py, cdk.json, requirements.txt
-│   ├── stacks/{frontend_stack,backend_stack,data_stack,ai_stack,monitoring_stack}.py
-│   ├── constructs/
-│   └── tests/
-├── docs/                             # data research docs, architecture diagrams
-└── README.md
+```text
+Browser
+  │
+  ├── React + TypeScript frontend (Vite during development; Amplify Hosting in production)
+  │      ├── React Query API client
+  │      ├── Map Provider abstraction (MapLibre first implementation)
+  │      └── accessible discovery, itinerary, review, and chat components
+  │
+  ▼ HTTPS JSON
+API Gateway HTTP API
+  ▼
+FastAPI application on AWS Lambda (Mangum)
+  ├── Destination Repository ────── JSON data locally / DynamoDB adapter later
+  ├── Deterministic domain services
+  │      ├── FilterService
+  │      ├── ItineraryService
+  │      ├── ReviewService
+  │      └── RecommendationService
+  └── AI Provider
+         ├── LocalMockAIProvider for development and automated tests
+         └── BedrockAIProvider
+                 └── Bedrock Knowledge Base
+                       ├── S3 source documents and sidecar metadata
+                       └── S3 Vectors vector bucket and index
 ```
 
----
+### Deployment architecture
+- `DataStack` owns the source-document S3 bucket and application data resources.
+- `AiStack` owns the S3 Vectors bucket/index, Bedrock Knowledge Base, S3 data source, and scoped
+  Knowledge Base roles.
+- `BackendStack` owns the FastAPI Lambda, API Gateway HTTP API, execution role, CORS configuration,
+  and backend API URL output.
+- `FrontendStack` owns Amplify Hosting and consumes the backend API URL as deployment configuration.
+- `MonitoringStack` owns CloudWatch log retention, alarms, and dashboard resources.
 
-## 3. Data Model (Req 3, 13)
+All infrastructure is AWS CDK v2 in Python. AWS CDK assertions and `cdk synth` validate
+infrastructure; property-based tests do not test AWS resources or deployment configuration.
 
-Canonical destination schema (JSON Schema in `data/schema/destination.schema.json`). Uncertain
-fields are nullable; nothing is invented (Req 13.4).
+### RAG flow
+1. The data pipeline validates and normalizes source-attributed Destination records.
+2. `build_kb.py` emits one source document and one `.metadata.json` sidecar per Destination.
+3. The S3 data source ingests documents into the Knowledge Base and stores vectors in S3 Vectors.
+4. `BedrockAIProvider` retrieves the top matching chunks with metadata filters when the request
+   contains district, category, or other supported filter values.
+5. `BedrockAIProvider` generates an answer only from retrieved chunks; the API returns generated
+   text and retrieved source references as separate fields.
 
-```jsonc
-{
-  "id": "madurai-meenakshi-amman-temple",       // slug, unique
-  "name": "Meenakshi Amman Temple",
-  "alternate_names": ["Meenakshi Sundareswarar Temple"],
-  "city": "Madurai",
-  "district": "Madurai",
-  "region": "South Tamil Nadu",
-  "category": "Temples",                          // enum
-  "subcategory": "Dravidian temple",
-  "description": "Short summary.",
-  "detailed_description": "Longer description.",
-  "historical_significance": null,               // null when not verified
-  "cultural_significance": null,
-  "latitude": 9.9195,
-  "longitude": 78.1193,
-  "address": "Madurai Main, Madurai, Tamil Nadu",
-  "best_time_to_visit": "Oct–Mar",
-  "recommended_duration": "2–3 hours",
-  "opening_hours": null,                          // dynamic → verify at source
-  "entry_fee": null,
-  "official_website": null,
-  "source_urls": ["https://www.tamilnadutourism.tn.gov.in/..."],
-  "sources": [{"name":"TN Tourism","type":"government","retrieved":"2026-09-27","notes":null}],
-  "image_reference": "madurai/meenakshi-1.jpg",
-  "tags": ["temple","heritage","architecture"],
-  "nearby_places": ["madurai-thirumalai-nayakkar-mahal"],
-  "is_hidden_gem": false,
-  "is_heritage": true,
-  "is_unesco": false,
-  "family_friendly": true,
-  "nature_related": false,
-  "adventure_related": false,
-  "average_rating": 4.7,
-  "review_count": 128,
-  "popularity": {"score": 95, "rank_in_city": 1}
+S3 Vectors metadata uses filterable values for district, city, category, region, heritage, UNESCO,
+and travel type. `AMAZON_BEDROCK_TEXT` is configured as non-filterable so retrieval metadata
+remains usable within the filterable metadata allowance.
+
+## Components and Interfaces
+
+### Frontend components
+| Component | Responsibility |
+|---|---|
+| `HomePage` | Renders discovery hero, catalog sections, search entry, and map entry point. |
+| `DestinationPage` | Renders one Destination, source links, nearby places, reviews, and AI summary. |
+| `CityPage` | Renders city-grouped catalog sections and discovery guidance. |
+| `SearchPage` | Submits Travel Queries and renders structured, filterable results. |
+| `ChatWidget` | Sends questions to the chatbot endpoint and renders source-linked Grounded Responses. |
+| `ItineraryPlanner` | Collects trip constraints, displays an itinerary, and submits edit requests. |
+| `MapView` | Uses `MapProvider` to render filterable markers and previews. |
+| `ReviewPanel` | Submits reviews and renders aggregate ratings, reviews, and AI summaries. |
+
+### Backend interfaces
+```python
+class DestinationRepository(Protocol):
+    def get_by_id(self, destination_id: str) -> Destination | None: ...
+    def list(self, filters: SearchFilters) -> list[Destination]: ...
+    def city_view(self, city: str) -> CityView: ...
+
+class AIProvider(Protocol):
+    def extract_search_intent(self, query: str) -> SearchIntent: ...
+    def answer(self, question: str, filters: RetrievalFilters) -> GroundedAnswer: ...
+    def parse_itinerary_edit(self, request: str, itinerary: Itinerary) -> ItineraryOperation: ...
+    def summarize_reviews(self, reviews: list[Review]) -> ReviewSummary: ...
+
+class MapProvider(Protocol):
+    def render(self, markers: list[MapMarker], filters: MapFilters) -> None: ...
+```
+
+`LocalMockAIProvider` implements deterministic fixtures for local development and tests.
+`BedrockAIProvider` implements Bedrock retrieval and generation for deployed environments.
+The router layer validates Pydantic request models, invokes a domain service, and maps known
+failures to API errors. Domain services do not call HTTP, S3, Bedrock, or DynamoDB directly.
+
+### API contracts
+| Method | Path | Request | Response |
+|---|---|---|---|
+| GET | `/api/destinations` | `SearchFilters` query parameters | `Destination[]` |
+| GET | `/api/destinations/{id}` | destination id | `DestinationDetail` |
+| GET | `/api/cities/{city}` | city slug | `CityView` |
+| POST | `/api/search` | `TravelQueryRequest` | `SearchResult` |
+| POST | `/api/chat` | `ChatRequest` | `GroundedAnswer` |
+| POST | `/api/itineraries` | `ItineraryRequest` | `Itinerary` |
+| POST | `/api/itineraries/{id}/edits` | `ItineraryEditRequest` | `Itinerary` or `EditUnavailable` |
+| GET/POST | `/api/destinations/{id}/reviews` | Review query / `ReviewCreateRequest` | review data |
+| POST | `/api/recommendations` | `RecommendationRequest` | `RecommendationResult` |
+| GET | `/api/map/markers` | `MapFilters` query parameters | `MapMarker[]` |
+
+## Data Models
+
+### Destination
+```text
+Destination {
+  id: DestinationId                         # unique lower-kebab-case slug
+  name: string
+  alternate_names: string[]
+  city: string
+  district: TamilNaduDistrict
+  region: string
+  category: DestinationCategory
+  subcategory: string | null
+  description: string
+  detailed_description: string | null
+  historical_significance: string | null
+  cultural_significance: string | null
+  latitude: decimal | null
+  longitude: decimal | null
+  address: string | null
+  best_time_to_visit: string | null
+  recommended_duration_minutes: integer | null
+  opening_hours: string | null              # dynamic; source-verification date retained
+  entry_fee: string | null                  # dynamic; source-verification date retained
+  official_website: URL | null
+  source_urls: URL[]
+  sources: SourceAttribution[]
+  image_reference: string | null
+  tags: string[]
+  nearby_place_ids: DestinationId[]
+  is_hidden_gem: boolean
+  is_heritage: boolean
+  is_unesco: boolean
+  family_friendly: boolean
+  nature_related: boolean
+  adventure_related: boolean
+  popularity: PopularityMetadata
 }
 ```
 
-### Category enum
-`Temples, Heritage, Beaches, Hills, Waterfalls, Nature, Wildlife, Food, Culture, Adventure,
-Photography, Hidden Gems` (extensible — Req 3.2). Subcategories are free-form but validated
-against a controlled vocabulary list where possible.
+`SourceAttribution` contains `name`, `type`, `url`, `retrieved_on`, and `notes`. Dynamic source
+values are represented as nullable data plus their source reference; the UI does not present them
+as guaranteed current information.
 
-### District list
-Validated against the official 38 Tamil Nadu districts (stored in `data/schema/districts.json`).
+### Search, itinerary, and review models
+```text
+SearchFilters { city?, district?, category?, tags[], family_friendly?, hidden_gems? }
+SearchIntent { location?, duration_days?, category?, interests[], travel_style?, budget?, group_context? }
+GroundedAnswer { answer: string, sources: RetrievedSource[], unavailable: boolean }
 
-### Reviews model
-```jsonc
-{ "id": "uuid", "destination_id": "slug", "rating": 5, "text": "…",
-  "tags": ["architecture"], "created_at": "ISO-8601", "author": "display name" }
-```
-Invariant: `rating ∈ {1,2,3,4,5}` and `destination_id` must exist (Req 11.2, 11.3).
+Itinerary {
+  id: UUID
+  destination_context: string
+  days: ItineraryDay[]
+  allow_repeats: boolean
+}
+ItineraryDay { day_number: positive integer, activities: ItineraryActivity[] }
+ItineraryActivity {
+  destination_id: DestinationId
+  start_minute: integer from 0 through 1439
+  duration_minutes: positive integer
+  rationale: string
+  travel_context: string
+  break_suggestion: string
+}
+ItineraryOperation = Add | Remove | Replace | Reorder | Constrain
 
----
-
-## 4. Backend API Design (Req 4–8, 11)
-
-FastAPI with Pydantic models. All endpoints validate input (Req 16.2).
-
-| Method | Path | Purpose | Requirements |
-|---|---|---|---|
-| GET | `/api/destinations` | list/filter destinations | 1, 3, 4 |
-| GET | `/api/destinations/{id}` | destination detail | 2, 3 |
-| GET | `/api/cities/{city}` | grouped city page data | 2 |
-| POST | `/api/search` | NL search → structured results | 4 |
-| POST | `/api/chat` | RAG chatbot turn | 5 |
-| POST | `/api/itinerary` | generate itinerary | 6 |
-| POST | `/api/itinerary/edit` | conversational edit | 7 |
-| POST | `/api/recommendations` | interest-based + Surprise Me | 8, 9 |
-| GET | `/api/destinations/{id}/reviews` | list reviews + stats + AI summary | 11 |
-| POST | `/api/destinations/{id}/reviews` | submit review | 11 |
-| GET | `/api/map` | map markers (filterable) | 10 |
-
-### Search intent extraction (Req 4)
-`/api/search` sends the query to Bedrock with a strict JSON schema prompt to extract
-`{location, duration, category, interests, travel_style, budget, group_context}`, then filters
-the catalog. Filtering is pure/deterministic so property tests (Req 4.3, 4.4) can verify filter
-invariants without invoking the model. If the model is unavailable, fall back to keyword/tag
-matching (Req 4.5).
-
-### Itinerary engine (Req 6, 7)
-Two-stage design so correctness is testable:
-1. **Deterministic core** (`itinerary/core.py`): given candidate destinations + constraints,
-   produces a valid day-by-day plan. Pure functions with invariants: exactly N days, no illegal
-   duplicates, valid references, positive durations, ordered non-overlapping times, proximity
-   ordering (nearest-neighbour over coordinates). This is the target of property-based tests.
-2. **AI layer** (`itinerary/ai.py`): uses Bedrock to select candidates, write "why visit"
-   narratives and food suggestions, and interpret conversational edits into structured
-   operations (`remove`, `add`, `replace`, `reorder`, `constrain`) that are then applied by the
-   deterministic core so invariants always hold after edits (Req 7.3).
-
----
-
-## 5. AI / RAG Architecture (Req 5, 11.5)
-
-```
-Question ──► /api/chat ──► Retrieve (Bedrock KB: RetrieveAndGenerate)
-                              │  query embedding (Titan) → S3 Vectors search
-                              │  → top-k chunks from S3 KB docs
-                              ▼
-                         Grounded context (kept separate from generation)
-                              │
-                              ▼
-                         Bedrock LLM generates answer citing retrieved sources
+Review { id: UUID, destination_id: DestinationId, rating: integer 1..5, text: string?, tags: string[], created_at: ISO-8601 }
+ReviewSummary { positives: string[], concerns: string[], review_count: positive integer }
 ```
 
-- **Knowledge source:** `data/kb/*.md|json` chunks built from the validated dataset by
-  `data/scripts/build_kb.py`, uploaded to an S3 bucket. Each chunk carries metadata (district,
-  city, category, subcategory, region, heritage, unesco, travel_type) for retrieval filtering
-  (Req 5, data section).
-- **Vector store:** S3 Vectors, populated via the Bedrock Knowledge Base ingestion job.
-- **Grounding & anti-hallucination:** The system prompt instructs the model to answer only from
-  retrieved context and to say when information is unavailable (Req 5.3). Retrieved context and
-  generated text are represented as separate fields in the API response.
-- **Review summaries (Req 11.5):** A separate Bedrock summarization call over a destination's
-  reviews, returning `{positives[], concerns[]}`, labelled as AI-generated (Req 11.6).
+### Knowledge Base documents
+Each `data/kb/<destination-id>.md` contains a grounded Destination narrative and source URLs.
+Each matching `data/kb/<destination-id>.md.metadata.json` stores district, city, category,
+subcategory, region, heritage, UNESCO, and travel-type metadata. The data pipeline emits these
+only after the dataset validator succeeds.
 
----
+## Correctness Properties
+*A property is a characteristic that holds across all valid executions. The following properties
+test only Namma Ooru’s deterministic logic or in-memory adapters. Bedrock, S3, S3 Vectors,
+API Gateway, AWS CDK, and UI layout use mocks, example-based tests, CDK assertions, smoke tests,
+or visual tests rather than property-based tests.*
 
-## 6. AWS Architecture & CDK Stacks (Req 15, 16)
+### Property 1: Filter intersection soundness
+For any Destination Catalog and any non-empty set of active Search Filters, every Destination
+returned by `FilterService.apply` satisfies every active Search Filter.
+**Validates: Requirements 4.4**
 
-| Stack | Resources | Notes |
+### Property 2: Filter removal preservation
+For any Destination Catalog, active Search Filters, and one removed Search Filter, every
+Destination returned after removal satisfies every Search Filter that remains active.
+**Validates: Requirements 4.5**
+
+### Property 3: Filter monotonicity
+For any Destination Catalog and any valid Search Filter, applying that Search Filter to an existing
+filter set never increases the result set.
+**Validates: Requirements 4.4**
+
+### Property 4: Itinerary day-count preservation
+For any valid Itinerary request with a requested day count from 1 through 14 and a sufficient
+Destination Catalog, `ItineraryService.generate` returns exactly the requested number of day plans.
+**Validates: Requirements 6.1**
+
+### Property 5: Itinerary catalog-reference validity
+For any valid Itinerary generated from a Destination Catalog, every Itinerary Activity destination
+identifier exists in that Destination Catalog.
+**Validates: Requirements 6.2**
+
+### Property 6: Itinerary temporal validity
+For any valid Itinerary generated by `ItineraryService`, every activity has a positive duration and
+each day’s activities are ordered without temporal overlap.
+**Validates: Requirements 6.2, 6.3**
+
+### Property 7: Itinerary uniqueness when repeats are disabled
+For any valid Itinerary request with `allow_repeats` set to false, no Destination identifier appears
+more than once in the generated Itinerary.
+**Validates: Requirements 6.5**
+
+### Property 8: Edit invariant preservation
+For any valid Itinerary and any successfully applied structured Itinerary Operation,
+`ItineraryService.apply_operation` preserves valid catalog references, positive durations, and
+non-overlapping activity ordering.
+**Validates: Requirements 7.3**
+
+### Property 9: Remove operation locality
+For any valid Itinerary and removable activity, applying a Remove operation changes no activity
+other than removal of the selected activity.
+**Validates: Requirements 7.2**
+
+### Property 10: Replace operation validity
+For any valid Itinerary and a successful Replace operation, exactly one activity destination
+identifier changes and the replacement identifier exists in the Destination Catalog.
+**Validates: Requirements 7.1, 7.2**
+
+### Property 11: Recommendation catalog membership
+For any valid interest selection, themed journey, or Surprise Me request, every Destination returned
+by `RecommendationService` exists in the Destination Catalog.
+**Validates: Requirements 8.1, 8.2, 8.3, 8.4**
+
+### Property 12: Map marker filter soundness
+For any Destination Catalog and active Map Filters, every marker returned by `MapMarkerService`
+references a Destination satisfying every active Map Filter and having verified coordinates.
+**Validates: Requirements 9.1, 9.2**
+
+### Property 13: Review acceptance boundary
+For any existing Destination and integer rating from 1 through 5, `ReviewService.create` persists
+a Review whose rating and Destination identifier equal the submitted values.
+**Validates: Requirements 10.1**
+
+### Property 14: Review rejection boundary
+For any non-integer rating or integer rating outside 1 through 5, and for any unknown Destination
+identifier, `ReviewService.create` rejects the request and leaves the Review store unchanged.
+**Validates: Requirements 10.2**
+
+### Property 15: Review aggregate consistency
+For any non-empty collection of persisted Reviews for one Destination, the reported review count,
+rating distribution total, and average rating equal the count, histogram total, and arithmetic mean
+of that collection.
+**Validates: Requirements 10.3**
+
+## Error Handling
+| Condition | Backend behavior | Frontend behavior |
 |---|---|---|
-| `data_stack` | S3 (KB source bucket), DynamoDB (destinations, reviews) optional, S3 Vectors bucket | least-privilege access |
-| `ai_stack` | Bedrock Knowledge Base, S3 Vectors index, IAM roles for KB ingestion & retrieval | model access via Bedrock |
-| `backend_stack` | Lambda (FastAPI via Mangum), API Gateway (HTTP API), IAM exec role, CORS | scoped Bedrock + data permissions |
-| `frontend_stack` | Amplify Hosting app (or S3+CloudFront fallback) | connects to backend API URL output |
-| `monitoring_stack` | CloudWatch dashboards, log groups, alarms | observability |
+| Invalid request model | Return `400 VALIDATION_ERROR` with field-safe details. | Display correction guidance. |
+| Unknown Destination | Return `404 DESTINATION_NOT_FOUND`. | Display not-found state and discovery action. |
+| Invalid review or itinerary operation | Return `422 BUSINESS_RULE_VIOLATION`. | Keep existing state and display actionable feedback. |
+| Knowledge Base has no result | Return `200` GroundedAnswer with `unavailable=true` and no fabricated answer. | Display unavailable-information response. |
+| Bedrock dependency failure | Return `503 AI_UNAVAILABLE`; use search fallback only where Requirement 4.3 applies. | Display retry action and non-AI browsing controls. |
+| Repository or internal failure | Log correlation id; return `500 INTERNAL_ERROR` with safe message only. | Display retry state; do not render internal details. |
 
-Principles: reusable constructs, environment-specific config via CDK context, no hardcoded
-credentials, CloudFormation outputs (API URL, bucket names, KB id) for wiring frontend/backend.
-Credentials resolve through the standard AWS chain / IAM roles (Req 16.4).
+The FastAPI exception mapper is the sole place that translates domain exceptions into HTTP errors.
+Prompt validation rejects malformed structured AI output before it reaches an itinerary or review
+service. API Gateway integration timeout limits direct synchronous responses, so chat and itinerary
+handlers use bounded retrieval and generation settings; the client receives a safe dependency error
+when the bound is exceeded.
 
-**Deployment path (Req 15.5):** deploy `data_stack` + `ai_stack` + `backend_stack` first; run the
-frontend locally against the deployed backend URL; once verified, deploy `frontend_stack`
-(Amplify).
-
----
-
-## 7. Frontend Design (Req 1, 2, 9, 10, 12)
-
-- **Routing:** Home, City/`:city`, Destination/`:id`, Search, Itinerary, Map, Discover.
-- **State/data:** React Query for API calls with built-in loading/error states; skeletons for
-  loading; explicit empty and error components (Req 12.3).
-- **Design system:** Tailwind theme with a Tamil Nadu-inspired palette (temple gold, kaavi/ochre,
-  deep maroon, coastal teal) and modern typography; reusable `DestinationCard`, `SectionHeader`,
-  `RatingStars`, `ChatWidget`, `ItineraryTimeline`, `JourneyPicker`, `MapView` components.
-- **Accessibility:** semantic landmarks, focus management, keyboard-navigable widgets, alt text,
-  contrast-checked palette (Req 12.4).
-- **Map abstraction:** `MapProvider` interface with a `MapLibreProvider` default; swappable for a
-  production provider (Req 10.4).
-
----
-
-## 8. Testing Strategy (Req 4, 6, 7, 11, 14; Lesson 4)
-
-- **Property-based tests (Hypothesis, Python)** target the deterministic cores. Following Kiro's
-  correctness workflow, properties are extracted from the EARS requirements (inline
-  *Correctness / Properties* blocks in `requirements.md`) and run as **optional** subtasks placed
-  **after** each feature's core implementation subtasks in `tasks.md` (2.5, 4.4, 6.4, 7.4, 8.5).
-  `property-tests.md` is the consolidated traceability index. Examples: itinerary invariants,
-  review rating bounds, filter soundness, dataset validity.
-- **Example-based unit tests** for API contracts and edge cases.
-- **Integration tests** for API endpoints (FastAPI TestClient) and CDK assertions
-  (`aws-cdk.assertions`) in `infra/tests/`.
-- **Data validation** (`data/scripts/validate.py`) enforces Req 14 and runs as a hook.
-
----
-
-## 9. Kiro University Lesson Mapping (design-level)
-
-| Lesson | Where it lives in this design |
-|---|---|
-| 1 Specs | `.kiro/specs/namma-ooru/` (this spec) drives all phases |
-| 2 Steering | `.kiro/steering/` conventions applied to frontend/backend/AI/data |
-| 3 Hooks | `.kiro/hooks/` run lint/format/type-check, backend tests, data validation, pre-completion checks |
-| 4 Property-Based Testing | deterministic cores (§4, §8) + `property-tests.md` |
-| 5 Powers | relevant installed Power + `namma-ooru-power/` custom Power |
-| 6 MCP | `.kiro/settings/mcp.json` (AWS docs, GitHub) used for research/validation |
-| 7 Custom Agents | `.kiro/agents/` — destination-curation & spec-review agents |
-
-Bonus lessons are evaluated in `tasks.md` Phase 14 after the seven required lessons.
-
----
-
-## 10. Risks & Mitigations
-- **Bedrock/S3 Vectors availability & cost** → build behind an interface with a local mock so the
-  app is demoable without live AWS; gate live calls behind env config.
-- **Data accuracy** → strict validator, source attribution, null-over-invention, human-review
-  flags for conflicts.
-- **Scope** → phased delivery; deterministic cores first so AI can be layered on tested logic.
-- **Map provider lock-in** → `MapProvider` abstraction.
+## Testing Strategy
+- **Property-based tests:** Hypothesis runs at least 100 generated examples for each Property 1–15
+  against pure domain services or in-memory repositories. Every test includes the feature/property
+  tag and links to its design property.
+- **Unit tests:** FastAPI request validation, structured-output parsing, known error mappings,
+  source rendering, UI state transitions, and regression cases use concrete examples.
+- **Integration tests:** FastAPI `TestClient` verifies endpoint contracts with `LocalMockAIProvider`.
+  The browser test suite verifies the core discovery → detail → chat → itinerary → edit path.
+- **Data validation tests:** JSON Schema validation and explicit dataset-validator tests verify
+  required fields, allowed districts/categories, URLs, duplicate IDs/aliases, source attribution,
+  and coordinate bounds. These are schema/example validation, not PBT.
+- **Infrastructure tests:** `cdk synth`, AWS CDK assertions, IAM policy assertions, and a small
+  deployed-backend smoke test validate the CDK stacks. These are not PBT because they test
+  declarative infrastructure and external AWS behavior.
+- **Accessibility tests:** automated semantic/keyboard/contrast checks plus manual screen-reader
+  review before demo recording.

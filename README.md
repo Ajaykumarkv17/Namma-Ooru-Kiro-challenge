@@ -90,10 +90,10 @@ Run backend locally (or against the deployed API), then the frontend dev server;
 local URL.
 
 ## Testing
-Property-based tests follow Kiro's correctness workflow: properties are extracted from the EARS
-requirements (inline in `requirements.md`) and run as **optional** subtasks after each feature's
-core implementation. `property-tests.md` is the traceability index.
-- Property-based: `pytest backend/tests/property` (properties P1–P26).
+Property-based tests follow Kiro's correctness workflow: the canonical properties live in
+[`design.md`](.kiro/specs/namma-ooru/design.md) under `## Correctness Properties`, and each has an
+individual **optional** task immediately after the deterministic implementation it tests.
+- Property-based: `pytest backend/tests/property` (Properties 1–15).
 - Unit/integration: `pytest backend/tests`, `pytest infra/tests`, `cdk synth`.
 - Data validation: `python data/scripts/validate.py`.
 - Frontend: `npm test`, `tsc --noEmit`, `eslint`.
@@ -105,7 +105,7 @@ core implementation. `property-tests.md` is the traceability index.
 | Lesson 1 | Spec-Driven Development | [`.kiro/specs/`](.kiro/specs/namma-ooru/) |
 | Lesson 2 | Steering | [`.kiro/steering/`](.kiro/steering/) |
 | Lesson 3 | Hooks | [`.kiro/hooks/`](.kiro/hooks/) |
-| Lesson 4 | Property-Based Testing | [`property-tests.md`](.kiro/specs/namma-ooru/property-tests.md) |
+| Lesson 4 | Property-Based Testing | [`design.md` correctness properties](.kiro/specs/namma-ooru/design.md) + [`tasks.md` optional PBT subtasks](.kiro/specs/namma-ooru/tasks.md) |
 | Lesson 5 | Powers | [`namma-ooru-power/`](namma-ooru-power/) |
 | Lesson 6 | MCP | [`.kiro/evidence/mcp.md`](.kiro/evidence/mcp.md) |
 | Lesson 7 | Custom Agents | [`.kiro/agents/`](.kiro/agents/) |

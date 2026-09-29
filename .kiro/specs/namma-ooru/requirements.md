@@ -1,303 +1,141 @@
-# Namma Ooru — Requirements
-
-**Tagline:** Discover the Tamil Nadu you haven't seen.
-
-Namma Ooru is an AI-powered Tamil Nadu travel discovery and trip-planning platform. This
-document captures the testable requirements for the main feature spec. Requirements use the
-EARS pattern (Easy Approach to Requirements Syntax) so each acceptance criterion is verifiable.
-
-Legend for traceability tags:
-- `[PBT]` — requirement has universal properties suitable for property-based testing (Lesson 4).
-- `[AI]` — requirement depends on the AI/RAG layer (Bedrock).
-- `[DATA]` — requirement depends on the researched destination dataset.
-
-**Property-based testing note.** Following Kiro's correctness workflow, universal properties are
-extracted directly from the EARS acceptance criteria below and listed inline in a
-*Correctness / Properties* block under each requirement that has them. Kiro surfaces these during
-the design phase (linked to the requirement and its task) and runs them during task execution —
-**optional by default**, after the core implementation. `property-tests.md` is the consolidated
-traceability index (requirement ↔ property ↔ task).
-
----
-
-## Requirement 1 — Discover Tamil Nadu (Home Experience)
-
-**User Story:** As a visitor, I want an attractive home experience that surfaces Tamil Nadu
-destinations, so that I can start exploring without needing to use AI.
-
-### Acceptance Criteria
-1. WHEN a user opens the home page THEN the system SHALL render a hero section, a search bar, and an "Explore Tamil Nadu" call to action.
-2. WHEN the home page loads THEN the system SHALL display sections for popular destinations, popular cities, categories, hidden gems, and recommended destinations. `[DATA]`
-3. WHEN the home page loads THEN the system SHALL display an interactive Tamil Nadu map entry point.
-4. WHILE destination data is loading THE system SHALL display skeleton loading states rather than blank areas.
-5. IF a data section returns no results THEN the system SHALL display an empty state with guidance instead of an error.
-6. WHEN a user browses the home page THEN the system SHALL allow navigation to any destination or city detail without invoking AI.
-
----
-
-## Requirement 2 — Explore a City / District
-
-**User Story:** As a traveler, I want a rich city page, so that I can understand what a place
-offers before visiting.
-
-### Acceptance Criteria
-1. WHEN a user selects a city (e.g. Madurai) THEN the system SHALL display a hero image, city overview, and grouped sections for popular places, temples, heritage, food, and nature/nearby attractions. `[DATA]`
-2. WHEN a city page renders THEN the system SHALL display hidden gems, average ratings, reviews, nearby destinations, suggested duration, best time to visit, and travel tips where data exists. `[DATA]`
-3. IF a field is unavailable for a city or place THEN the system SHALL render "Information unavailable" rather than a fabricated value. `[DATA]`
-4. WHEN the same navigation pattern is applied to any Tamil Nadu city with data THEN the system SHALL render the same section structure.
-
----
-
-## Requirement 3 — Destination Catalog & Data Model
-
-**User Story:** As a product owner, I want a structured, extensible destination model, so that
-new categories and destinations can be added without code changes to components.
-
-### Acceptance Criteria
-1. THE system SHALL model each destination with at minimum: id, name, alternate_names, city, district, region, category, subcategory, description, detailed_description, historical_significance, cultural_significance, latitude, longitude, address, best_time_to_visit, recommended_duration, opening_hours, entry_fee, official_website, source_urls, image_reference, tags, nearby_places, is_hidden_gem, is_heritage, is_unesco, family_friendly, nature_related, adventure_related, average_rating, review_count, and popularity metadata. `[DATA] [PBT]`
-2. THE system SHALL support at least these categories: Temples, Heritage, Beaches, Hills, Waterfalls, Nature, Wildlife, Food, Culture, Adventure, Photography, Hidden Gems. `[PBT]`
-3. WHERE a destination field is uncertain or unavailable THE system SHALL store it as null rather than an invented value. `[DATA]`
-4. THE system SHALL store destination data separately from frontend components (data files / API), not hard-coded inside UI components.
-5. WHEN a destination is validated THEN it SHALL reference a valid district and a valid category. `[PBT] [DATA]`
-6. THE system SHALL retain source attribution (source_urls, source name, source type, retrieval date) for every factual destination record. `[DATA]`
-
-### Correctness / Properties
-- **P15** every destination's district is in the official TN district list. _(from AC 5)_
-- **P16** every destination's category is in the allowed enum. _(from AC 2, 5)_
-- **P17** every destination has all required non-nullable fields. _(from AC 1)_
-- **P18** latitude ∈ [8.0, 13.6] and longitude ∈ [76.2, 80.4] (TN box) or is null. _(from AC 1, 3)_
-- **P19** no two destinations share an id; alias sets do not collide. _(from AC 1)_
-- **P20** every factual record has ≥1 source reference. _(from AC 6)_
-- **P21** description fields are non-empty when present. _(from AC 1)_
-- _Validated by optional PBT task **2.5**; overlaps `data/scripts/validate.py` for a second check._
-
----
-
-## Requirement 4 — AI Natural-Language Search
-
-**User Story:** As a traveler, I want to search in natural language, so that I get relevant
-destinations without knowing exact names or filters.
-
-### Acceptance Criteria
-1. WHEN a user submits a natural-language query THEN the system SHALL extract intent including location, duration, category, interests, travel style, budget, and group context where present. `[AI]`
-2. WHEN a search completes THEN the system SHALL return structured destination results, not only plain text. `[AI] [DATA]`
-3. WHEN filters are active THEN the search results SHALL only contain destinations satisfying every active filter. `[PBT]`
-4. WHEN a filter is removed THEN the result set SHALL NOT contain destinations that violate a still-active filter. `[PBT]`
-5. IF intent extraction fails or the model is unavailable THEN the system SHALL fall back to keyword/tag search and inform the user.
-6. WHILE a search is running THE system SHALL show a loading state.
-
-### Correctness / Properties
-- **P22** for any active filter set, every result satisfies every active filter (soundness). _(from AC 3)_
-- **P23** removing one filter never introduces a result violating another still-active filter. _(from AC 4)_
-- **P24** filtering is monotonic: adding a filter never grows the result set. _(from AC 3)_
-- _Validated by optional PBT task **4.4** (runs against the pure filter engine; no AWS needed)._
-
----
-
-## Requirement 5 — Amazon Bedrock AI Chatbot (RAG)
-
-**User Story:** As a traveler, I want an AI chatbot grounded in Namma Ooru knowledge, so that I
-get reliable answers about Tamil Nadu travel.
-
-### Acceptance Criteria
-1. THE chatbot SHALL answer using a Retrieval-Augmented Generation pipeline over an Amazon Bedrock Knowledge Base backed by S3 (source) and S3 Vectors (vector store). `[AI]`
-2. WHEN the chatbot answers THEN the response SHALL be grounded in retrieved knowledge, and the architecture SHALL keep retrieved context separate from generated text. `[AI]`
-3. IF the knowledge base has no relevant content for a question THEN the chatbot SHALL say it does not have that information rather than fabricating facts. `[AI]`
-4. THE chatbot SHALL be embedded and reachable from across the application.
-5. THE system SHALL NOT store AWS credentials or secrets in source control.
-6. WHEN a chatbot answer cites facts THEN it SHOULD reference the source destination(s) where available. `[AI] [DATA]`
-
----
-
-## Requirement 6 — AI Itinerary Planner (Hero Feature)
-
-**User Story:** As a traveler, I want an AI-generated multi-day itinerary, so that I can plan a
-trip logically without manual research.
-
-### Acceptance Criteria
-1. WHEN a user provides a destination, number of days, budget, travel style, interests, starting point, and preferences THEN the system SHALL generate a day-by-day itinerary. `[AI] [DATA]`
-2. THE generated itinerary for N days SHALL contain exactly N days. `[PBT]`
-3. WHEN an itinerary is generated THEN each activity SHALL include time/order, place, approximate duration, why-to-visit, travel context, and a nearby food/break suggestion. `[AI]`
-4. THE system SHALL order activities to reduce unnecessary travel, considering proximity, opening hours where known, recommended duration, interests, trip length, travel style, and budget. `[AI]`
-5. EACH itinerary activity SHALL reference a valid, existing destination. `[PBT] [DATA]`
-6. WITHIN a single itinerary no destination SHALL be duplicated unless explicitly allowed. `[PBT]`
-7. EACH activity SHALL have a positive duration and valid, non-overlapping ordered times within a day. `[PBT]`
-
-### Correctness / Properties
-- **P1** for any N, a generated itinerary has exactly N days. _(from AC 2)_
-- **P2** no destination repeats within an itinerary unless explicitly allowed. _(from AC 6)_
-- **P3** every activity references an id present in the catalog. _(from AC 5)_
-- **P4** every activity duration is strictly positive. _(from AC 7)_
-- **P5** within a day, start times are strictly increasing and non-overlapping given durations. _(from AC 7)_
-- **P6** day ordering is 1..N with no gaps or repeats. _(from AC 2, 7)_
-- _Validated by optional PBT task **6.4** (runs against the deterministic itinerary core)._
-
----
-
-## Requirement 7 — Conversational Itinerary Editing
-
-**User Story:** As a traveler, I want to modify an itinerary in natural language, so that I can
-refine it without regenerating from scratch.
-
-### Acceptance Criteria
-1. WHEN a user issues an edit instruction (e.g. "remove the palace", "add one more temple", "make day 2 less crowded", "make the trip cheaper", "replace this place with something nearby") THEN the system SHALL apply only the requested change. `[AI]`
-2. WHEN an edit is applied THEN the system SHALL preserve unaffected parts of the itinerary. `[PBT]`
-3. AFTER an edit THE itinerary SHALL still satisfy all itinerary invariants in Requirement 6 (day count preserved unless the edit changes it, valid references, positive durations, valid ordering). `[PBT]`
-4. IF an edit cannot be satisfied (e.g. no nearby alternative) THEN the system SHALL explain why and leave the itinerary unchanged.
-
-### Correctness / Properties
-- **P7** after any single edit op, all itinerary invariants P2–P6 still hold. _(from AC 3)_
-- **P8** a `remove` edit changes nothing other than removing the target. _(from AC 2)_
-- **P9** a `replace` edit changes exactly one activity to a valid, distinct destination. _(from AC 1, 2)_
-- _Validated by optional PBT task **7.4** (edit ops applied through the deterministic core)._
-
----
-
-## Requirement 8 — Personalized Discovery & Surprise Me
-
-**User Story:** As a traveler, I want recommendations based on my interests, so that discovery
-feels personal.
-
-### Acceptance Criteria
-1. WHEN a user selects interests (temples, history, food, nature, beaches, adventure, photography, culture, hidden gems) THEN the system SHALL recommend destinations matching those interests. `[DATA]`
-2. WHEN a user clicks "Surprise Me" THEN the system SHALL recommend an unexpected destination with destination, why-it-matches, category, suggested duration, and short description. `[DATA]`
-3. THE recommendations SHALL only include destinations present in the catalog. `[PBT] [DATA]`
-
-### Correctness / Properties
-- **P26** every recommendation / Surprise Me result exists in the catalog. _(from AC 3)_
-- _Validated by optional PBT task **4.4**._
-
----
-
-## Requirement 9 — Creative Travel Discovery
-
-**User Story:** As a traveler, I want themed journeys, so that I can explore by mood/intent.
-
-### Acceptance Criteria
-1. WHEN a user opens "What kind of journey are you looking for?" THEN the system SHALL present journey options: Spiritual, Hill Escape, Coastal Escape, Food Trail, Heritage, Nature Escape, Photography, Hidden Gems.
-2. WHEN a user selects a journey THEN the system SHALL dynamically recommend matching destinations. `[DATA]`
-3. THE system SHALL provide a "Beyond the Tourist Map" experience surfacing hidden/lesser-known destinations. `[DATA]`
-
----
-
-## Requirement 10 — Interactive Tamil Nadu Map
-
-**User Story:** As a traveler, I want a map-based discovery view, so that I can explore
-destinations spatially.
-
-### Acceptance Criteria
-1. WHEN the map view loads THEN the system SHALL render destination markers using stored coordinates. `[DATA]`
-2. WHEN a user filters by category or selects a city THEN the map SHALL only show markers matching the filter. `[PBT]`
-3. WHEN a user clicks a marker THEN the system SHALL open a destination preview and allow navigation to the detail page.
-4. THE map layer SHALL be replaceable (abstraction) so a lightweight implementation can be swapped for a production provider without changing feature logic.
-
-### Correctness / Properties
-- **P25** map markers under a category/city filter only include matching destinations. _(from AC 2)_
-- _Validated by optional PBT task **4.4**._
-
----
-
-## Requirement 11 — Reviews & Ratings
-
-**User Story:** As a traveler, I want to read and submit reviews, so that I can judge and share
-destination experiences.
-
-### Acceptance Criteria
-1. WHEN a user submits a review THEN the system SHALL accept a 1–5 star rating, review text, and optional tags. `[PBT]`
-2. THE system SHALL reject any rating outside the 1–5 integer range and SHALL NOT persist it. `[PBT]`
-3. EVERY review SHALL reference an existing destination. `[PBT] [DATA]`
-4. WHEN a destination page renders THEN the system SHALL display average rating, rating distribution, review count, and recent reviews. `[PBT]`
-5. WHERE a destination has enough reviews THE system SHALL display an AI-generated review summary listing frequently mentioned positives and common concerns. `[AI]`
-6. THE system SHALL clearly label AI-generated summaries as distinct from individual user reviews. `[AI]`
-
-### Correctness / Properties
-- **P10** a persisted review always has an integer rating in [1,5]. _(from AC 1)_
-- **P11** any rating outside [1,5] (incl. non-integers/negatives) is rejected, never persisted. _(from AC 2)_
-- **P12** every stored review references an existing destination id. _(from AC 3)_
-- **P13** reported average equals the mean of stored ratings (float tolerance). _(from AC 4)_
-- **P14** rating distribution counts sum to the review count. _(from AC 4)_
-- _Validated by optional PBT task **8.5** (runs against the review service with an in-memory store)._
-
----
-
-## Requirement 12 — Visual Design & UX Quality
-
-**User Story:** As a user, I want a premium, culturally-grounded travel UI, so that the product
-feels modern and trustworthy.
-
-### Acceptance Criteria
-1. THE UI SHALL provide destination cards with large imagery, smooth transitions, modern typography, and a Tamil Nadu cultural identity.
-2. THE UI SHALL be responsive and mobile-friendly with accessible navigation.
-3. THE UI SHALL implement loading, empty, error, and skeleton states across data-driven sections.
-4. THE UI SHALL meet accessibility basics: semantic markup, keyboard navigation, sufficient contrast, and alt text for imagery.
-5. THE UI SHALL NOT resemble a generic admin dashboard.
-
----
-
-## Requirement 13 — Data Acquisition, Research & Quality
-
-**User Story:** As a product owner, I want a broad, reliable, source-attributed dataset, so that
-the platform fulfills its tagline with trustworthy facts.
-
-### Acceptance Criteria
-1. THE dataset SHALL be built from multiple reliable sources, prioritizing official TN Tourism/TTDC, TN district portals, TN government departments (HR&CE for temples, Archaeology for monuments), and Incredible India, with other reputable sources only when necessary. `[DATA]`
-2. THE dataset SHALL cover destinations across most Tamil Nadu districts, not only the most famous cities, and SHALL include a diverse range of categories (temples, heritage, UNESCO, forts, palaces, museums, beaches, hills, waterfalls, lakes, dams, wildlife, forests, bird sanctuaries, wetlands, caves, archaeological sites, churches, mosques, Jain heritage, cultural, food, adventure, photography, hidden gems, viewpoints, islands/coastal, family). `[DATA]`
-3. THE data pipeline SHALL be repeatable: research → collection → extraction → normalization → deduplication → cross-source validation → schema validation → human-review flags → dataset → S3 KB data → Bedrock/S3 Vectors. `[DATA]`
-4. THE system SHALL never invent opening hours, entry fees, coordinates, historical facts, temple info, distances, contact info, or accessibility info; unknown values SHALL remain null. `[DATA]`
-5. WHERE sources conflict THE record SHALL be flagged for review and prefer the authoritative government source. `[DATA]`
-6. THE dataset SHALL distinguish stable information from dynamic information (hours, fees, closures, access, weather, festivals) and link to official sources for verification. `[DATA]`
-
----
-
-## Requirement 14 — Data Validation
-
-**User Story:** As a maintainer, I want automated dataset validation, so that data quality is
-enforced continuously.
-
-### Acceptance Criteria
-1. THE validator SHALL check required fields, valid district names, valid categories, valid coordinate ranges, duplicate places, duplicate aliases, invalid ratings, invalid relationships, missing source references, malformed URLs, incorrect district/category mappings, and empty descriptions. `[PBT] [DATA]`
-2. WHEN validation fails THEN the process SHALL report the specific record and rule that failed with a non-zero exit code. `[DATA]`
-3. THE validator SHALL run as a Kiro Hook on relevant data changes (Lesson 3). `[DATA]`
-
----
-
-## Requirement 15 — AWS Infrastructure as Code (Python CDK)
-
-**User Story:** As a maintainer, I want all AWS infrastructure defined in Python CDK v2, so that
-the environment is reproducible and reviewable.
-
-### Acceptance Criteria
-1. ALL production AWS infrastructure SHALL be defined with AWS CDK v2 in Python (3.9+) under `infra/`, not created manually in the console where CDK can provision it.
-2. THE infrastructure SHALL be split into logical stacks: frontend, backend, data, ai, monitoring.
-3. THE IAM policies SHALL follow least privilege, and no credentials or secrets SHALL be committed.
-4. THE CDK app SHALL support environment-specific configuration and expose useful CloudFormation outputs.
-5. THE backend SHALL be deployable so it can be tested with a local frontend before the frontend is deployed to AWS Amplify.
-
----
-
-## Requirement 16 — Security & Secrets
-
-**User Story:** As a maintainer, I want secure defaults, so that credentials and inputs are safe.
-
-### Acceptance Criteria
-1. THE system SHALL keep AWS credentials and secrets out of source control (no committed `.env` with secrets).
-2. THE backend SHALL validate and sanitize all user input before use in queries or prompts.
-3. THE API SHALL apply appropriate CORS, rate limiting, and error handling that does not leak internals.
-4. THE system SHALL resolve AWS credentials via the standard AWS credential chain / roles, never hard-coded.
-
----
-
-## Requirement 17 — Kiro University Lesson Evidence
-
-**User Story:** As a challenge reviewer, I want the repository to demonstrate all seven Kiro
-University lessons, so that the project qualifies.
-
-### Acceptance Criteria
-1. THE repository SHALL retain `.kiro/specs/` demonstrating spec-driven development (Lesson 1).
-2. THE repository SHALL retain `.kiro/steering/` documents that influence implementation (Lesson 2).
-3. THE repository SHALL retain executable `.kiro/hooks/` (Lesson 3).
-4. THE repository SHALL contain property-based tests traceable to requirements (Lesson 4).
-5. THE repository SHALL contain at least one relevant Kiro Power and a custom `namma-ooru-power` (Lesson 5).
-6. THE repository SHALL contain MCP configuration and documented evidence of MCP use (Lesson 6).
-7. THE repository SHALL demonstrate the seventh lesson (Custom Agents) with a real custom agent definition and documented evidence (Lesson 7).
-8. THE README SHALL contain a lesson-to-evidence mapping table.
+# Requirements Document
+
+## Introduction
+Namma Ooru is a Tamil Nadu travel discovery and planning application for travelers who need
+reliable destination information, structured recommendations, and grounded AI assistance. The
+application must support independent browsing as well as a demonstrable AI workflow: search for a
+destination, inspect a place, ask a grounded question, generate a multi-day itinerary, and modify
+that itinerary conversationally. Destination facts are source-attributed and unknown factual fields
+remain unavailable rather than being fabricated.
+
+## Glossary
+- **Namma Ooru**: The web application defined by this specification.
+- **Destination**: A catalogued Tamil Nadu place represented by a unique destination identifier.
+- **Destination Catalog**: The validated collection of Destination records.
+- **Destination Repository**: The backend abstraction that retrieves Destination records.
+- **Travel Query**: A natural-language request for destinations or a trip plan.
+- **Search Filter**: A selected city, district, category, tag, or travel attribute used to limit results.
+- **Itinerary**: An ordered set of one or more numbered day plans.
+- **Itinerary Activity**: A timed visit to one Destination in an Itinerary.
+- **Knowledge Base**: The Amazon Bedrock Knowledge Base populated from validated destination documents.
+- **Grounded Response**: AI-generated text supported only by retrieved Knowledge Base content.
+- **Review**: A user-authored rating and optional text associated with one Destination.
+- **AI Provider**: The interface implemented by the Amazon Bedrock provider and the local mock provider.
+
+## Requirements
+
+### Requirement 1: Discovery Home and Browsing
+**User Story:** As a traveler, I want a visually rich discovery home page, so that I can explore Tamil Nadu without first using AI.
+#### Acceptance Criteria
+1. WHEN a traveler opens the Namma Ooru home page, THE Namma Ooru application SHALL display a hero section, a destination search control, and an Explore Tamil Nadu call to action.
+2. WHEN the Destination Catalog is available, THE Namma Ooru application SHALL display popular destinations, popular cities, categories, hidden gems, and recommended destinations.
+3. WHILE home-page destination data is loading, THE Namma Ooru application SHALL display skeleton content for each data-driven section.
+4. IF a home-page section has no matching Destination records, THEN THE Namma Ooru application SHALL display an empty state with a discovery action.
+5. WHEN a traveler selects a Destination or city card, THE Namma Ooru application SHALL navigate to the corresponding detail page without requiring an AI request.
+
+### Requirement 2: City and Destination Details
+**User Story:** As a traveler, I want detailed city and destination pages, so that I can decide what to visit.
+#### Acceptance Criteria
+1. WHEN a traveler opens a city page, THE Namma Ooru application SHALL display the city overview and grouped Destination sections for popular places, temples, heritage, food, nature or nearby attractions, and hidden gems when matching records exist.
+2. WHEN a traveler opens a Destination page, THE Namma Ooru application SHALL display the Destination description, category, images, ratings, reviews, nearby places, best time to visit, recommended duration, and source link when those fields are available.
+3. WHERE a Destination field has a null value, THE Namma Ooru application SHALL display “Information unavailable” instead of a factual replacement.
+4. WHEN a traveler selects a nearby Destination, THE Namma Ooru application SHALL navigate to that Destination page.
+
+### Requirement 3: Destination Catalog and Data Quality
+**User Story:** As a maintainer, I want a structured and validated Destination Catalog, so that destinations can be added without changing application components.
+#### Acceptance Criteria
+1. THE Destination Repository SHALL store Destination records separately from frontend components.
+2. THE Destination Repository SHALL represent each Destination with a unique id, name, alternate names, city, district, region, category, description, coordinates when verified, source references, tags, nearby-place identifiers, discovery flags, and popularity metadata.
+3. THE Destination Repository SHALL accept the categories Temples, Heritage, Beaches, Hills, Waterfalls, Nature, Wildlife, Food, Culture, Adventure, Photography, and Hidden Gems.
+4. WHEN the data validator processes a Destination record, THE data validator SHALL reject a record with a duplicate identifier, an invalid district, an invalid category, invalid coordinates, an empty description, or no source reference.
+5. WHEN source records conflict about a Destination fact, THE data validator SHALL emit a human-review flag and preserve the authoritative-source preference in source notes.
+6. WHERE a factual value is not verified by a source, THE Destination Repository SHALL persist a null value for that field.
+
+### Requirement 4: Natural-Language Search and Filtering
+**User Story:** As a traveler, I want to search in natural language and refine results, so that I can find relevant destinations without knowing exact names.
+#### Acceptance Criteria
+1. WHEN a traveler submits a Travel Query, THE AI Provider SHALL return structured search intent containing any recognized location, duration, category, interests, travel style, budget, and group context.
+2. WHEN the Namma Ooru application completes a Travel Query, THE Namma Ooru application SHALL display structured Destination results.
+3. WHEN an AI Provider is unavailable, THE Namma Ooru application SHALL perform keyword and tag matching and identify the fallback to the traveler.
+4. WHEN one or more Search Filters are active, THE Destination Repository SHALL return only Destination records that satisfy every active Search Filter.
+5. WHEN a traveler removes one Search Filter, THE Destination Repository SHALL preserve the effect of every remaining active Search Filter.
+
+### Requirement 5: Grounded Bedrock Chatbot
+**User Story:** As a traveler, I want a chatbot grounded in Namma Ooru travel data, so that answers do not invent travel facts.
+#### Acceptance Criteria
+1. THE Knowledge Base SHALL use validated destination documents stored in Amazon S3 as its source and Amazon S3 Vectors as its vector store.
+2. WHEN a traveler submits a chatbot question, THE AI Provider SHALL retrieve relevant Knowledge Base content before generating a Grounded Response.
+3. WHEN the AI Provider returns a Grounded Response, THE backend API SHALL return retrieved source references separately from generated response text.
+4. IF the Knowledge Base contains no relevant content, THEN THE AI Provider SHALL return an unavailable-information response instead of an unsupported factual answer.
+5. WHEN the application displays generated chatbot text, THE Namma Ooru application SHALL label the text as AI-generated and provide source Destination links when the backend API returns them.
+
+### Requirement 6: Multi-Day Itinerary Generation
+**User Story:** As a traveler, I want a multi-day itinerary based on my travel preferences, so that I can plan a coherent trip.
+#### Acceptance Criteria
+1. WHEN a traveler submits a destination, day count, budget, travel style, interests, starting point, and optional constraints, THE itinerary service SHALL generate an Itinerary containing the requested number of day plans.
+2. WHEN the itinerary service creates an Itinerary Activity, THE itinerary service SHALL reference a Destination in the Destination Catalog and assign a positive visit duration.
+3. WHEN the itinerary service creates a day plan, THE itinerary service SHALL order non-overlapping Itinerary Activities by start time.
+4. WHEN the itinerary service selects activities, THE itinerary service SHALL consider destination coordinates, known opening hours, recommended duration, traveler interests, travel style, and budget constraints.
+5. IF the traveler sets `allow_repeats` to false, THEN THE itinerary service SHALL include each Destination no more than once in an Itinerary.
+6. WHEN the Namma Ooru application displays an Itinerary Activity, THE Namma Ooru application SHALL display the time, place, approximate duration, visit rationale, travel context, and a food or break suggestion.
+
+### Requirement 7: Conversational Itinerary Editing
+**User Story:** As a traveler, I want to modify an existing itinerary conversationally, so that I can refine it without rebuilding the trip.
+#### Acceptance Criteria
+1. WHEN a traveler submits an itinerary-edit request, THE AI Provider SHALL translate the request into a structured add, remove, replace, reorder, or constraint operation.
+2. WHEN the itinerary service applies a structured itinerary operation, THE itinerary service SHALL preserve every unaffected Itinerary Activity.
+3. WHEN the itinerary service applies a structured itinerary operation, THE itinerary service SHALL preserve valid Destination references, positive durations, and non-overlapping time ordering.
+4. IF an itinerary-edit request has no valid result, THEN THE itinerary service SHALL return an explanation and the unchanged Itinerary.
+
+### Requirement 8: Personalized and Themed Discovery
+**User Story:** As a traveler, I want recommendations matched to my interests, so that I can discover destinations beyond common tourist routes.
+#### Acceptance Criteria
+1. WHEN a traveler selects one or more interests, THE recommendation service SHALL return Destination records whose categories or tags match the selected interests.
+2. WHEN a traveler selects Surprise Me, THE recommendation service SHALL return one Destination record with a matching rationale, category, suggested duration, and short description.
+3. WHEN a traveler selects a Spiritual Journey, Hill Escape, Coastal Escape, Food Trail, Heritage Journey, Nature Escape, Photography Trip, or Hidden Gems journey, THE recommendation service SHALL return matching Destination records.
+4. THE recommendation service SHALL return only Destination records present in the Destination Catalog.
+
+### Requirement 9: Interactive Tamil Nadu Map
+**User Story:** As a traveler, I want to discover destinations on a map, so that I can understand their location and navigate to details.
+#### Acceptance Criteria
+1. WHEN a traveler opens the map, THE map service SHALL display a marker for every matching Destination record with verified coordinates.
+2. WHEN a traveler applies a city or category map filter, THE map service SHALL display markers only for Destination records matching every active map filter.
+3. WHEN a traveler selects a map marker, THE Namma Ooru application SHALL display a destination preview and a navigation action to the Destination page.
+4. THE Namma Ooru application SHALL access map rendering through a replaceable Map Provider interface.
+
+### Requirement 10: Reviews and Ratings
+**User Story:** As a traveler, I want to read and submit Destination reviews, so that I can evaluate places using visitor experience.
+#### Acceptance Criteria
+1. WHEN a traveler submits a Review with an integer rating from 1 through 5, THE review service SHALL persist the Review against an existing Destination.
+2. IF a traveler submits a Review with a rating outside the integer range 1 through 5 or an unknown Destination identifier, THEN THE review service SHALL reject the Review without persistence.
+3. WHEN the Namma Ooru application displays Destination reviews, THE Namma Ooru application SHALL display review count, average rating, rating distribution, and recent Reviews.
+4. WHEN a Destination has the configured minimum review count, THE AI Provider SHALL return a review summary containing positive themes and concern themes derived only from that Destination’s Reviews.
+5. WHEN the Namma Ooru application displays a review summary, THE Namma Ooru application SHALL label the summary as AI-generated.
+
+### Requirement 11: Security and Operational Quality
+**User Story:** As a maintainer, I want secure and observable application behavior, so that the application protects credentials and handles failures safely.
+#### Acceptance Criteria
+1. THE backend API SHALL validate request data at the API boundary before processing data queries or AI prompts.
+2. THE deployment configuration SHALL obtain AWS credentials from the standard AWS credential chain or IAM roles.
+3. WHEN the backend API encounters an expected validation, dependency, or internal failure, THE backend API SHALL return a structured error containing a public error code and a safe message.
+4. WHEN the Namma Ooru application receives a backend API error, THE Namma Ooru application SHALL display an error state with a retry action where retry is valid.
+5. THE backend API SHALL restrict cross-origin requests to configured frontend origins.
+
+### Requirement 12: AWS Infrastructure and Deployment
+**User Story:** As a maintainer, I want reproducible AWS infrastructure, so that backend and frontend can be deployed independently.
+#### Acceptance Criteria
+1. THE infrastructure project SHALL define data, AI, backend, frontend, and monitoring resources using AWS CDK v2 with Python 3.9 or later.
+2. THE infrastructure project SHALL provision a backend API deployment independently from the frontend deployment.
+3. WHEN the backend stack deployment completes, THE infrastructure project SHALL expose the backend API URL as a CloudFormation output for local frontend configuration.
+4. THE infrastructure project SHALL grant each AWS role only the resource permissions required by its component.
+5. WHEN the frontend deployment is enabled, THE infrastructure project SHALL deploy the frontend through AWS Amplify Hosting using the backend API URL configuration.
+
+### Requirement 13: Kiro University Evidence
+**User Story:** As a challenge reviewer, I want retained Kiro artifacts, so that I can verify the project used all required Kiro lessons.
+#### Acceptance Criteria
+1. THE repository SHALL retain requirements, design, and task documents under `.kiro/specs/namma-ooru/`.
+2. THE repository SHALL retain product, architecture, coding, UI, AI, security, testing, and data guidance under `.kiro/steering/`.
+3. THE repository SHALL retain executable quality, test, data-validation, and completion hooks under `.kiro/hooks/`.
+4. THE repository SHALL retain a Namma Ooru Power and its destination-curation, itinerary-planning, travel-content, and review-analysis skills.
+5. THE repository SHALL retain MCP usage evidence and Custom Agent definitions with scoped responsibilities.
+6. THE repository SHALL retain property-test implementation evidence that maps each implemented property to its design property and acceptance criteria.

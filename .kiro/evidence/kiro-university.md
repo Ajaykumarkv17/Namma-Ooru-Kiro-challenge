@@ -15,7 +15,7 @@ MCP, custom agents, and property-based tests are all first-class artifacts under
 | 1 — Spec-Driven Development | Full feature spec drives every phase | `.kiro/specs/namma-ooru/requirements.md`, `design.md`, `tasks.md` |
 | 2 — Steering | 8 steering docs shaping product/arch/code/UI/AI/security/testing/data | `.kiro/steering/*.md` |
 | 3 — Hooks | 4 executable hooks (lint/format/type-check, backend tests, data validation, pre-completion checks) | `.kiro/hooks/format-lint-typecheck.json`, `backend-tests.json`, `validate-destination-data.json`, `pre-completion-checks.json` |
-| 4 — Property-Based Testing | Properties extracted from EARS requirements (inline *Correctness / Properties* blocks), run as **optional** PBT subtasks after each feature's core implementation | `requirements.md` (inline P1–P26), `.kiro/specs/namma-ooru/property-tests.md` (traceability index), `tasks.md` (2.5, 4.4, 6.4, 7.4, 8.5, 13.1), (impl) `backend/tests/property/` |
+| 4 — Property-Based Testing | Fifteen universal properties in the canonical design section; one optional PBT subtask per property after its deterministic implementation | `.kiro/specs/namma-ooru/design.md` (`## Correctness Properties`, Properties 1–15), `tasks.md` (2.4–2.6, 3.4, 4.5, 5.4–5.10, 7.4–7.6), (impl) `backend/tests/property/` |
 | 5 — Powers | Relevant installed Power + custom `namma-ooru-power` with 4 skills | `namma-ooru-power/plugin.json`, `namma-ooru-power/skills/*`; usage below |
 | 6 — MCP | AWS docs + GitHub MCP; real call validated the Bedrock/S3 Vectors RAG design | `.kiro/evidence/mcp.md` |
 | 7 — Custom Agents | Two custom agents used in development (curation + spec review) | `.kiro/agents/destination-curator.json`, `.kiro/agents/spec-reviewer.json` |

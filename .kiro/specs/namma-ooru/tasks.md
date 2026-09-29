@@ -1,136 +1,182 @@
-# Namma Ooru — Implementation Tasks
+# Implementation Plan: Namma Ooru
 
-Phased plan implementing `design.md` against `requirements.md`. Each task lists the requirements
-it satisfies. Do not start large-scale implementation until the spec is approved.
+## Overview
+This plan implements Namma Ooru in incremental, testable slices. It starts with shared frontend,
+backend, data, and CDK foundations; then builds catalog discovery, deterministic travel services,
+and AI integrations. Each property-based test is a separate optional subtask immediately after the
+implementation it validates, following Kiro’s correctness workflow. The optional marker `*` means
+that a property test may be deferred for an MVP, but it remains in the plan and dependency graph as
+challenge evidence. No property test invokes Bedrock or AWS services.
 
-## Conventions
-- `[ ]` not started.
-- **Property-based tests follow the official Kiro workflow:** properties are extracted from the
-  EARS requirements (see the *Correctness / Properties* block under each requirement in
-  `requirements.md`) and are surfaced in the design phase. In the task list, each feature's
-  **core implementation subtasks come first**, and a **property-based test subtask appears after
-  them, marked `(optional PBT)`** — because Kiro treats PBTs as optional by default so you can
-  focus on core implementation first, then run them to validate behavior.
-- `property-tests.md` is a **traceability index** (requirement ↔ property ↔ task), not a separate
-  phase of work.
+## Tasks
+- [ ] 1. Establish project foundations
+  - [ ] 1.1 Create the React TypeScript Vite frontend structure with Tailwind, React Query, routing, and accessible shared loading, empty, and error components.
+    - _Requirements: 1.1, 1.3, 1.4, 2.3, 11.4_
+  - [ ] 1.2 Create the Python 3.11 FastAPI backend structure with Pydantic request models, dependency injection, structured exception mapping, and LocalMockAIProvider.
+    - _Requirements: 4.1, 5.3, 11.1, 11.3_
+  - [ ] 1.3 Add frontend and backend formatter, linter, type-check, unit-test, and property-test configuration.
+    - _Requirements: 13.3, 13.6_
+  - [ ] 1.4 Add `.env.example` and `.gitignore` rules that document non-secret configuration without committing credentials.
+    - _Requirements: 11.2_
 
----
+- [ ] 2. Implement the source-attributed destination catalog
+  - [ ] 2.1 Create the Destination JSON Schema, Tamil Nadu district/category vocabularies, source-attribution model, and data validator.
+    - _Requirements: 3.2, 3.3, 3.4, 3.5, 3.6_
+  - [ ] 2.2 Create the JSON DestinationRepository and a DynamoDB-compatible repository interface with city grouping and deterministic filter support.
+    - _Requirements: 1.2, 2.1, 3.1_
+  - [ ] 2.3 Create `GET /api/destinations`, `GET /api/destinations/{id}`, and `GET /api/cities/{city}` endpoints with not-found handling.
+    - _Requirements: 1.5, 2.1, 2.2, 2.4, 11.3_
+  - [ ]* 2.4 Write a property-based test for filter intersection soundness.
+    - **Property 1: Filter intersection soundness**
+    - **Validates: Requirements 4.4**
+  - [ ]* 2.5 Write a property-based test for filter removal preservation.
+    - **Property 2: Filter removal preservation**
+    - **Validates: Requirements 4.5**
+  - [ ]* 2.6 Write a property-based test for filter monotonicity.
+    - **Property 3: Filter monotonicity**
+    - **Validates: Requirements 4.4**
 
-## Phase 1 — Project foundation & architecture
-- [ ] 1.1 Scaffold `frontend/` (React + TS + Vite + Tailwind + React Query + Framer Motion). _(Req 12)_
-- [ ] 1.2 Scaffold `backend/` (FastAPI, Pydantic, uvicorn, pytest, hypothesis, Mangum). _(Req 4–8,11,16)_
-- [ ] 1.3 Add repo config: lint/format/type-check (ruff+black+mypy, eslint+prettier+tsc), pre-commit. _(Req 12, Lesson 3)_
-- [ ] 1.4 Create `.env.example` (no secrets) and `.gitignore` entries for `.env`. _(Req 16.1)_
-- [ ] 1.5 Wire steering conventions into scaffold. _(Lesson 2)_
+- [ ] 3. Build discovery, city, and destination experiences
+  - [ ] 3.1 Implement the home page hero, catalog sections, cards, search entry, and skeleton/empty states using the catalog API.
+    - _Requirements: 1.1, 1.2, 1.3, 1.4, 1.5_
+  - [ ] 3.2 Implement city and destination pages with nullable-field rendering, source links, nearby navigation, and responsive layouts.
+    - _Requirements: 2.1, 2.2, 2.3, 2.4_
+  - [ ] 3.3 Implement the MapProvider interface, MapLibre provider, filtered marker endpoint, marker preview, and detail navigation.
+    - _Requirements: 9.1, 9.2, 9.3, 9.4_
+  - [ ]* 3.4 Write a property-based test for map marker filter soundness.
+    - **Property 12: Map marker filter soundness**
+    - **Validates: Requirements 9.1, 9.2**
 
-## Phase 2 — Destination data model & explorer
-- [ ] 2.1 Author `data/schema/destination.schema.json` + `districts.json` + category enum. _(Req 3)_
-- [ ] 2.2 Implement destination repository abstraction (JSON now, DynamoDB-ready). _(Req 3.4)_
-- [ ] 2.3 Implement `GET /api/destinations`, `/{id}`, `/api/cities/{city}`. _(Req 1,2,3)_
-- [ ] 2.4 Implement `data/scripts/validate.py` (all Req 14 checks; non-zero exit on failure). _(Req 14)_
-- [ ] 2.5 _(optional PBT)_ Dataset & validation properties **P15–P21** after data exists. _(Req 3.1,3.2,3.5,3.6,14.1)_
+- [ ] 4. Implement natural-language search and recommendations
+  - [ ] 4.1 Implement SearchIntent, SearchFilters, deterministic FilterService, and `POST /api/search` with keyword/tag fallback.
+    - _Requirements: 4.1, 4.2, 4.3, 4.4, 4.5_
+  - [ ] 4.2 Implement search controls and structured search-result rendering with active filters and fallback status.
+    - _Requirements: 4.2, 4.3_
+  - [ ] 4.3 Implement RecommendationService, interest and themed-journey endpoints, and Surprise Me selection.
+    - _Requirements: 8.1, 8.2, 8.3, 8.4_
+  - [ ] 4.4 Implement the personalized discovery, themed journey, and Beyond the Tourist Map UI sections.
+    - _Requirements: 8.1, 8.2, 8.3_
+  - [ ]* 4.5 Write a property-based test for recommendation catalog membership.
+    - **Property 11: Recommendation catalog membership**
+    - **Validates: Requirements 8.1, 8.2, 8.3, 8.4**
 
-### Phase 2b — Data acquisition & research (Req 13)
-- [ ] 2b.1 Document source strategy in `docs/data-research.md` (TN Tourism/TTDC, district portals, HR&CE, Archaeology, Incredible India). _(Req 13.1)_
-- [ ] 2b.2 Collect destinations across most TN districts and diverse categories with source attribution. _(Req 13.2, 3.6)_
-- [ ] 2b.3 Normalize → deduplicate → cross-source validate → schema validate → flag conflicts for review. _(Req 13.3, 13.5)_
-- [ ] 2b.4 Keep dynamic fields null when unverified; link to official sources. _(Req 13.4, 13.6)_
-- [ ] 2b.5 Use the `namma-ooru-power` destination-curation & tamil-nadu-travel-content skills and the destination-curator custom agent during collection. _(Lessons 5,7)_
+- [ ] 5. Implement the deterministic itinerary domain
+  - [ ] 5.1 Create Itinerary, ItineraryDay, ItineraryActivity, constraint, and structured-operation models.
+    - _Requirements: 6.1, 6.2, 6.3, 7.1_
+  - [ ] 5.2 Implement ItineraryService generation with catalog validation, destination uniqueness, time ordering, duration validation, and coordinate-aware ordering.
+    - _Requirements: 6.1, 6.2, 6.3, 6.4, 6.5_
+  - [ ] 5.3 Implement ItineraryService operations for add, remove, replace, reorder, and constraints with unchanged-itinerary failure behavior.
+    - _Requirements: 7.2, 7.3, 7.4_
+  - [ ]* 5.4 Write a property-based test for itinerary day-count preservation.
+    - **Property 4: Itinerary day-count preservation**
+    - **Validates: Requirements 6.1**
+  - [ ]* 5.5 Write a property-based test for itinerary catalog-reference validity.
+    - **Property 5: Itinerary catalog-reference validity**
+    - **Validates: Requirements 6.2**
+  - [ ]* 5.6 Write a property-based test for itinerary temporal validity.
+    - **Property 6: Itinerary temporal validity**
+    - **Validates: Requirements 6.2, 6.3**
+  - [ ]* 5.7 Write a property-based test for itinerary uniqueness when repeats are disabled.
+    - **Property 7: Itinerary uniqueness when repeats are disabled**
+    - **Validates: Requirements 6.5**
+  - [ ]* 5.8 Write a property-based test for edit invariant preservation.
+    - **Property 8: Edit invariant preservation**
+    - **Validates: Requirements 7.3**
+  - [ ]* 5.9 Write a property-based test for remove operation locality.
+    - **Property 9: Remove operation locality**
+    - **Validates: Requirements 7.2**
+  - [ ]* 5.10 Write a property-based test for replace operation validity.
+    - **Property 10: Replace operation validity**
+    - **Validates: Requirements 7.1, 7.2**
 
-## Phase 3 — Rich UI & destination pages
-- [ ] 3.1 Home page: hero, search bar, CTA, popular destinations/cities, categories, hidden gems, recommended, map entry. _(Req 1)_
-- [ ] 3.2 City page with grouped sections + fallbacks. _(Req 2)_
-- [ ] 3.3 Destination detail page. _(Req 2,3)_
-- [ ] 3.4 Loading/empty/error/skeleton states + accessibility pass. _(Req 12)_
+- [ ] 6. Deliver itinerary planning and conversational editing
+  - [ ] 6.1 Implement AIProvider itinerary-candidate selection and structured edit parsing with schema validation and LocalMockAIProvider responses.
+    - _Requirements: 6.4, 7.1, 11.1_
+  - [ ] 6.2 Implement itinerary generation and itinerary-edit API endpoints that route all structural changes through ItineraryService.
+    - _Requirements: 6.1, 6.2, 6.3, 6.5, 7.2, 7.3, 7.4_
+  - [ ] 6.3 Implement the itinerary planner, day timeline, generated-content label, and conversational edit interface.
+    - _Requirements: 6.6, 7.1, 7.4_
 
-## Phase 4 — Search & filtering
-- [ ] 4.1 Deterministic filter engine (pure) + `/api/destinations` filters. _(Req 4.3,4.4)_
-- [ ] 4.2 `POST /api/search` with Bedrock intent extraction + structured results + keyword fallback. _(Req 4)_
-- [ ] 4.3 Search UI with filters and result cards. _(Req 4,12)_
-- [ ] 4.4 _(optional PBT)_ Filter/search & map-filter properties **P22–P26** after 4.1–4.3. _(Req 4.3,4.4,8.3,10.2)_
+- [ ] 7. Implement reviews and rating aggregates
+  - [ ] 7.1 Create Review models, an in-memory review repository for development, and a persistence interface for the production adapter.
+    - _Requirements: 10.1, 10.2_
+  - [ ] 7.2 Implement ReviewService validation, review creation, aggregate calculation, and `GET/POST /api/destinations/{id}/reviews` endpoints.
+    - _Requirements: 10.1, 10.2, 10.3_
+  - [ ] 7.3 Implement ReviewPanel, review submission, rating distribution, recent-review rendering, and accessible error states.
+    - _Requirements: 10.1, 10.2, 10.3, 11.4_
+  - [ ]* 7.4 Write a property-based test for review acceptance boundaries.
+    - **Property 13: Review acceptance boundary**
+    - **Validates: Requirements 10.1**
+  - [ ]* 7.5 Write a property-based test for review rejection boundaries.
+    - **Property 14: Review rejection boundary**
+    - **Validates: Requirements 10.2**
+  - [ ]* 7.6 Write a property-based test for review aggregate consistency.
+    - **Property 15: Review aggregate consistency**
+    - **Validates: Requirements 10.3**
 
-## Phase 5 — Amazon Bedrock chatbot & Knowledge Base
-- [ ] 5.1 `data/scripts/build_kb.py` → RAG-ready chunks with retrieval metadata into `data/kb/`. _(Req 5,13)_
-- [ ] 5.2 CDK `data_stack` + `ai_stack`: S3 KB bucket, S3 Vectors, Bedrock KB, IAM. _(Req 15)_
-- [ ] 5.3 `POST /api/chat` RetrieveAndGenerate with grounding + separated context/answer + local mock. _(Req 5)_
-- [ ] 5.4 `ChatWidget` embedded across app. _(Req 5.4)_
+- [ ] 8. Integrate Bedrock Knowledge Base and grounded AI
+  - [ ] 8.1 Implement the data-to-Knowledge-Base document builder, including S3 sidecar metadata documents and source URLs.
+    - _Requirements: 3.2, 5.1_
+  - [ ] 8.2 Create CDK data and AI constructs for S3 source data, S3 Vectors, Bedrock Knowledge Base, Bedrock data source, and least-privilege roles.
+    - _Requirements: 5.1, 12.1, 12.4_
+  - [ ] 8.3 Implement BedrockAIProvider retrieval, generated-text/source separation, unavailable-information behavior, and bounded dependency failures.
+    - _Requirements: 5.2, 5.3, 5.4, 11.3_
+  - [ ] 8.4 Implement ChatWidget, source links, AI labels, AI review summaries, and AI itinerary narrative enrichment.
+    - _Requirements: 5.5, 10.4, 10.5, 6.6_
 
-## Phase 6 — AI itinerary planner (hero feature)
-- [ ] 6.1 Deterministic itinerary core with invariants (exactly N days, no illegal dupes, valid refs, positive/ordered times, proximity ordering). _(Req 6.2,6.5,6.6,6.7)_
-- [ ] 6.2 AI candidate selection + narratives + food suggestions. _(Req 6.1,6.3,6.4)_
-- [ ] 6.3 `POST /api/itinerary` + `ItineraryTimeline` UI. _(Req 6,12)_
-- [ ] 6.4 _(optional PBT)_ Itinerary generation properties **P1–P6** after 6.1–6.3. _(Req 6.2,6.5,6.6,6.7)_
+- [ ] 9. Provision deployable backend and frontend infrastructure
+  - [ ] 9.1 Create CDK BackendStack with Lambda, HTTP API, safe CORS origins, API URL output, and scoped runtime permissions.
+    - _Requirements: 11.2, 11.5, 12.1, 12.2, 12.3, 12.4_
+  - [ ] 9.2 Create CDK FrontendStack and MonitoringStack with Amplify Hosting configuration, backend URL injection, logs, alarms, and dashboard resources.
+    - _Requirements: 12.1, 12.5_
+  - [ ] 9.3 Write CDK assertions and synthesis tests for stack resources, outputs, CORS, and IAM scopes.
+    - _Requirements: 11.2, 11.5, 12.1, 12.3, 12.4, 12.5_
 
-## Phase 7 — Conversational itinerary editing
-- [ ] 7.1 Edit-intent parser → structured ops (add/remove/replace/reorder/constrain). _(Req 7.1)_
-- [ ] 7.2 Apply ops via deterministic core preserving invariants + unaffected parts. _(Req 7.2,7.3)_
-- [ ] 7.3 `POST /api/itinerary/edit` + conversational UI; explain unsatisfiable edits. _(Req 7.4)_
-- [ ] 7.4 _(optional PBT)_ Itinerary edit properties **P7–P9** after 7.1–7.3. _(Req 7.1,7.2,7.3)_
+- [ ] 10. Complete Kiro University evidence and quality automation
+  - [ ] 10.1 Implement and verify source-format, backend-test, data-validation, and pre-completion hooks against the scaffolded commands.
+    - _Requirements: 13.3_
+  - [ ] 10.2 Activate and use the Namma Ooru Power skills for destination curation, itinerary planning, content, and review analysis; record evidence.
+    - _Requirements: 13.4_
+  - [ ] 10.3 Use the destination-curator and spec-reviewer Custom Agents for dataset and specification review; record evidence.
+    - _Requirements: 13.5_
+  - [ ] 10.4 Configure the approved MCP servers through Kiro settings and retain an evidence record of AWS and repository research.
+    - _Requirements: 13.5_
+  - [ ] 10.5 Add property-test tags and traceability evidence for every implemented design property.
+    - _Requirements: 13.6_
 
-## Phase 8 — Reviews & ratings
-- [ ] 8.1 Review model + storage; reject ratings outside 1–5; require valid destination. _(Req 11.1,11.2,11.3)_
-- [ ] 8.2 Stats: average, distribution, count, recent. _(Req 11.4)_
-- [ ] 8.3 AI review summary (positives/concerns) labelled AI-generated. _(Req 11.5,11.6)_
-- [ ] 8.4 Review UI (submit + display). _(Req 11,12)_
-- [ ] 8.5 _(optional PBT)_ Review properties **P10–P14** after 8.1–8.4. _(Req 11.1,11.2,11.3,11.4)_
+- [ ] 11. Checkpoint - Validate the catalog and discovery slice
+  - Run frontend and backend unit tests, linting, type checks, and the dataset validator; resolve failures before AI integration.
 
-## Phase 9 — Personalization & creative discovery
-- [ ] 9.1 Interest selection → recommendations. _(Req 8.1,8.3)_
-- [ ] 9.2 "Surprise Me". _(Req 8.2)_
-- [ ] 9.3 Journey picker + "Beyond the Tourist Map". _(Req 9)_
-- [ ] 9.4 Interactive map view with filters, markers, previews behind `MapProvider`. _(Req 10)_
-  _(map-filter property P25 and recommendation property P26 are covered by the optional PBT task 4.4)_
+- [ ] 12. Checkpoint - Validate the itinerary and review slice
+  - Run itinerary and review unit tests plus all selected optional property tests; resolve failures before production AI integration.
 
-## Phase 10 — Kiro Hooks (Lesson 3)
-- [ ] 10.1 Lint/format/type-check hook on source changes. _(Req 17.3)_
-- [ ] 10.2 Backend test hook on backend changes (runs unit + any implemented PBTs). _(Req 17.3)_
-- [ ] 10.3 Data validation hook on dataset changes. _(Req 14.3)_
-- [ ] 10.4 Pre-completion checks hook (tests pass, no secrets, docs updated). _(Req 16,17)_
+- [ ] 13. Final checkpoint - Ensure all required tests and validation commands pass
+  - Run unit tests, all selected property tests, CDK assertions, `cdk synth`, data validation, linting, type checks, and secret scanning.
 
-## Phase 11 — Powers (Lesson 5)
-- [ ] 11.1 Finalize `namma-ooru-power/` (plugin.json + 4 skills). _(Req 17.5)_
-- [ ] 11.2 Use a relevant installed Power (e.g. aws-drawio for architecture diagram, strands for agent) and document contribution. _(Req 17.5)_
+## Notes
+- Tasks marked with `*` are optional and can be skipped for a faster MVP; they remain required
+  evidence for the completed Lesson 4 implementation.
+- Each optional property-test subtask maps one design property to the exact acceptance criteria it
+  validates. Property tests are close to their deterministic implementation to catch defects early.
+- Property tests use at least 100 Hypothesis examples and mocks/in-memory repositories only.
+- Dataset schema validation, UI layout, AWS CDK, AWS service behavior, and deployment smoke tests
+  use schema, unit, integration, visual, CDK assertion, or smoke tests—not PBT.
+- Checkpoint tasks are parent tasks and are intentionally omitted from the dependency graph.
 
-## Phase 12 — MCP integration (Lesson 6)
-- [ ] 12.1 Configure `.kiro/settings/mcp.json` (AWS docs, GitHub). _(Req 17.6)_
-- [ ] 12.2 Use MCP for AWS/Bedrock research + repo review; document evidence. _(Req 17.6)_
-
-## Phase 13 — Testing, security, accessibility, performance + bonus
-- [ ] 13.1 Consolidate/confirm all optional PBTs (P1–P26) have been run and are green. _(Req 17.4)_
-- [ ] 13.2 Integration tests (API + CDK assertions). _(Req 15)_
-- [ ] 13.3 Security pass: input validation, CORS, rate limiting, secret scanning. _(Req 16)_
-- [ ] 13.4 Accessibility & performance audit. _(Req 12)_
-- [ ] 13.5 Evaluate the two official Bonus Lessons; implement if natural without risking the seven. _(Extra credit)_
-
-## Phase 14 — Demo polish & documentation
-- [ ] 14.1 README (overview, architecture, AI/KB, data model, setup, AWS setup, env vars, run, testing, lesson mapping). _(Req 18)_
-- [ ] 14.2 `docs/data-research.md` (sources, discovery, dedup, conflict resolution, validation, KB prep, refresh). _(Req 13 docs)_
-- [ ] 14.3 `.kiro/evidence/kiro-university.md` lesson-to-evidence mapping. _(Req 17.8)_
-- [ ] 14.4 Demo script covering the 9 demo-first steps. _(Req 17 demo-first)_
-
-## Custom Agents (Lesson 7) — used throughout
-- [ ] X.1 `.kiro/agents/destination-curator.json` used in Phase 2b. _(Req 17.7)_
-- [ ] X.2 `.kiro/agents/spec-reviewer.json` used to review spec/PRs. _(Req 17.7)_
-
----
-
-## Requirement → Task coverage matrix
-| Req | Core tasks | Optional PBT task |
-|---|---|---|
-| 1 | 2.3, 3.1 | — |
-| 2 | 2.3, 3.2, 3.3 | — |
-| 3 | 2.1, 2.2, 2.3, 3.3 | 2.5 (P15–P21) |
-| 4 | 4.1, 4.2, 4.3 | 4.4 (P22–P24) |
-| 5 | 5.1–5.4 | — |
-| 6 | 6.1–6.3 | 6.4 (P1–P6) |
-| 7 | 7.1–7.3 | 7.4 (P7–P9) |
-| 8 | 9.1, 9.2 | 4.4 (P26) |
-| 9 | 9.3 | — |
-| 10 | 9.4 | 4.4 (P25) |
-| 11 | 8.1–8.4 | 8.5 (P10–P14) |
-| 12 | 1.1, 3.1–3.4, 4.3, 13.4 | — |
-| 13 | 2b.1–2b.5, 5.1, 14.2 | — |
-| 14 | 2.4, 10.3, 8.5/2.5 | — |
-| 15 | 5.2, 13.2 | — |
-| 16 | 1.4, 10.4, 13.3 | — |
-| 17 | Phases 10–12, 13.1, 14.3, X.1–X.2 | 13.1 |
+## Task Dependency Graph
+```json
+{
+  "waves": [
+    { "id": 0, "tasks": ["1.1", "1.2", "1.3", "1.4"] },
+    { "id": 1, "tasks": ["2.1", "2.2", "8.2"] },
+    { "id": 2, "tasks": ["2.3", "2.4", "2.5", "2.6", "3.1", "8.1"] },
+    { "id": 3, "tasks": ["3.2", "3.3", "4.1"] },
+    { "id": 4, "tasks": ["3.4", "4.2", "4.3", "5.1"] },
+    { "id": 5, "tasks": ["4.4", "4.5", "5.2", "7.1"] },
+    { "id": 6, "tasks": ["5.3", "6.1", "7.2", "8.3", "9.1"] },
+    { "id": 7, "tasks": ["5.4", "5.5", "5.6", "5.7", "5.8", "5.9", "5.10", "6.2", "7.3", "8.4", "9.2", "10.1"] },
+    { "id": 8, "tasks": ["6.3", "7.4", "7.5", "7.6", "9.3", "10.2", "10.3", "10.4"] },
+    { "id": 9, "tasks": ["10.5"] }
+  ]
+}
+```
