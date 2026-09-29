@@ -12,6 +12,8 @@ from app.dependencies import get_ai_provider
 from app.errors import register_exception_handlers
 from app.map.router import router as map_router
 from app.models import ChatRequest, GroundedAnswer
+from app.recommendations.router import router as recommendations_router
+from app.search.router import router as search_router
 
 
 def create_app() -> FastAPI:
@@ -20,6 +22,8 @@ def create_app() -> FastAPI:
     register_exception_handlers(app)
     app.include_router(catalog_router)
     app.include_router(map_router)
+    app.include_router(search_router)
+    app.include_router(recommendations_router)
 
     @app.get("/health")
     def health() -> dict[str, str]:

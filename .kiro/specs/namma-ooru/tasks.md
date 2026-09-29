@@ -47,12 +47,12 @@ challenge evidence. No property test invokes Bedrock or AWS services.
     - **Property 12: Map marker filter soundness**
     - **Validates: Requirements 9.1, 9.2**
 
-- [ ] 4. Implement natural-language search and recommendations
-  - [~] 4.1 Implement SearchIntent, SearchFilters, deterministic FilterService, and `POST /api/search` with keyword/tag fallback.
+- [~] 4. Implement natural-language search and recommendations
+  - [x] 4.1 Implement SearchIntent, SearchFilters, deterministic FilterService, and `POST /api/search` with keyword/tag fallback.
     - _Requirements: 4.1, 4.2, 4.3, 4.4, 4.5_
-  - [~] 4.2 Implement search controls and structured search-result rendering with active filters and fallback status.
+  - [x] 4.2 Implement search controls and structured search-result rendering with active filters and fallback status.
     - _Requirements: 4.2, 4.3_
-  - [~] 4.3 Implement RecommendationService, interest and themed-journey endpoints, and Surprise Me selection.
+  - [x] 4.3 Implement RecommendationService, interest and themed-journey endpoints, and Surprise Me selection.
     - _Requirements: 8.1, 8.2, 8.3, 8.4_
   - [~] 4.4 Implement the personalized discovery, themed journey, and Beyond the Tourist Map UI sections.
     - _Requirements: 8.1, 8.2, 8.3_

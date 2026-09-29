@@ -131,9 +131,7 @@ def build_metadata(destination: Destination) -> dict[str, object]:
         "travel_type": travel_types(destination),
         # Not an index key, but useful document context for downstream tooling.
         "subcategory": (
-            destination.subcategory
-            if destination.subcategory is not None
-            else UNAVAILABLE
+            destination.subcategory if destination.subcategory is not None else UNAVAILABLE
         ),
     }
     return {"metadataAttributes": attributes}
@@ -208,9 +206,7 @@ def build_document(destination: Destination) -> str:
         rendered = value.strip() if value and value.strip() else UNAVAILABLE
         lines.append(f"**{label}:** {rendered}")
     if d.recommended_duration_minutes is not None:
-        lines.append(
-            f"**Recommended duration:** {d.recommended_duration_minutes} minutes"
-        )
+        lines.append(f"**Recommended duration:** {d.recommended_duration_minutes} minutes")
     else:
         lines.append(f"**Recommended duration:** {UNAVAILABLE}")
     if d.has_verified_coordinates():
@@ -272,8 +268,7 @@ def build_kb(
 
         document_path.write_text(build_document(destination), encoding="utf-8")
         metadata_path.write_text(
-            json.dumps(build_metadata(destination), indent=2, ensure_ascii=False)
-            + "\n",
+            json.dumps(build_metadata(destination), indent=2, ensure_ascii=False) + "\n",
             encoding="utf-8",
         )
         document_paths.append(document_path)

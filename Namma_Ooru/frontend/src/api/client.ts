@@ -13,6 +13,7 @@ import type {
   DestinationFilters,
   MapFilters,
   MapMarker,
+  SearchResult,
 } from './types';
 
 /**
@@ -68,6 +69,36 @@ async function request<T>(path: string, query?: URLSearchParams): Promise<T> {
   return (await response.json()) as T;
 }
 
+async function postJson<T>(path: string, body: unknown): Promise<T> {
+  let response: Response;
+  try {
+    response = await fetch(buildUrl(path), {
+      method: 'POST',
+      headers: { Accept: 'application/json', 'Content-Type': 'application/json' },
+      body: JSON.stringify(body),
+    });
+  } catch {
+    // Network / CORS failure: no structured body is available.
+    throw new ApiError(0, 'NETWORK_ERROR', 'We could not reach Namma Ooru. Please try again.');
+  }
+
+  if (!response.ok) {
+    let errorBody: ApiErrorBody = {};
+    try {
+      errorBody = (await response.json()) as ApiErrorBody;
+    } catch {
+      errorBody = {};
+    }
+    throw new ApiError(
+      response.status,
+      errorBody.error ?? 'REQUEST_FAILED',
+      errorBody.detail ?? 'Something went wrong while loading this content.',
+    );
+  }
+
+  return (await response.json()) as T;
+}
+
 function toQuery(filters: DestinationFilters | undefined): URLSearchParams {
   const params = new URLSearchParams();
   if (!filters) {
@@ -116,4 +147,15 @@ export function fetchCityView(city: string): Promise<CityView> {
  */
 export function fetchMapMarkers(filters?: MapFilters): Promise<MapMarker[]> {
   return request<MapMarker[]>('/api/map/markers', toQuery(filters));
+}
+
+/**
+ * `POST /api/search` — interpret a natural-language Travel Query and return
+ * structured, source-attributed results. The response separates the AI-derived
+ * `intent`, the deterministic `filters`, and the matching `destinations`, and
+ * flags `used_fallback` when keyword/tag matching was used because the AI
+ * Provider was unavailable (Requirement 4.3).
+ */
+export function searchDestinations(query: string): Promise<SearchResult> {
+  return postJson<SearchResult>('/api/search', { query });
 }

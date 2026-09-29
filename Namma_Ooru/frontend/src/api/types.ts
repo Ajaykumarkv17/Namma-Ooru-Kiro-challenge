@@ -139,6 +139,40 @@ export type MapFilters = {
   hidden_gems?: boolean;
 };
 
+/**
+ * AI-derived interpretation of a natural-language Travel Query (backend
+ * `SearchIntent`). Every field is optional; this is the model's reading of the
+ * query and is kept separate from source catalog data (AI/RAG steering) so the UI
+ * can badge it as an interpretation rather than a fact.
+ */
+export type SearchIntent = {
+  location: string | null;
+  duration_days: number | null;
+  category: string | null;
+  interests: string[];
+  travel_style: string | null;
+  budget: string | null;
+  group_context: string | null;
+};
+
+/**
+ * Structured response for `POST /api/search` (backend `SearchResult`). Keeps the
+ * AI-derived `intent`, the deterministic `filters` those mapped to, and the
+ * retrieved `destinations` in separate fields. `used_fallback` is true when the
+ * AI Provider was unavailable and deterministic keyword/tag matching was used
+ * instead; `fallback_reason` is a short, client-safe explanation to surface
+ * (Requirement 4.3).
+ */
+export type SearchResult = {
+  query: string;
+  intent: SearchIntent;
+  filters: DestinationFilters;
+  destinations: Destination[];
+  result_count: number;
+  used_fallback: boolean;
+  fallback_reason: string | null;
+};
+
 /** Structured backend error payload `{ error, detail }`. */
 export type ApiErrorBody = {
   error?: string;
