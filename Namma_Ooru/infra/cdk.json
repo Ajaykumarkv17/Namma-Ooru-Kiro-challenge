@@ -1,0 +1,22 @@
+{
+  "app": "python app.py",
+  "watch": {
+    "include": ["**"],
+    "exclude": [
+      "README.md",
+      "cdk*.json",
+      "requirements*.txt",
+      "**/__pycache__",
+      "tests"
+    ]
+  },
+  "context": {
+    "namma-ooru:appName": "namma-ooru",
+    "namma-ooru:vectorDimension": 1024,
+    "namma-ooru:embeddingModelId": "amazon.titan-embed-text-v2:0",
+    "namma-ooru:knowledgeBaseModelId": "anthropic.claude-3-sonnet-20240229-v1:0",
+    "@aws-cdk/aws-iam:minimizePolicies": true,
+    "@aws-cdk/core:checkSecretUsage": true,
+    "@aws-cdk/core:target-partitions": ["aws"]
+  }
+}

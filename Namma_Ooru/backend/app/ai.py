@@ -39,7 +39,8 @@ class LocalMockAIProvider:
             (place.title() for place in known_locations if place in lowered_query), None
         )
         category = next(
-            (value.title() for value in known_categories if value in lowered_query), None
+            (value.title() for value in known_categories if value in lowered_query),
+            None,
         )
         interests = [category.lower()] if category else []
         return SearchIntent(location=location, category=category, interests=interests)

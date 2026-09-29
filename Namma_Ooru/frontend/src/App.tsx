@@ -1,22 +1,17 @@
 import { Navigate, Route, Routes } from 'react-router-dom';
 
 import { AppLayout } from './components/layout/AppLayout';
+import { CityPage } from './pages/CityPage';
+import { DestinationPage } from './pages/DestinationPage';
 import { FoundationPage } from './pages/FoundationPage';
+import { HomePage } from './pages/HomePage';
+import { MapPage } from './pages/MapPage';
 
 export function App() {
   return (
     <AppLayout>
       <Routes>
-        <Route
-          element={
-            <FoundationPage
-              description="Discover Tamil Nadu through places, stories, and journeys designed around what matters to you."
-              eyebrow="Tamil Nadu travel"
-              title="Discover the Tamil Nadu you haven’t seen."
-            />
-          }
-          path="/"
-        />
+        <Route element={<HomePage />} path="/" />
         <Route
           element={
             <FoundationPage
@@ -27,26 +22,9 @@ export function App() {
           }
           path="/search"
         />
-        <Route
-          element={
-            <FoundationPage
-              description="Destination details will provide transparent, source-attributed travel information."
-              eyebrow="Destination"
-              title="Explore a destination."
-            />
-          }
-          path="/destinations/:destinationId"
-        />
-        <Route
-          element={
-            <FoundationPage
-              description="City guides will help you explore by interest, pace, and place."
-              eyebrow="City guide"
-              title="Explore a Tamil Nadu city."
-            />
-          }
-          path="/cities/:citySlug"
-        />
+        <Route element={<DestinationPage />} path="/destinations/:destinationId" />
+        <Route element={<CityPage />} path="/cities/:citySlug" />
+        <Route element={<MapPage />} path="/map" />
         <Route element={<Navigate replace to="/" />} path="*" />
       </Routes>
     </AppLayout>

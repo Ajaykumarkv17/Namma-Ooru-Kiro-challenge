@@ -48,3 +48,15 @@
 *.iml
 .DS_Store
 Thumbs.db
+
+# CDK infrastructure generated files
+/Namma_Ooru/infra/cdk.out/
+/Namma_Ooru/infra/.venv/
+/Namma_Ooru/infra/__pycache__/
+/Namma_Ooru/infra/**/*.py[cod]
+/Namma_Ooru/infra/.pytest_cache/
+/Namma_Ooru/infra/.mypy_cache/
+/Namma_Ooru/infra/.ruff_cache/
+
+# Generated Knowledge Base documents (rebuilt from data/destinations.json by build_kb.py)
+/Namma_Ooru/data/kb/

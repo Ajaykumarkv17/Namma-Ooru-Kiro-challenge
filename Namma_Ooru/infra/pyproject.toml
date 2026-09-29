@@ -1,0 +1,27 @@
+[tool.black]
+line-length = 100
+target-version = ["py311"]
+
+[tool.ruff]
+target-version = "py311"
+line-length = 100
+extend-exclude = ["cdk.out"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP"]
+
+[tool.ruff.lint.isort]
+known-first-party = ["namma_ooru_infra"]
+
+[tool.mypy]
+python_version = "3.11"
+files = ["app.py", "namma_ooru_infra", "tests"]
+warn_unused_configs = true
+exclude = ["^cdk\\.out/"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+addopts = "-ra"

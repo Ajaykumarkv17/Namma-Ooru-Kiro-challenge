@@ -48,6 +48,369 @@
         "chatSessionId": "sess_5f436bbb-0ea0-46e7-9bab-1ffb4197983c",
         "timestamp": 1790674475560
       }
+    ],
+    "2.1 Create the Destination JSON Schema, Tamil Nadu district/category vocabularies, source-attribution model, and data validator.": [
+      {
+        "executionId": "24255a67-894c-4c74-a5cd-b31139aa5392",
+        "chatSessionId": "sess_ee4628a6-c37b-4587-8cfd-ae8b487759eb",
+        "timestamp": 1790680054169
+      },
+      {
+        "executionId": "24255a67-894c-4c74-a5cd-b31139aa5392",
+        "chatSessionId": "sess_ee4628a6-c37b-4587-8cfd-ae8b487759eb",
+        "timestamp": 1790680464902
+      }
+    ],
+    "2.2 Create the JSON DestinationRepository and a DynamoDB-compatible repository interface with city grouping and deterministic filter support.": [
+      {
+        "executionId": "24255a67-894c-4c74-a5cd-b31139aa5392",
+        "chatSessionId": "sess_ee4628a6-c37b-4587-8cfd-ae8b487759eb",
+        "timestamp": 1790680498223
+      },
+      {
+        "executionId": "24255a67-894c-4c74-a5cd-b31139aa5392",
+        "chatSessionId": "sess_ee4628a6-c37b-4587-8cfd-ae8b487759eb",
+        "timestamp": 1790680877521
+      }
+    ],
+    "2.3 Create `GET /api/destinations`, `GET /api/destinations/{id}`, and `GET /api/cities/{city}` endpoints with not-found handling.": [
+      {
+        "executionId": "24255a67-894c-4c74-a5cd-b31139aa5392",
+        "chatSessionId": "sess_ee4628a6-c37b-4587-8cfd-ae8b487759eb",
+        "timestamp": 1790680885535
+      },
+      {
+        "executionId": "24255a67-894c-4c74-a5cd-b31139aa5392",
+        "chatSessionId": "sess_ee4628a6-c37b-4587-8cfd-ae8b487759eb",
+        "timestamp": 1790681262155
+      }
+    ],
+    "2. Implement the source-attributed destination catalog": [
+      {
+        "executionId": "24255a67-894c-4c74-a5cd-b31139aa5392",
+        "chatSessionId": "sess_ee4628a6-c37b-4587-8cfd-ae8b487759eb",
+        "timestamp": 1790681262258
+      }
+    ],
+    "3.1 Implement the home page hero, catalog sections, cards, search entry, and skeleton/empty states using the catalog API.": [
+      {
+        "executionId": "de4a0d93-91a8-4dd3-9a16-94472a0c4c65",
+        "chatSessionId": "sess_2fb6e6a9-59e6-4eb6-8ad8-5715752af8b7",
+        "timestamp": 1790681532508
+      },
+      {
+        "executionId": "de4a0d93-91a8-4dd3-9a16-94472a0c4c65",
+        "chatSessionId": "sess_2fb6e6a9-59e6-4eb6-8ad8-5715752af8b7",
+        "timestamp": 1790681594134
+      },
+      {
+        "executionId": "de4a0d93-91a8-4dd3-9a16-94472a0c4c65",
+        "chatSessionId": "sess_2fb6e6a9-59e6-4eb6-8ad8-5715752af8b7",
+        "timestamp": 1790682396287
+      }
+    ],
+    "3.2 Implement city and destination pages with nullable-field rendering, source links, nearby navigation, and responsive layouts.": [
+      {
+        "executionId": "de4a0d93-91a8-4dd3-9a16-94472a0c4c65",
+        "chatSessionId": "sess_2fb6e6a9-59e6-4eb6-8ad8-5715752af8b7",
+        "timestamp": 1790681532580
+      },
+      {
+        "executionId": "de4a0d93-91a8-4dd3-9a16-94472a0c4c65",
+        "chatSessionId": "sess_2fb6e6a9-59e6-4eb6-8ad8-5715752af8b7",
+        "timestamp": 1790684521109
+      },
+      {
+        "executionId": "de4a0d93-91a8-4dd3-9a16-94472a0c4c65",
+        "chatSessionId": "sess_2fb6e6a9-59e6-4eb6-8ad8-5715752af8b7",
+        "timestamp": 1790685398370
+      }
+    ],
+    "3.3 Implement the MapProvider interface, MapLibre provider, filtered marker endpoint, marker preview, and detail navigation.": [
+      {
+        "executionId": "de4a0d93-91a8-4dd3-9a16-94472a0c4c65",
+        "chatSessionId": "sess_2fb6e6a9-59e6-4eb6-8ad8-5715752af8b7",
+        "timestamp": 1790681532673
+      },
+      {
+        "executionId": "de4a0d93-91a8-4dd3-9a16-94472a0c4c65",
+        "chatSessionId": "sess_2fb6e6a9-59e6-4eb6-8ad8-5715752af8b7",
+        "timestamp": 1790684522446
+      },
+      {
+        "executionId": "de4a0d93-91a8-4dd3-9a16-94472a0c4c65",
+        "chatSessionId": "sess_2fb6e6a9-59e6-4eb6-8ad8-5715752af8b7",
+        "timestamp": 1790685399719
+      }
+    ],
+    "4.1 Implement SearchIntent, SearchFilters, deterministic FilterService, and `POST /api/search` with keyword/tag fallback.": [
+      {
+        "executionId": "de4a0d93-91a8-4dd3-9a16-94472a0c4c65",
+        "chatSessionId": "sess_2fb6e6a9-59e6-4eb6-8ad8-5715752af8b7",
+        "timestamp": 1790681532718
+      }
+    ],
+    "4.2 Implement search controls and structured search-result rendering with active filters and fallback status.": [
+      {
+        "executionId": "de4a0d93-91a8-4dd3-9a16-94472a0c4c65",
+        "chatSessionId": "sess_2fb6e6a9-59e6-4eb6-8ad8-5715752af8b7",
+        "timestamp": 1790681532771
+      }
+    ],
+    "4.3 Implement RecommendationService, interest and themed-journey endpoints, and Surprise Me selection.": [
+      {
+        "executionId": "de4a0d93-91a8-4dd3-9a16-94472a0c4c65",
+        "chatSessionId": "sess_2fb6e6a9-59e6-4eb6-8ad8-5715752af8b7",
+        "timestamp": 1790681532866
+      }
+    ],
+    "4.4 Implement the personalized discovery, themed journey, and Beyond the Tourist Map UI sections.": [
+      {
+        "executionId": "de4a0d93-91a8-4dd3-9a16-94472a0c4c65",
+        "chatSessionId": "sess_2fb6e6a9-59e6-4eb6-8ad8-5715752af8b7",
+        "timestamp": 1790681532910
+      }
+    ],
+    "5.1 Create Itinerary, ItineraryDay, ItineraryActivity, constraint, and structured-operation models.": [
+      {
+        "executionId": "de4a0d93-91a8-4dd3-9a16-94472a0c4c65",
+        "chatSessionId": "sess_2fb6e6a9-59e6-4eb6-8ad8-5715752af8b7",
+        "timestamp": 1790681532963
+      }
+    ],
+    "5.2 Implement ItineraryService generation with catalog validation, destination uniqueness, time ordering, duration validation, and coordinate-aware ordering.": [
+      {
+        "executionId": "de4a0d93-91a8-4dd3-9a16-94472a0c4c65",
+        "chatSessionId": "sess_2fb6e6a9-59e6-4eb6-8ad8-5715752af8b7",
+        "timestamp": 1790681533020
+      }
+    ],
+    "5.3 Implement ItineraryService operations for add, remove, replace, reorder, and constraints with unchanged-itinerary failure behavior.": [
+      {
+        "executionId": "de4a0d93-91a8-4dd3-9a16-94472a0c4c65",
+        "chatSessionId": "sess_2fb6e6a9-59e6-4eb6-8ad8-5715752af8b7",
+        "timestamp": 1790681533076
+      }
+    ],
+    "6.1 Implement AIProvider itinerary-candidate selection and structured edit parsing with schema validation and LocalMockAIProvider responses.": [
+      {
+        "executionId": "de4a0d93-91a8-4dd3-9a16-94472a0c4c65",
+        "chatSessionId": "sess_2fb6e6a9-59e6-4eb6-8ad8-5715752af8b7",
+        "timestamp": 1790681533125
+      }
+    ],
+    "6.2 Implement itinerary generation and itinerary-edit API endpoints that route all structural changes through ItineraryService.": [
+      {
+        "executionId": "de4a0d93-91a8-4dd3-9a16-94472a0c4c65",
+        "chatSessionId": "sess_2fb6e6a9-59e6-4eb6-8ad8-5715752af8b7",
+        "timestamp": 1790681533174
+      }
+    ],
+    "6.3 Implement the itinerary planner, day timeline, generated-content label, and conversational edit interface.": [
+      {
+        "executionId": "de4a0d93-91a8-4dd3-9a16-94472a0c4c65",
+        "chatSessionId": "sess_2fb6e6a9-59e6-4eb6-8ad8-5715752af8b7",
+        "timestamp": 1790681533220
+      }
+    ],
+    "7.1 Create Review models, an in-memory review repository for development, and a persistence interface for the production adapter.": [
+      {
+        "executionId": "de4a0d93-91a8-4dd3-9a16-94472a0c4c65",
+        "chatSessionId": "sess_2fb6e6a9-59e6-4eb6-8ad8-5715752af8b7",
+        "timestamp": 1790681533280
+      }
+    ],
+    "7.2 Implement ReviewService validation, review creation, aggregate calculation, and `GET/POST /api/destinations/{id}/reviews` endpoints.": [
+      {
+        "executionId": "de4a0d93-91a8-4dd3-9a16-94472a0c4c65",
+        "chatSessionId": "sess_2fb6e6a9-59e6-4eb6-8ad8-5715752af8b7",
+        "timestamp": 1790681533337
+      }
+    ],
+    "7.3 Implement ReviewPanel, review submission, rating distribution, recent-review rendering, and accessible error states.": [
+      {
+        "executionId": "de4a0d93-91a8-4dd3-9a16-94472a0c4c65",
+        "chatSessionId": "sess_2fb6e6a9-59e6-4eb6-8ad8-5715752af8b7",
+        "timestamp": 1790681533440
+      }
+    ],
+    "8.1 Implement the data-to-Knowledge-Base document builder, including S3 sidecar metadata documents and source URLs.": [
+      {
+        "executionId": "de4a0d93-91a8-4dd3-9a16-94472a0c4c65",
+        "chatSessionId": "sess_2fb6e6a9-59e6-4eb6-8ad8-5715752af8b7",
+        "timestamp": 1790681533501
+      },
+      {
+        "executionId": "de4a0d93-91a8-4dd3-9a16-94472a0c4c65",
+        "chatSessionId": "sess_2fb6e6a9-59e6-4eb6-8ad8-5715752af8b7",
+        "timestamp": 1790683760903
+      },
+      {
+        "executionId": "de4a0d93-91a8-4dd3-9a16-94472a0c4c65",
+        "chatSessionId": "sess_2fb6e6a9-59e6-4eb6-8ad8-5715752af8b7",
+        "timestamp": 1790684106750
+      }
+    ],
+    "8.2 Create CDK data and AI constructs for S3 source data, S3 Vectors, Bedrock Knowledge Base, Bedrock data source, and least-privilege roles.": [
+      {
+        "executionId": "de4a0d93-91a8-4dd3-9a16-94472a0c4c65",
+        "chatSessionId": "sess_2fb6e6a9-59e6-4eb6-8ad8-5715752af8b7",
+        "timestamp": 1790681533562
+      },
+      {
+        "executionId": "de4a0d93-91a8-4dd3-9a16-94472a0c4c65",
+        "chatSessionId": "sess_2fb6e6a9-59e6-4eb6-8ad8-5715752af8b7",
+        "timestamp": 1790681566762
+      },
+      {
+        "executionId": "de4a0d93-91a8-4dd3-9a16-94472a0c4c65",
+        "chatSessionId": "sess_2fb6e6a9-59e6-4eb6-8ad8-5715752af8b7",
+        "timestamp": 1790681576913
+      },
+      {
+        "executionId": "de4a0d93-91a8-4dd3-9a16-94472a0c4c65",
+        "chatSessionId": "sess_2fb6e6a9-59e6-4eb6-8ad8-5715752af8b7",
+        "timestamp": 1790682505358
+      },
+      {
+        "executionId": "de4a0d93-91a8-4dd3-9a16-94472a0c4c65",
+        "chatSessionId": "sess_2fb6e6a9-59e6-4eb6-8ad8-5715752af8b7",
+        "timestamp": 1790683701336
+      }
+    ],
+    "8.3 Implement BedrockAIProvider retrieval, generated-text/source separation, unavailable-information behavior, and bounded dependency failures.": [
+      {
+        "executionId": "de4a0d93-91a8-4dd3-9a16-94472a0c4c65",
+        "chatSessionId": "sess_2fb6e6a9-59e6-4eb6-8ad8-5715752af8b7",
+        "timestamp": 1790681533624
+      }
+    ],
+    "8.4 Implement ChatWidget, source links, AI labels, AI review summaries, and AI itinerary narrative enrichment.": [
+      {
+        "executionId": "de4a0d93-91a8-4dd3-9a16-94472a0c4c65",
+        "chatSessionId": "sess_2fb6e6a9-59e6-4eb6-8ad8-5715752af8b7",
+        "timestamp": 1790681533671
+      }
+    ],
+    "9.1 Create CDK BackendStack with Lambda, HTTP API, safe CORS origins, API URL output, and scoped runtime permissions.": [
+      {
+        "executionId": "de4a0d93-91a8-4dd3-9a16-94472a0c4c65",
+        "chatSessionId": "sess_2fb6e6a9-59e6-4eb6-8ad8-5715752af8b7",
+        "timestamp": 1790681533713
+      }
+    ],
+    "9.2 Create CDK FrontendStack and MonitoringStack with Amplify Hosting configuration, backend URL injection, logs, alarms, and dashboard resources.": [
+      {
+        "executionId": "de4a0d93-91a8-4dd3-9a16-94472a0c4c65",
+        "chatSessionId": "sess_2fb6e6a9-59e6-4eb6-8ad8-5715752af8b7",
+        "timestamp": 1790681533780
+      }
+    ],
+    "9.3 Write CDK assertions and synthesis tests for stack resources, outputs, CORS, and IAM scopes.": [
+      {
+        "executionId": "de4a0d93-91a8-4dd3-9a16-94472a0c4c65",
+        "chatSessionId": "sess_2fb6e6a9-59e6-4eb6-8ad8-5715752af8b7",
+        "timestamp": 1790681533831
+      }
+    ],
+    "10.1 Implement and verify source-format, backend-test, data-validation, and pre-completion hooks against the scaffolded commands.": [
+      {
+        "executionId": "de4a0d93-91a8-4dd3-9a16-94472a0c4c65",
+        "chatSessionId": "sess_2fb6e6a9-59e6-4eb6-8ad8-5715752af8b7",
+        "timestamp": 1790681533876
+      }
+    ],
+    "10.2 Activate and use the Namma Ooru Power skills for destination curation, itinerary planning, content, and review analysis; record evidence.": [
+      {
+        "executionId": "de4a0d93-91a8-4dd3-9a16-94472a0c4c65",
+        "chatSessionId": "sess_2fb6e6a9-59e6-4eb6-8ad8-5715752af8b7",
+        "timestamp": 1790681533925
+      }
+    ],
+    "10.3 Use the destination-curator and spec-reviewer Custom Agents for dataset and specification review; record evidence.": [
+      {
+        "executionId": "de4a0d93-91a8-4dd3-9a16-94472a0c4c65",
+        "chatSessionId": "sess_2fb6e6a9-59e6-4eb6-8ad8-5715752af8b7",
+        "timestamp": 1790681533982
+      }
+    ],
+    "10.4 Configure the approved MCP servers through Kiro settings and retain an evidence record of AWS and repository research.": [
+      {
+        "executionId": "de4a0d93-91a8-4dd3-9a16-94472a0c4c65",
+        "chatSessionId": "sess_2fb6e6a9-59e6-4eb6-8ad8-5715752af8b7",
+        "timestamp": 1790681534052
+      }
+    ],
+    "10.5 Add property-test tags and traceability evidence for every implemented design property.": [
+      {
+        "executionId": "de4a0d93-91a8-4dd3-9a16-94472a0c4c65",
+        "chatSessionId": "sess_2fb6e6a9-59e6-4eb6-8ad8-5715752af8b7",
+        "timestamp": 1790681534119
+      }
+    ],
+    "11. Checkpoint - Validate the catalog and discovery slice": [
+      {
+        "executionId": "de4a0d93-91a8-4dd3-9a16-94472a0c4c65",
+        "chatSessionId": "sess_2fb6e6a9-59e6-4eb6-8ad8-5715752af8b7",
+        "timestamp": 1790681534179
+      }
+    ],
+    "12. Checkpoint - Validate the itinerary and review slice": [
+      {
+        "executionId": "de4a0d93-91a8-4dd3-9a16-94472a0c4c65",
+        "chatSessionId": "sess_2fb6e6a9-59e6-4eb6-8ad8-5715752af8b7",
+        "timestamp": 1790681534239
+      }
+    ],
+    "13. Final checkpoint - Ensure all required tests and validation commands pass": [
+      {
+        "executionId": "de4a0d93-91a8-4dd3-9a16-94472a0c4c65",
+        "chatSessionId": "sess_2fb6e6a9-59e6-4eb6-8ad8-5715752af8b7",
+        "timestamp": 1790681534301
+      }
+    ],
+    "2.4 Write a property-based test for filter intersection soundness.": [
+      {
+        "executionId": "de4a0d93-91a8-4dd3-9a16-94472a0c4c65",
+        "chatSessionId": "sess_2fb6e6a9-59e6-4eb6-8ad8-5715752af8b7",
+        "timestamp": 1790684162732
+      },
+      {
+        "executionId": "de4a0d93-91a8-4dd3-9a16-94472a0c4c65",
+        "chatSessionId": "sess_2fb6e6a9-59e6-4eb6-8ad8-5715752af8b7",
+        "timestamp": 1790684475803
+      }
+    ],
+    "2.5 Write a property-based test for filter removal preservation.": [
+      {
+        "executionId": "de4a0d93-91a8-4dd3-9a16-94472a0c4c65",
+        "chatSessionId": "sess_2fb6e6a9-59e6-4eb6-8ad8-5715752af8b7",
+        "timestamp": 1790684164328
+      },
+      {
+        "executionId": "de4a0d93-91a8-4dd3-9a16-94472a0c4c65",
+        "chatSessionId": "sess_2fb6e6a9-59e6-4eb6-8ad8-5715752af8b7",
+        "timestamp": 1790684477091
+      }
+    ],
+    "2.6 Write a property-based test for filter monotonicity.": [
+      {
+        "executionId": "de4a0d93-91a8-4dd3-9a16-94472a0c4c65",
+        "chatSessionId": "sess_2fb6e6a9-59e6-4eb6-8ad8-5715752af8b7",
+        "timestamp": 1790684165645
+      },
+      {
+        "executionId": "de4a0d93-91a8-4dd3-9a16-94472a0c4c65",
+        "chatSessionId": "sess_2fb6e6a9-59e6-4eb6-8ad8-5715752af8b7",
+        "timestamp": 1790684478397
+      }
+    ],
+    "3. Build discovery, city, and destination experiences": [
+      {
+        "executionId": "de4a0d93-91a8-4dd3-9a16-94472a0c4c65",
+        "chatSessionId": "sess_2fb6e6a9-59e6-4eb6-8ad8-5715752af8b7",
+        "timestamp": 1790685399800
+      }
     ]
   }
 }

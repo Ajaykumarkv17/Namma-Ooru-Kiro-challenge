@@ -1,0 +1,108 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://namma-ooru/schema/destination.schema.json",
+  "title": "Destination",
+  "description": "A source-attributed Tamil Nadu destination record (Requirement 3.2). Factual fields that no source has verified are null (Requirement 3.6).",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "name", "city", "district", "region", "category", "description"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique lower-kebab-case slug.",
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$",
+      "maxLength": 120
+    },
+    "name": { "type": "string", "minLength": 1, "maxLength": 100 },
+    "alternate_names": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1, "maxLength": 100 }
+    },
+    "city": { "type": "string", "minLength": 1, "maxLength": 100 },
+    "district": {
+      "type": "string",
+      "description": "One of the 38 Tamil Nadu district slugs.",
+      "enum": [
+        "ariyalur", "chengalpattu", "chennai", "coimbatore", "cuddalore",
+        "dharmapuri", "dindigul", "erode", "kallakurichi", "kanchipuram",
+        "kanyakumari", "karur", "krishnagiri", "madurai", "mayiladuthurai",
+        "nagapattinam", "namakkal", "nilgiris", "perambalur", "pudukkottai",
+        "ramanathapuram", "ranipet", "salem", "sivaganga", "tenkasi",
+        "thanjavur", "theni", "thoothukudi", "tiruchirappalli", "tirunelveli",
+        "tirupathur", "tiruppur", "tiruvallur", "tiruvannamalai", "tiruvarur",
+        "vellore", "viluppuram", "virudhunagar"
+      ]
+    },
+    "region": { "type": "string", "minLength": 1, "maxLength": 100 },
+    "category": {
+      "type": "string",
+      "description": "One of the 12 accepted categories (Requirement 3.3).",
+      "enum": [
+        "temples", "heritage", "beaches", "hills", "waterfalls", "nature",
+        "wildlife", "food", "culture", "adventure", "photography", "hidden-gems"
+      ]
+    },
+    "subcategory": { "type": ["string", "null"], "maxLength": 100 },
+    "description": { "type": "string", "minLength": 1, "maxLength": 5000 },
+    "detailed_description": { "type": ["string", "null"], "maxLength": 10000 },
+    "historical_significance": { "type": ["string", "null"], "maxLength": 10000 },
+    "cultural_significance": { "type": ["string", "null"], "maxLength": 10000 },
+    "latitude": { "type": ["number", "null"], "minimum": 8.0, "maximum": 13.6 },
+    "longitude": { "type": ["number", "null"], "minimum": 76.0, "maximum": 80.5 },
+    "address": { "type": ["string", "null"], "maxLength": 1000 },
+    "best_time_to_visit": { "type": ["string", "null"], "maxLength": 500 },
+    "recommended_duration_minutes": {
+      "type": ["integer", "null"],
+      "minimum": 1,
+      "maximum": 1440
+    },
+    "opening_hours": { "type": ["string", "null"], "maxLength": 1000 },
+    "entry_fee": { "type": ["string", "null"], "maxLength": 1000 },
+    "official_website": { "type": ["string", "null"], "format": "uri" },
+    "source_urls": {
+      "type": "array",
+      "items": { "type": "string", "format": "uri" }
+    },
+    "sources": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["name", "type", "url", "retrieved_on"],
+        "properties": {
+          "name": { "type": "string", "minLength": 1, "maxLength": 100 },
+          "type": { "type": "string", "minLength": 1, "maxLength": 100 },
+          "url": { "type": "string", "format": "uri" },
+          "retrieved_on": { "type": "string", "format": "date" },
+          "notes": { "type": ["string", "null"], "maxLength": 2000 }
+        }
+      }
+    },
+    "image_reference": { "type": ["string", "null"], "maxLength": 500 },
+    "tags": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1, "maxLength": 100 }
+    },
+    "nearby_place_ids": {
+      "type": "array",
+      "items": { "type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$" }
+    },
+    "is_hidden_gem": { "type": "boolean" },
+    "is_heritage": { "type": "boolean" },
+    "is_unesco": { "type": "boolean" },
+    "family_friendly": { "type": "boolean" },
+    "nature_related": { "type": "boolean" },
+    "adventure_related": { "type": "boolean" },
+    "has_source_conflict": { "type": "boolean" },
+    "needs_review": { "type": "boolean" },
+    "popularity": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "popularity_score": { "type": "number", "minimum": 0.0, "maximum": 1.0 },
+        "rating_average": { "type": ["number", "null"], "minimum": 1.0, "maximum": 5.0 },
+        "rating_count": { "type": "integer", "minimum": 0 }
+      }
+    }
+  }
+}

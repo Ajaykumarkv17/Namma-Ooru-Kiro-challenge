@@ -8,7 +8,7 @@ from app.ai import UNAVAILABLE_ANSWER, LocalMockAIProvider
 from app.dependencies import get_ai_provider
 from app.errors import DependencyUnavailableError
 from app.main import create_app
-from app.models import GroundedAnswer, RetrievalFilters
+from app.models import GroundedAnswer, RetrievalFilters, SearchIntent
 
 
 def test_local_mock_extracts_deterministic_search_intent() -> None:
@@ -39,7 +39,9 @@ def test_chat_rejects_blank_question_with_structured_validation_error() -> None:
 
 def test_chat_uses_injected_ai_provider_and_separates_sources() -> None:
     class StubProvider:
-        def extract_search_intent(self, query: str):  # pragma: no cover - protocol completeness
+        def extract_search_intent(
+            self, query: str
+        ) -> SearchIntent:  # pragma: no cover - protocol completeness
             raise AssertionError(f"Unexpected search request: {query}")
 
         def answer(self, question: str, filters: RetrievalFilters) -> GroundedAnswer:

@@ -33,6 +33,13 @@ class NotFoundError(DomainError):
     public_detail = "The requested resource was not found."
 
 
+class DestinationNotFoundError(NotFoundError):
+    """A requested Destination id does not exist in the catalog (Requirement 11.3)."""
+
+    error_code = "DESTINATION_NOT_FOUND"
+    public_detail = "The requested destination was not found."
+
+
 def _error_body(error: str, detail: Any) -> dict[str, Any]:
     return {"error": error, "detail": detail}
 
@@ -46,7 +53,10 @@ def register_exception_handlers(app: FastAPI) -> None:
     ) -> JSONResponse:
         del request
         fields = [
-            {"field": ".".join(str(part) for part in item["loc"]), "message": item["msg"]}
+            {
+                "field": ".".join(str(part) for part in item["loc"]),
+                "message": item["msg"],
+            }
             for item in exc.errors()
         ]
         return JSONResponse(

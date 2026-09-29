@@ -1,0 +1,50 @@
+{
+  "destinations": [
+    {
+      "id": "madurai-meenakshi-amman-temple",
+      "name": "Meenakshi Amman Temple",
+      "alternate_names": ["Meenakshi Sundareswarar Temple"],
+      "city": "Madurai",
+      "district": "madurai",
+      "region": "South Tamil Nadu",
+      "category": "temples",
+      "subcategory": "Dravidian temple complex",
+      "description": "A historic Dravidian temple dedicated to Meenakshi and Sundareswarar in the heart of Madurai.",
+      "detailed_description": null,
+      "historical_significance": null,
+      "cultural_significance": null,
+      "latitude": 9.9195,
+      "longitude": 78.1193,
+      "address": null,
+      "best_time_to_visit": null,
+      "recommended_duration_minutes": 120,
+      "opening_hours": null,
+      "entry_fee": null,
+      "official_website": null,
+      "source_urls": ["https://www.tamilnadutourism.tn.gov.in/destinations/madurai"],
+      "sources": [
+        {
+          "name": "Tamil Nadu Tourism",
+          "type": "government-tourism",
+          "url": "https://www.tamilnadutourism.tn.gov.in/destinations/madurai",
+          "retrieved_on": "2024-01-15",
+          "notes": null
+        }
+      ],
+      "image_reference": null,
+      "tags": ["temple", "heritage", "madurai"],
+      "nearby_place_ids": [],
+      "is_hidden_gem": false,
+      "is_heritage": true,
+      "is_unesco": false,
+      "family_friendly": true,
+      "nature_related": false,
+      "adventure_related": false,
+      "popularity": {
+        "popularity_score": 0.95,
+        "rating_average": 4.7,
+        "rating_count": 120
+      }
+    }
+  ]
+}

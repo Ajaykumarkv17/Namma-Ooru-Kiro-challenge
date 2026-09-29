@@ -1,3 +1,5 @@
+import { useId } from 'react';
+
 type ErrorStateProps = {
   title?: string;
   message: string;
@@ -11,13 +13,14 @@ export function ErrorState({
   onRetry,
   retryLabel = 'Try again',
 }: ErrorStateProps) {
+  const titleId = useId();
   return (
-    <section
-      aria-labelledby="error-state-title"
+    <div
+      aria-labelledby={titleId}
       className="rounded-2xl border border-maroon/30 bg-white p-8 text-center shadow-sm"
       role="alert"
     >
-      <h2 className="font-display text-2xl font-bold text-maroon" id="error-state-title">
+      <h2 className="font-display text-2xl font-bold text-maroon" id={titleId}>
         {title}
       </h2>
       <p className="mx-auto mt-2 max-w-prose text-ink/75">{message}</p>
@@ -30,6 +33,6 @@ export function ErrorState({
           {retryLabel}
         </button>
       ) : null}
-    </section>
+    </div>
   );
 }
