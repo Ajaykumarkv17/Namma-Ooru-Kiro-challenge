@@ -1,9 +1,11 @@
 /**
  * Discovery home page (Requirement 1). Renders the hero with search entry and an
  * Explore Tamil Nadu call to action, then catalog-driven sections: popular
- * destinations, popular cities, categories, hidden gems, and recommended
- * destinations. All destination data comes from the catalog API via React Query;
- * each data-driven section renders one of content, skeleton, empty, or error.
+ * destinations, personalized discovery (interests, themed journeys, and Surprise
+ * Me — Requirement 8), popular cities, categories, hidden gems, and recommended
+ * destinations. Catalog data comes from the catalog API and the personalized
+ * discovery experiences from the recommendations API, both via React Query; each
+ * data-driven section renders one of content, skeleton, empty, or error.
  */
 
 import { useMemo } from 'react';
@@ -13,6 +15,7 @@ import { CatalogSection } from '../components/catalog/CatalogSection';
 import { CategoryChips } from '../components/catalog/CategoryChips';
 import { CityCard } from '../components/catalog/CityCard';
 import { DestinationGrid } from '../components/catalog/DestinationGrid';
+import { PersonalizedDiscovery } from '../components/discovery/PersonalizedDiscovery';
 import { HomeHero } from '../components/home/HomeHero';
 import { useDestinations } from '../hooks/useDestinations';
 import {
@@ -64,6 +67,8 @@ export function HomePage() {
           <DestinationGrid destinations={popular} />
         </CatalogSection>
       </div>
+
+      <PersonalizedDiscovery />
 
       <CatalogSection
         emptyActionLabel="Search destinations"

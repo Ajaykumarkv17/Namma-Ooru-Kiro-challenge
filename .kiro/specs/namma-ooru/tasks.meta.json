@@ -206,6 +206,16 @@
         "executionId": "de4a0d93-91a8-4dd3-9a16-94472a0c4c65",
         "chatSessionId": "sess_2fb6e6a9-59e6-4eb6-8ad8-5715752af8b7",
         "timestamp": 1790681532963
+      },
+      {
+        "executionId": "34eb4223-51c9-4279-8ae5-c278bfd877ed",
+        "chatSessionId": "sess_38d7fcc1-80fc-4ba5-ac39-f5e113de1ab0",
+        "timestamp": 1790708783449
+      },
+      {
+        "executionId": "34eb4223-51c9-4279-8ae5-c278bfd877ed",
+        "chatSessionId": "sess_38d7fcc1-80fc-4ba5-ac39-f5e113de1ab0",
+        "timestamp": 1790709092626
       }
     ],
     "5.2 Implement ItineraryService generation with catalog validation, destination uniqueness, time ordering, duration validation, and coordinate-aware ordering.": [
@@ -213,6 +223,16 @@
         "executionId": "de4a0d93-91a8-4dd3-9a16-94472a0c4c65",
         "chatSessionId": "sess_2fb6e6a9-59e6-4eb6-8ad8-5715752af8b7",
         "timestamp": 1790681533020
+      },
+      {
+        "executionId": "34eb4223-51c9-4279-8ae5-c278bfd877ed",
+        "chatSessionId": "sess_38d7fcc1-80fc-4ba5-ac39-f5e113de1ab0",
+        "timestamp": 1790709167557
+      },
+      {
+        "executionId": "34eb4223-51c9-4279-8ae5-c278bfd877ed",
+        "chatSessionId": "sess_38d7fcc1-80fc-4ba5-ac39-f5e113de1ab0",
+        "timestamp": 1790709521006
       }
     ],
     "5.3 Implement ItineraryService operations for add, remove, replace, reorder, and constraints with unchanged-itinerary failure behavior.": [
@@ -220,6 +240,16 @@
         "executionId": "de4a0d93-91a8-4dd3-9a16-94472a0c4c65",
         "chatSessionId": "sess_2fb6e6a9-59e6-4eb6-8ad8-5715752af8b7",
         "timestamp": 1790681533076
+      },
+      {
+        "executionId": "34eb4223-51c9-4279-8ae5-c278bfd877ed",
+        "chatSessionId": "sess_38d7fcc1-80fc-4ba5-ac39-f5e113de1ab0",
+        "timestamp": 1790709528484
+      },
+      {
+        "executionId": "34eb4223-51c9-4279-8ae5-c278bfd877ed",
+        "chatSessionId": "sess_38d7fcc1-80fc-4ba5-ac39-f5e113de1ab0",
+        "timestamp": 1790709933073
       }
     ],
     "6.1 Implement AIProvider itinerary-candidate selection and structured edit parsing with schema validation and LocalMockAIProvider responses.": [
@@ -440,6 +470,13 @@
         "executionId": "de4a0d93-91a8-4dd3-9a16-94472a0c4c65",
         "chatSessionId": "sess_2fb6e6a9-59e6-4eb6-8ad8-5715752af8b7",
         "timestamp": 1790685399800
+      }
+    ],
+    "5. Implement the deterministic itinerary domain": [
+      {
+        "executionId": "34eb4223-51c9-4279-8ae5-c278bfd877ed",
+        "chatSessionId": "sess_38d7fcc1-80fc-4ba5-ac39-f5e113de1ab0",
+        "timestamp": 1790709933258
       }
     ]
   }

@@ -54,18 +54,18 @@ challenge evidence. No property test invokes Bedrock or AWS services.
     - _Requirements: 4.2, 4.3_
   - [x] 4.3 Implement RecommendationService, interest and themed-journey endpoints, and Surprise Me selection.
     - _Requirements: 8.1, 8.2, 8.3, 8.4_
-  - [~] 4.4 Implement the personalized discovery, themed journey, and Beyond the Tourist Map UI sections.
+  - [x] 4.4 Implement the personalized discovery, themed journey, and Beyond the Tourist Map UI sections.
     - _Requirements: 8.1, 8.2, 8.3_
   - [ ]* 4.5 Write a property-based test for recommendation catalog membership.
     - **Property 11: Recommendation catalog membership**
     - **Validates: Requirements 8.1, 8.2, 8.3, 8.4**
 
-- [ ] 5. Implement the deterministic itinerary domain
-  - [~] 5.1 Create Itinerary, ItineraryDay, ItineraryActivity, constraint, and structured-operation models.
+- [x] 5. Implement the deterministic itinerary domain
+  - [x] 5.1 Create Itinerary, ItineraryDay, ItineraryActivity, constraint, and structured-operation models.
     - _Requirements: 6.1, 6.2, 6.3, 7.1_
-  - [~] 5.2 Implement ItineraryService generation with catalog validation, destination uniqueness, time ordering, duration validation, and coordinate-aware ordering.
+  - [x] 5.2 Implement ItineraryService generation with catalog validation, destination uniqueness, time ordering, duration validation, and coordinate-aware ordering.
     - _Requirements: 6.1, 6.2, 6.3, 6.4, 6.5_
-  - [~] 5.3 Implement ItineraryService operations for add, remove, replace, reorder, and constraints with unchanged-itinerary failure behavior.
+  - [x] 5.3 Implement ItineraryService operations for add, remove, replace, reorder, and constraints with unchanged-itinerary failure behavior.
     - _Requirements: 7.2, 7.3, 7.4_
   - [ ]* 5.4 Write a property-based test for itinerary day-count preservation.
     - **Property 4: Itinerary day-count preservation**

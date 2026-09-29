@@ -178,3 +178,69 @@ export type ApiErrorBody = {
   error?: string;
   detail?: string;
 };
+
+/**
+ * The eight named themed journeys (backend `ThemedJourney`). Slugs are the exact
+ * wire values `POST /api/recommendations` accepts for `{ mode: "journey" }`
+ * (Requirement 8.3).
+ */
+export type ThemedJourney =
+  | 'spiritual-journey'
+  | 'hill-escape'
+  | 'coastal-escape'
+  | 'food-trail'
+  | 'heritage-journey'
+  | 'nature-escape'
+  | 'photography-trip'
+  | 'hidden-gems';
+
+/** The three recommendation modes (backend `RecommendationMode`). */
+export type RecommendationMode = 'interests' | 'journey' | 'surprise';
+
+/**
+ * Validated recommendation input for `POST /api/recommendations` (backend
+ * `RecommendationRequest`). Exactly one mode is expressed at a time:
+ * - `interests` (Req 8.1): `interests` is required and non-empty.
+ * - `journey` (Req 8.3): `journey` is one of the eight themed-journey slugs.
+ * - `surprise` (Req 8.2): only the optional `seed` is used.
+ * Cross-field consistency is validated at the backend boundary; an inconsistent
+ * request is rejected with a structured `{ error: "VALIDATION_ERROR", detail }`
+ * 400 (Requirement 11.1).
+ */
+export type RecommendationRequest =
+  | { mode: 'interests'; interests: string[] }
+  | { mode: 'journey'; journey: ThemedJourney }
+  | { mode: 'surprise'; seed?: number };
+
+/**
+ * A single Surprise Me pick (backend `SurpriseRecommendation`). `destination` and
+ * `category` are source catalog facts; `suggested_duration_minutes` and
+ * `short_description` come from the record (never fabricated). `rationale` is
+ * AI-generated prose — kept in its own field and flagged by
+ * `rationale_is_ai_generated` so generated text is never conflated with source
+ * facts (AI/RAG steering) and the UI can badge it as AI-generated.
+ */
+export type SurpriseRecommendation = {
+  destination: Destination;
+  category: DestinationCategory;
+  suggested_duration_minutes: number | null;
+  short_description: string;
+  rationale: string;
+  rationale_is_ai_generated: boolean;
+};
+
+/**
+ * Structured recommendation response (backend `RecommendationResult`,
+ * Requirements 8.1, 8.2, 8.3). `mode` echoes the request; `journey` is set for
+ * journey mode. `destinations` holds the matching catalog records for
+ * interests/journey modes; `surprise` holds the single pick for surprise mode.
+ * Every returned Destination is a catalog member (Requirement 8.4).
+ */
+export type RecommendationResult = {
+  mode: RecommendationMode;
+  journey: ThemedJourney | null;
+  interests: string[];
+  destinations: Destination[];
+  result_count: number;
+  surprise: SurpriseRecommendation | null;
+};

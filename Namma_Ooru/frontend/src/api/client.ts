@@ -13,6 +13,8 @@ import type {
   DestinationFilters,
   MapFilters,
   MapMarker,
+  RecommendationRequest,
+  RecommendationResult,
   SearchResult,
 } from './types';
 
@@ -158,4 +160,16 @@ export function fetchMapMarkers(filters?: MapFilters): Promise<MapMarker[]> {
  */
 export function searchDestinations(query: string): Promise<SearchResult> {
   return postJson<SearchResult>('/api/search', { query });
+}
+
+/**
+ * `POST /api/recommendations` — interest, themed-journey, or Surprise Me
+ * recommendations (Requirement 8). The `RecommendationRequest` union carries
+ * exactly one mode; the response separates the matching source `destinations`
+ * from the Surprise Me `surprise` pick, whose `rationale` is AI-generated prose
+ * kept apart from the source record (AI/RAG steering). Validation errors surface
+ * as an `ApiError` mapped from the backend `{ error, detail }` body.
+ */
+export function getRecommendations(request: RecommendationRequest): Promise<RecommendationResult> {
+  return postJson<RecommendationResult>('/api/recommendations', request);
 }
