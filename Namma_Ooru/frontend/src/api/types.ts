@@ -244,3 +244,47 @@ export type RecommendationResult = {
   result_count: number;
   surprise: SurpriseRecommendation | null;
 };
+
+export type ItineraryConstraints = {
+  interests: string[];
+  travel_style: string | null;
+  budget: string | null;
+  starting_point: string | null;
+  category: DestinationCategory | null;
+  district: string | null;
+  day_start_minute: number | null;
+  day_end_minute: number | null;
+  max_activities_per_day: number | null;
+};
+
+export type ItineraryActivity = {
+  destination_id: string;
+  start_minute: number;
+  duration_minutes: number;
+  rationale: string;
+  travel_context: string;
+  break_suggestion: string;
+};
+
+export type ItineraryDay = { day_number: number; activities: ItineraryActivity[] };
+
+export type Itinerary = {
+  id: string;
+  destination_context: string;
+  days: ItineraryDay[];
+  allow_repeats: boolean;
+  constraints: ItineraryConstraints;
+};
+
+export type ItineraryRequest = {
+  destination_context: string;
+  day_count: number;
+  allow_repeats: boolean;
+  constraints: Partial<ItineraryConstraints>;
+};
+
+export type ItineraryEditResult = {
+  itinerary: Itinerary;
+  changed: boolean;
+  explanation: string;
+};

@@ -6,6 +6,7 @@ from functools import lru_cache
 
 from app.ai import AIProvider, LocalMockAIProvider
 from app.catalog.repository import DestinationRepository, JsonDestinationRepository
+from app.itinerary.service import ItineraryService
 from app.map.service import MapMarkerService
 from app.recommendations.service import RecommendationService
 from app.search.service import SearchService
@@ -39,3 +40,9 @@ def get_search_service() -> SearchService:
 def get_recommendation_service() -> RecommendationService:
     """Supply the pure, stateless deterministic recommendation service (Requirement 8)."""
     return RecommendationService()
+
+
+@lru_cache(maxsize=1)
+def get_itinerary_service() -> ItineraryService:
+    """Supply the pure itinerary scheduling and edit service."""
+    return ItineraryService()

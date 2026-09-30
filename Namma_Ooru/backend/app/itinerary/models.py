@@ -274,3 +274,43 @@ class ItineraryOperationEnvelope(BaseModel):
     model_config = ConfigDict(extra="forbid")
 
     operation: ItineraryOperation
+
+
+class ItineraryRequest(BaseModel):
+    """Validated request for a generated multi-day itinerary (Requirement 6.1)."""
+
+    model_config = ConfigDict(extra="forbid", str_strip_whitespace=True)
+
+    destination_context: str = Field(min_length=1, max_length=500)
+    day_count: int = Field(ge=1, le=14)
+    constraints: ItineraryConstraints = Field(default_factory=ItineraryConstraints)
+    allow_repeats: bool = False
+
+
+class ItineraryEditRequest(BaseModel):
+    """Validated conversational edit request (Requirement 7.1)."""
+
+    model_config = ConfigDict(extra="forbid", str_strip_whitespace=True)
+
+    request: str = Field(min_length=1, max_length=2_000)
+
+
+class EditUnavailable(BaseModel):
+    """Unchanged itinerary and safe explanation when an edit cannot apply (7.4)."""
+
+    model_config = ConfigDict(extra="forbid")
+
+    itinerary: Itinerary
+    changed: Literal[False] = False
+    explanation: str = Field(min_length=1, max_length=2_000)
+
+
+class ItineraryEditSuccess(BaseModel):
+    """Successful conversational edit result with its parsed operation."""
+
+    model_config = ConfigDict(extra="forbid")
+
+    itinerary: Itinerary
+    changed: Literal[True] = True
+    explanation: str = Field(min_length=1, max_length=2_000)
+    operation: ItineraryOperation

@@ -11,6 +11,9 @@ import type {
   Destination,
   DestinationDetail,
   DestinationFilters,
+  Itinerary,
+  ItineraryEditResult,
+  ItineraryRequest,
   MapFilters,
   MapMarker,
   RecommendationRequest,
@@ -172,4 +175,16 @@ export function searchDestinations(query: string): Promise<SearchResult> {
  */
 export function getRecommendations(request: RecommendationRequest): Promise<RecommendationResult> {
   return postJson<RecommendationResult>('/api/recommendations', request);
+}
+
+/** `POST /api/itineraries` — create a scheduled AI-assisted trip plan. */
+export function createItinerary(payload: ItineraryRequest): Promise<Itinerary> {
+  return postJson<Itinerary>('/api/itineraries', payload);
+}
+
+/** `POST /api/itineraries/{id}/edits` — apply a conversational edit safely. */
+export function editItinerary(id: string, request: string): Promise<ItineraryEditResult> {
+  return postJson<ItineraryEditResult>(`/api/itineraries/${encodeURIComponent(id)}/edits`, {
+    request,
+  });
 }

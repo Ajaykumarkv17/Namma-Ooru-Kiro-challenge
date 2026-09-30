@@ -89,12 +89,12 @@ challenge evidence. No property test invokes Bedrock or AWS services.
     - **Property 10: Replace operation validity**
     - **Validates: Requirements 7.1, 7.2**
 
-- [ ] 6. Deliver itinerary planning and conversational editing
-  - [~] 6.1 Implement AIProvider itinerary-candidate selection and structured edit parsing with schema validation and LocalMockAIProvider responses.
+- [x] 6. Deliver itinerary planning and conversational editing
+  - [x] 6.1 Implement AIProvider itinerary-candidate selection and structured edit parsing with schema validation and LocalMockAIProvider responses.
     - _Requirements: 6.4, 7.1, 11.1_
-  - [~] 6.2 Implement itinerary generation and itinerary-edit API endpoints that route all structural changes through ItineraryService.
+  - [x] 6.2 Implement itinerary generation and itinerary-edit API endpoints that route all structural changes through ItineraryService.
     - _Requirements: 6.1, 6.2, 6.3, 6.5, 7.2, 7.3, 7.4_
-  - [~] 6.3 Implement the itinerary planner, day timeline, generated-content label, and conversational edit interface.
+  - [x] 6.3 Implement the itinerary planner, day timeline, generated-content label, and conversational edit interface.
     - _Requirements: 6.6, 7.1, 7.4_
 
 - [ ] 7. Implement reviews and rating aggregates

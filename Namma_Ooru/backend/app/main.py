@@ -10,6 +10,7 @@ from app.ai import AIProvider
 from app.catalog.router import router as catalog_router
 from app.dependencies import get_ai_provider
 from app.errors import register_exception_handlers
+from app.itinerary.router import router as itinerary_router
 from app.map.router import router as map_router
 from app.models import ChatRequest, GroundedAnswer
 from app.recommendations.router import router as recommendations_router
@@ -21,6 +22,7 @@ def create_app() -> FastAPI:
     app = FastAPI(title="Namma Ooru API", version="0.1.0")
     register_exception_handlers(app)
     app.include_router(catalog_router)
+    app.include_router(itinerary_router)
     app.include_router(map_router)
     app.include_router(search_router)
     app.include_router(recommendations_router)

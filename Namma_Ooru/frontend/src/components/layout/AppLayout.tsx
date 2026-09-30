@@ -8,6 +8,7 @@ type AppLayoutProps = {
 const navigation = [
   { label: 'Discover', to: '/' },
   { label: 'Search', to: '/search' },
+  { label: 'Plan a trip', to: '/itinerary' },
 ];
 
 export function AppLayout({ children }: AppLayoutProps) {
