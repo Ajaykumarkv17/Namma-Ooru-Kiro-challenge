@@ -7,7 +7,9 @@
 
 import type {
   ApiErrorBody,
+  ChatRequest,
   CityView,
+  GroundedAnswer,
   Destination,
   DestinationDetail,
   DestinationFilters,
@@ -18,6 +20,9 @@ import type {
   MapMarker,
   RecommendationRequest,
   RecommendationResult,
+  Review,
+  ReviewAggregate,
+  ReviewCreateRequest,
   SearchResult,
 } from './types';
 
@@ -177,6 +182,11 @@ export function getRecommendations(request: RecommendationRequest): Promise<Reco
   return postJson<RecommendationResult>('/api/recommendations', request);
 }
 
+/** `POST /api/chat` — return generated text and retrieved source references separately. */
+export function askChat(payload: ChatRequest): Promise<GroundedAnswer> {
+  return postJson<GroundedAnswer>('/api/chat', payload);
+}
+
 /** `POST /api/itineraries` — create a scheduled AI-assisted trip plan. */
 export function createItinerary(payload: ItineraryRequest): Promise<Itinerary> {
   return postJson<Itinerary>('/api/itineraries', payload);
@@ -187,4 +197,14 @@ export function editItinerary(id: string, request: string): Promise<ItineraryEdi
   return postJson<ItineraryEditResult>(`/api/itineraries/${encodeURIComponent(id)}/edits`, {
     request,
   });
+}
+
+/** `GET /api/destinations/{id}/reviews` — aggregate ratings and recent reviews. */
+export function fetchReviews(id: string): Promise<ReviewAggregate> {
+  return request<ReviewAggregate>(`/api/destinations/${encodeURIComponent(id)}/reviews`);
+}
+
+/** `POST /api/destinations/{id}/reviews` — submit one validated visitor review. */
+export function createReview(id: string, payload: ReviewCreateRequest): Promise<Review> {
+  return postJson<Review>(`/api/destinations/${encodeURIComponent(id)}/reviews`, payload);
 }

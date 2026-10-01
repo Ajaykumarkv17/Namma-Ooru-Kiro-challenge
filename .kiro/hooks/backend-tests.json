@@ -8,7 +8,7 @@
       "matcher": "backend[\\\\/].*\\.py$",
       "action": {
         "type": "command",
-        "command": "python -m pytest backend/tests -q",
+        "command": "Set-Location Namma_Ooru/backend; python -m pytest tests -q",
         "timeout": 300
       }
     }

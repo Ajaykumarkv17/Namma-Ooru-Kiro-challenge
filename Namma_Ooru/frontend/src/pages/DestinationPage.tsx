@@ -11,6 +11,7 @@ import { useParams } from 'react-router-dom';
 
 import type { Destination } from '../api/types';
 import { DestinationGrid } from '../components/catalog/DestinationGrid';
+import { ReviewPanel } from '../components/reviews/ReviewPanel';
 import { ErrorState } from '../components/ui/ErrorState';
 import { InfoField } from '../components/ui/InfoField';
 import { RatingStars } from '../components/ui/RatingStars';
@@ -132,13 +133,9 @@ function DestinationContent({
             </div>
           </section>
 
-          {/* Reviews placeholder. The review panel arrives in task 7.3; this
-              labelled area keeps the page structure without inventing reviews. */}
           <section aria-labelledby="reviews-heading">
             <SectionHeader headingId="reviews-heading" title="Reviews" />
-            <div className="rounded-2xl border border-gold/25 bg-white p-5 text-ink/70">
-              Traveler reviews will appear here.
-            </div>
+            <ReviewPanel destinationId={destination.id} />
           </section>
         </div>
 

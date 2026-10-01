@@ -245,6 +245,29 @@ export type RecommendationResult = {
   surprise: SurpriseRecommendation | null;
 };
 
+/** A source-linked response from the grounded chatbot. */
+export type RetrievedSource = {
+  destination_id: string;
+  name: string;
+  url: string;
+};
+
+export type GroundedAnswer = {
+  answer: string;
+  sources: RetrievedSource[];
+  unavailable: boolean;
+};
+
+export type ChatRequest = {
+  question: string;
+};
+
+export type ReviewSummary = {
+  positives: string[];
+  concerns: string[];
+  review_count: number;
+};
+
 export type ItineraryConstraints = {
   interests: string[];
   travel_style: string | null;
@@ -287,4 +310,31 @@ export type ItineraryEditResult = {
   itinerary: Itinerary;
   changed: boolean;
   explanation: string;
+};
+
+/** A visitor-authored rating and optional commentary from the review API. */
+export type Review = {
+  id: string;
+  destination_id: string;
+  rating: number;
+  text: string | null;
+  tags: string[];
+  created_at: string;
+};
+
+/** Validated review input; ratings are whole values from 1 through 5. */
+export type ReviewCreateRequest = {
+  rating: number;
+  text?: string;
+  tags?: string[];
+};
+
+/** Rating histogram and recent reviews returned for a destination. */
+export type ReviewAggregate = {
+  destination_id: string;
+  review_count: number;
+  average_rating: number | null;
+  rating_distribution: Record<number, number>;
+  reviews: Review[];
+  ai_summary: ReviewSummary | null;
 };

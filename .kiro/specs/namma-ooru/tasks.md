@@ -97,12 +97,12 @@ challenge evidence. No property test invokes Bedrock or AWS services.
   - [x] 6.3 Implement the itinerary planner, day timeline, generated-content label, and conversational edit interface.
     - _Requirements: 6.6, 7.1, 7.4_
 
-- [ ] 7. Implement reviews and rating aggregates
-  - [ ] 7.1 Create Review models, an in-memory review repository for development, and a persistence interface for the production adapter.
+- [x] 7. Implement reviews and rating aggregates
+  - [x] 7.1 Create Review models, an in-memory review repository for development, and a persistence interface for the production adapter.
     - _Requirements: 10.1, 10.2_
-  - [ ] 7.2 Implement ReviewService validation, review creation, aggregate calculation, and `GET/POST /api/destinations/{id}/reviews` endpoints.
+  - [x] 7.2 Implement ReviewService validation, review creation, aggregate calculation, and `GET/POST /api/destinations/{id}/reviews` endpoints.
     - _Requirements: 10.1, 10.2, 10.3_
-  - [ ] 7.3 Implement ReviewPanel, review submission, rating distribution, recent-review rendering, and accessible error states.
+  - [x] 7.3 Implement ReviewPanel, review submission, rating distribution, recent-review rendering, and accessible error states.
     - _Requirements: 10.1, 10.2, 10.3, 11.4_
   - [ ]* 7.4 Write a property-based test for review acceptance boundaries.
     - **Property 13: Review acceptance boundary**
@@ -114,14 +114,14 @@ challenge evidence. No property test invokes Bedrock or AWS services.
     - **Property 15: Review aggregate consistency**
     - **Validates: Requirements 10.3**
 
-- [ ] 8. Integrate Bedrock Knowledge Base and grounded AI
+- [x] 8. Integrate Bedrock Knowledge Base and grounded AI
   - [x] 8.1 Implement the data-to-Knowledge-Base document builder, including S3 sidecar metadata documents and source URLs.
     - _Requirements: 3.2, 5.1_
   - [x] 8.2 Create CDK data and AI constructs for S3 source data, S3 Vectors, Bedrock Knowledge Base, Bedrock data source, and least-privilege roles.
     - _Requirements: 5.1, 12.1, 12.4_
-  - [ ] 8.3 Implement BedrockAIProvider retrieval, generated-text/source separation, unavailable-information behavior, and bounded dependency failures.
+  - [x] 8.3 Implement BedrockAIProvider retrieval, generated-text/source separation, unavailable-information behavior, and bounded dependency failures.
     - _Requirements: 5.2, 5.3, 5.4, 11.3_
-  - [ ] 8.4 Implement ChatWidget, source links, AI labels, AI review summaries, and AI itinerary narrative enrichment.
+  - [x] 8.4 Implement ChatWidget, source links, AI labels, AI review summaries, and AI itinerary narrative enrichment.
     - _Requirements: 5.5, 10.4, 10.5, 6.6_
 
 - [ ] 9. Provision deployable backend and frontend infrastructure

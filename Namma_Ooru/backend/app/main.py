@@ -14,6 +14,7 @@ from app.itinerary.router import router as itinerary_router
 from app.map.router import router as map_router
 from app.models import ChatRequest, GroundedAnswer
 from app.recommendations.router import router as recommendations_router
+from app.reviews.router import router as reviews_router
 from app.search.router import router as search_router
 
 
@@ -26,6 +27,7 @@ def create_app() -> FastAPI:
     app.include_router(map_router)
     app.include_router(search_router)
     app.include_router(recommendations_router)
+    app.include_router(reviews_router)
 
     @app.get("/health")
     def health() -> dict[str, str]:

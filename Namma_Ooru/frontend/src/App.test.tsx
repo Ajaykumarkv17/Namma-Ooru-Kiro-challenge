@@ -16,6 +16,7 @@ vi.mock('./api/client', () => ({
   fetchDestination: fetchDestinationMock,
   fetchCityView: fetchCityViewMock,
   fetchDestinations: fetchDestinationsMock,
+  askChat: vi.fn(),
   ApiError: class ApiError extends Error {},
 }));
 

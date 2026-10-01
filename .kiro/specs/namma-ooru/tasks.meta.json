@@ -278,6 +278,11 @@
         "executionId": "de4a0d93-91a8-4dd3-9a16-94472a0c4c65",
         "chatSessionId": "sess_2fb6e6a9-59e6-4eb6-8ad8-5715752af8b7",
         "timestamp": 1790681533280
+      },
+      {
+        "executionId": "c9d5bc81-bc0d-4f21-8867-08f8114f00a6",
+        "chatSessionId": "sess_870f8a25-feff-4d79-9546-bd88bd13464a",
+        "timestamp": 1790845707930
       }
     ],
     "7.2 Implement ReviewService validation, review creation, aggregate calculation, and `GET/POST /api/destinations/{id}/reviews` endpoints.": [
@@ -285,6 +290,11 @@
         "executionId": "de4a0d93-91a8-4dd3-9a16-94472a0c4c65",
         "chatSessionId": "sess_2fb6e6a9-59e6-4eb6-8ad8-5715752af8b7",
         "timestamp": 1790681533337
+      },
+      {
+        "executionId": "c9d5bc81-bc0d-4f21-8867-08f8114f00a6",
+        "chatSessionId": "sess_870f8a25-feff-4d79-9546-bd88bd13464a",
+        "timestamp": 1790845713468
       }
     ],
     "7.3 Implement ReviewPanel, review submission, rating distribution, recent-review rendering, and accessible error states.": [
@@ -292,6 +302,11 @@
         "executionId": "de4a0d93-91a8-4dd3-9a16-94472a0c4c65",
         "chatSessionId": "sess_2fb6e6a9-59e6-4eb6-8ad8-5715752af8b7",
         "timestamp": 1790681533440
+      },
+      {
+        "executionId": "c9d5bc81-bc0d-4f21-8867-08f8114f00a6",
+        "chatSessionId": "sess_870f8a25-feff-4d79-9546-bd88bd13464a",
+        "timestamp": 1790845722424
       }
     ],
     "8.1 Implement the data-to-Knowledge-Base document builder, including S3 sidecar metadata documents and source URLs.": [
@@ -343,6 +358,16 @@
         "executionId": "de4a0d93-91a8-4dd3-9a16-94472a0c4c65",
         "chatSessionId": "sess_2fb6e6a9-59e6-4eb6-8ad8-5715752af8b7",
         "timestamp": 1790681533624
+      },
+      {
+        "executionId": "ec867a80-72a5-453b-9a05-bc321dfaf927",
+        "chatSessionId": "sess_30db1577-97f2-40bb-8860-c6228466e69c",
+        "timestamp": 1790845799147
+      },
+      {
+        "executionId": "ec867a80-72a5-453b-9a05-bc321dfaf927",
+        "chatSessionId": "sess_30db1577-97f2-40bb-8860-c6228466e69c",
+        "timestamp": 1790846061651
       }
     ],
     "8.4 Implement ChatWidget, source links, AI labels, AI review summaries, and AI itinerary narrative enrichment.": [
@@ -350,6 +375,16 @@
         "executionId": "de4a0d93-91a8-4dd3-9a16-94472a0c4c65",
         "chatSessionId": "sess_2fb6e6a9-59e6-4eb6-8ad8-5715752af8b7",
         "timestamp": 1790681533671
+      },
+      {
+        "executionId": "fb2db439-9665-4113-bb04-7ecac86e0d34",
+        "chatSessionId": "sess_f8be5e01-33e4-443e-b3ec-c7582fc1f9d5",
+        "timestamp": 1790847619475
+      },
+      {
+        "executionId": "fb2db439-9665-4113-bb04-7ecac86e0d34",
+        "chatSessionId": "sess_f8be5e01-33e4-443e-b3ec-c7582fc1f9d5",
+        "timestamp": 1790848093742
       }
     ],
     "9.1 Create CDK BackendStack with Lambda, HTTP API, safe CORS origins, API URL output, and scoped runtime permissions.": [
@@ -489,6 +524,25 @@
         "executionId": "9f3a93ea-7e2c-466f-b493-7606d08da581",
         "chatSessionId": "sess_963a4e38-f39d-4187-a868-8b8aa81908cf",
         "timestamp": 1790792309925
+      }
+    ],
+    "7. Implement reviews and rating aggregates": [
+      {
+        "executionId": "c9d5bc81-bc0d-4f21-8867-08f8114f00a6",
+        "chatSessionId": "sess_870f8a25-feff-4d79-9546-bd88bd13464a",
+        "timestamp": 1790845052795
+      },
+      {
+        "executionId": "c9d5bc81-bc0d-4f21-8867-08f8114f00a6",
+        "chatSessionId": "sess_870f8a25-feff-4d79-9546-bd88bd13464a",
+        "timestamp": 1790845557433
+      }
+    ],
+    "8. Integrate Bedrock Knowledge Base and grounded AI": [
+      {
+        "executionId": "fb2db439-9665-4113-bb04-7ecac86e0d34",
+        "chatSessionId": "sess_f8be5e01-33e4-443e-b3ec-c7582fc1f9d5",
+        "timestamp": 1790848093808
       }
     ]
   }

@@ -7,7 +7,7 @@
       "description": "Before a spec task is marked completed, verifies tests pass, no secrets are committed, and relevant documentation is updated (Kiro University Lesson 3, Hook D).",
       "action": {
         "type": "agent",
-        "prompt": "A spec task was just completed. Before moving on, verify: (1) backend unit + property tests pass (`python -m pytest backend/tests -q`); (2) the destination dataset validates (`python data/scripts/validate.py`) if data changed; (3) no secrets or .env files with values are staged/committed (scan for AWS keys, tokens); (4) relevant documentation (README, docs/, spec) is updated to reflect the change. Report any failures clearly and do not silently pass."
+        "prompt": "A spec task was just completed. Before moving on, verify: (1) backend unit + property tests pass (`Set-Location Namma_Ooru/backend; python -m pytest tests -q`); (2) the destination dataset validates (`python data/scripts/validate.py`) if data changed; (3) no secrets or .env files with values are staged/committed (scan for AWS keys, tokens); (4) relevant documentation (README, docs/, spec) is updated to reflect the change. Report any failures clearly and do not silently pass."
       }
     }
   ]

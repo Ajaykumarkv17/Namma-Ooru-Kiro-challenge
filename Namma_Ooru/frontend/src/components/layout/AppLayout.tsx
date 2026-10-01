@@ -1,6 +1,8 @@
 import type { ReactNode } from 'react';
 import { NavLink } from 'react-router-dom';
 
+import { ChatWidget } from '../chat/ChatWidget';
+
 type AppLayoutProps = {
   children: ReactNode;
 };
@@ -37,7 +39,10 @@ export function AppLayout({ children }: AppLayoutProps) {
           </div>
         </nav>
       </header>
-      <main className="mx-auto w-full max-w-6xl flex-1 px-5 py-10">{children}</main>
+      <main className="mx-auto w-full max-w-6xl flex-1 space-y-10 px-5 py-10">
+        {children}
+        <ChatWidget />
+      </main>
       <footer className="bg-maroon px-5 py-6 text-center text-sm text-sand">
         Discover the Tamil Nadu you haven&apos;t seen.
       </footer>
