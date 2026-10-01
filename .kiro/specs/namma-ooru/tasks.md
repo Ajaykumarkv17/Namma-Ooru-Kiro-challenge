@@ -47,7 +47,7 @@ challenge evidence. No property test invokes Bedrock or AWS services.
     - **Property 12: Map marker filter soundness**
     - **Validates: Requirements 9.1, 9.2**
 
-- [~] 4. Implement natural-language search and recommendations
+- [ ] 4. Implement natural-language search and recommendations
   - [x] 4.1 Implement SearchIntent, SearchFilters, deterministic FilterService, and `POST /api/search` with keyword/tag fallback.
     - _Requirements: 4.1, 4.2, 4.3, 4.4, 4.5_
   - [x] 4.2 Implement search controls and structured search-result rendering with active filters and fallback status.
@@ -98,11 +98,11 @@ challenge evidence. No property test invokes Bedrock or AWS services.
     - _Requirements: 6.6, 7.1, 7.4_
 
 - [ ] 7. Implement reviews and rating aggregates
-  - [~] 7.1 Create Review models, an in-memory review repository for development, and a persistence interface for the production adapter.
+  - [ ] 7.1 Create Review models, an in-memory review repository for development, and a persistence interface for the production adapter.
     - _Requirements: 10.1, 10.2_
-  - [~] 7.2 Implement ReviewService validation, review creation, aggregate calculation, and `GET/POST /api/destinations/{id}/reviews` endpoints.
+  - [ ] 7.2 Implement ReviewService validation, review creation, aggregate calculation, and `GET/POST /api/destinations/{id}/reviews` endpoints.
     - _Requirements: 10.1, 10.2, 10.3_
-  - [~] 7.3 Implement ReviewPanel, review submission, rating distribution, recent-review rendering, and accessible error states.
+  - [ ] 7.3 Implement ReviewPanel, review submission, rating distribution, recent-review rendering, and accessible error states.
     - _Requirements: 10.1, 10.2, 10.3, 11.4_
   - [ ]* 7.4 Write a property-based test for review acceptance boundaries.
     - **Property 13: Review acceptance boundary**
@@ -119,38 +119,38 @@ challenge evidence. No property test invokes Bedrock or AWS services.
     - _Requirements: 3.2, 5.1_
   - [x] 8.2 Create CDK data and AI constructs for S3 source data, S3 Vectors, Bedrock Knowledge Base, Bedrock data source, and least-privilege roles.
     - _Requirements: 5.1, 12.1, 12.4_
-  - [~] 8.3 Implement BedrockAIProvider retrieval, generated-text/source separation, unavailable-information behavior, and bounded dependency failures.
+  - [ ] 8.3 Implement BedrockAIProvider retrieval, generated-text/source separation, unavailable-information behavior, and bounded dependency failures.
     - _Requirements: 5.2, 5.3, 5.4, 11.3_
-  - [~] 8.4 Implement ChatWidget, source links, AI labels, AI review summaries, and AI itinerary narrative enrichment.
+  - [ ] 8.4 Implement ChatWidget, source links, AI labels, AI review summaries, and AI itinerary narrative enrichment.
     - _Requirements: 5.5, 10.4, 10.5, 6.6_
 
 - [ ] 9. Provision deployable backend and frontend infrastructure
-  - [~] 9.1 Create CDK BackendStack with Lambda, HTTP API, safe CORS origins, API URL output, and scoped runtime permissions.
+  - [ ] 9.1 Create CDK BackendStack with Lambda, HTTP API, safe CORS origins, API URL output, and scoped runtime permissions.
     - _Requirements: 11.2, 11.5, 12.1, 12.2, 12.3, 12.4_
-  - [~] 9.2 Create CDK FrontendStack and MonitoringStack with Amplify Hosting configuration, backend URL injection, logs, alarms, and dashboard resources.
+  - [ ] 9.2 Create CDK FrontendStack and MonitoringStack with Amplify Hosting configuration, backend URL injection, logs, alarms, and dashboard resources.
     - _Requirements: 12.1, 12.5_
-  - [~] 9.3 Write CDK assertions and synthesis tests for stack resources, outputs, CORS, and IAM scopes.
+  - [ ] 9.3 Write CDK assertions and synthesis tests for stack resources, outputs, CORS, and IAM scopes.
     - _Requirements: 11.2, 11.5, 12.1, 12.3, 12.4, 12.5_
 
 - [ ] 10. Complete Kiro University evidence and quality automation
-  - [~] 10.1 Implement and verify source-format, backend-test, data-validation, and pre-completion hooks against the scaffolded commands.
+  - [ ] 10.1 Implement and verify source-format, backend-test, data-validation, and pre-completion hooks against the scaffolded commands.
     - _Requirements: 13.3_
-  - [~] 10.2 Activate and use the Namma Ooru Power skills for destination curation, itinerary planning, content, and review analysis; record evidence.
+  - [ ] 10.2 Activate and use the Namma Ooru Power skills for destination curation, itinerary planning, content, and review analysis; record evidence.
     - _Requirements: 13.4_
-  - [~] 10.3 Use the destination-curator and spec-reviewer Custom Agents for dataset and specification review; record evidence.
+  - [ ] 10.3 Use the destination-curator and spec-reviewer Custom Agents for dataset and specification review; record evidence.
     - _Requirements: 13.5_
-  - [~] 10.4 Configure the approved MCP servers through Kiro settings and retain an evidence record of AWS and repository research.
+  - [ ] 10.4 Configure the approved MCP servers through Kiro settings and retain an evidence record of AWS and repository research.
     - _Requirements: 13.5_
-  - [~] 10.5 Add property-test tags and traceability evidence for every implemented design property.
+  - [ ] 10.5 Add property-test tags and traceability evidence for every implemented design property.
     - _Requirements: 13.6_
 
-- [~] 11. Checkpoint - Validate the catalog and discovery slice
+- [ ] 11. Checkpoint - Validate the catalog and discovery slice
   - Run frontend and backend unit tests, linting, type checks, and the dataset validator; resolve failures before AI integration.
 
-- [~] 12. Checkpoint - Validate the itinerary and review slice
+- [ ] 12. Checkpoint - Validate the itinerary and review slice
   - Run itinerary and review unit tests plus all selected optional property tests; resolve failures before production AI integration.
 
-- [~] 13. Final checkpoint - Ensure all required tests and validation commands pass
+- [ ] 13. Final checkpoint - Ensure all required tests and validation commands pass
   - Run unit tests, all selected property tests, CDK assertions, `cdk synth`, data validation, linting, type checks, and secret scanning.
 
 ## Notes
