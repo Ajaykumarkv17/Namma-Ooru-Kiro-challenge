@@ -4,11 +4,12 @@
     {
       "name": "Format, Lint & Type-check on Save",
       "trigger": "PostFileSave",
-      "description": "Runs formatter, linter, and type-checker after a TypeScript or Python file is saved (Kiro University Lesson 3, Hook A).",
+      "description": "Runs scaffolded formatter, linter, and type-check commands after a TypeScript or Python file is saved (Kiro University Lesson 3, Hook A).",
       "matcher": "\\.(ts|tsx|py)$",
       "action": {
-        "type": "agent",
-        "prompt": "A source file was just saved. Run the appropriate formatter, linter, and type-checker for the changed file and fix any issues. For .ts/.tsx run prettier + eslint + `tsc --noEmit` in frontend/. For .py run black + ruff + mypy in backend/ (or infra/). Report only problems that need attention."
+        "type": "command",
+        "command": "$ErrorActionPreference = 'Stop'; $root = Join-Path $PSScriptRoot '..\\..'; function Invoke-Checked { param([scriptblock]$Command) & $Command; if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE } }; Set-Location (Join-Path $root 'Namma_Ooru\\frontend'); Invoke-Checked { npm run format:check }; Invoke-Checked { npm run lint }; Invoke-Checked { npm run typecheck }; Set-Location (Join-Path $root 'Namma_Ooru\\backend'); Invoke-Checked { python -m black --check app tests }; Invoke-Checked { python -m ruff check app tests }; Invoke-Checked { python -m mypy }; Set-Location (Join-Path $root 'Namma_Ooru\\infra'); Invoke-Checked { python -m black --check app.py namma_ooru_infra tests }; Invoke-Checked { python -m ruff check app.py namma_ooru_infra tests }; Invoke-Checked { python -m mypy }",
+        "timeout": 300
       }
     }
   ]

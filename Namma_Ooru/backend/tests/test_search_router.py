@@ -103,6 +103,20 @@ class _UnavailableAIProvider:
         del question, filters
         raise DependencyUnavailableError("AI provider offline for test.")
 
+    def select_itinerary_candidates(
+        self, destination_context: str, candidate_ids: list[str]
+    ) -> list[str]:
+        del destination_context, candidate_ids
+        raise DependencyUnavailableError("AI provider offline for test.")
+
+    def parse_itinerary_edit(self, request: str, itinerary: Any) -> Any:
+        del request, itinerary
+        raise DependencyUnavailableError("AI provider offline for test.")
+
+    def summarize_reviews(self, reviews: list[Any]) -> Any:
+        del reviews
+        raise DependencyUnavailableError("AI provider offline for test.")
+
 
 def _client(ai_provider: AIProvider | None = None) -> TestClient:
     app = create_app()

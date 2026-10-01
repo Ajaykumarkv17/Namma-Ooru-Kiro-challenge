@@ -42,7 +42,7 @@ Full detail: [`.kiro/specs/namma-ooru/design.md`](.kiro/specs/namma-ooru/design.
 ## Technology stack
 - **Frontend:** React, TypeScript, Vite, Tailwind CSS, React Query, Framer Motion, MapLibre GL.
 - **Backend:** Python 3.11, FastAPI, Pydantic, Mangum; pytest + Hypothesis.
-- **AI:** Amazon Bedrock (LLM + Titan embeddings), Bedrock Knowledge Bases.
+- **AI:** Amazon Bedrock with Nova Pro primary generation, Nova 2 Lite fallback generation, Titan embeddings, and Bedrock Knowledge Bases.
 - **Data/RAG:** S3 (KB source), S3 Vectors (vector store); JSON dataset → DynamoDB-ready.
 - **IaC:** AWS CDK v2 (Python) under `infra/`.
 
@@ -82,8 +82,11 @@ cd frontend && npm install && npm run dev
    locally against the backend API URL output, then deploy `frontend_stack` (Amplify).
 
 ## Environment variables
-See `.env.example` (no secrets committed). Typical keys: `AWS_REGION`, `BEDROCK_MODEL_ID`,
-`BEDROCK_KB_ID`, `KB_S3_BUCKET`, `API_BASE_URL`, `GITHUB_PERSONAL_ACCESS_TOKEN` (for MCP, env only).
+See `.env.example` (no secrets committed). Generation uses `BEDROCK_PRIMARY_MODEL_ID`
+(`us.amazon.nova-pro-v1:0`) with `BEDROCK_FALLBACK_MODEL_ID`
+(`global.amazon.nova-2-lite-v1:0`); Titan is reserved for Knowledge Base embeddings. Other typical
+keys: `AWS_REGION`, `BEDROCK_KB_ID`, `KB_S3_BUCKET`, `API_BASE_URL`,
+`GITHUB_PERSONAL_ACCESS_TOKEN` (for MCP, env only).
 
 ## Running the application
 Run backend locally (or against the deployed API), then the frontend dev server; open the printed

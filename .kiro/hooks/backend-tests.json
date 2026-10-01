@@ -4,11 +4,11 @@
     {
       "name": "Run Backend Tests on Change",
       "trigger": "PostFileSave",
-      "description": "Runs backend unit and property-based tests after backend Python changes (Kiro University Lesson 3, Hook B).",
+      "description": "Runs the scaffolded backend unit and property-test suite after backend Python changes (Kiro University Lesson 3, Hook B).",
       "matcher": "backend[\\\\/].*\\.py$",
       "action": {
         "type": "command",
-        "command": "Set-Location Namma_Ooru/backend; python -m pytest tests -q",
+        "command": "$ErrorActionPreference = 'Stop'; $root = Join-Path $PSScriptRoot '..\\..'; Set-Location (Join-Path $root 'Namma_Ooru\\backend'); python -m pytest tests -q; if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }",
         "timeout": 300
       }
     }

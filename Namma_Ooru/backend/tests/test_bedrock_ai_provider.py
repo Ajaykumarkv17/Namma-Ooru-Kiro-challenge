@@ -15,6 +15,9 @@ from app.ai import UNAVAILABLE_ANSWER, BedrockAIProvider
 from app.errors import DependencyUnavailableError
 from app.models import RetrievalFilters
 
+PRIMARY_PROFILE = "us.amazon.nova-pro-v1:0"
+FALLBACK_PROFILE = "global.amazon.nova-2-lite-v1:0"
+
 
 class FakeAgentRuntimeClient:
     def __init__(self, response: Mapping[str, object]) -> None:
@@ -36,6 +39,14 @@ class FakeRuntimeClient:
         return self.response
 
 
+class PrimaryFailingRuntimeClient(FakeRuntimeClient):
+    def converse(self, **kwargs: object) -> Mapping[str, object]:
+        self.requests.append(kwargs)
+        if len(self.requests) == 1:
+            raise RuntimeError("primary profile unavailable")
+        return self.response
+
+
 def _provider(
     retrieval_response: Mapping[str, object], generation_response: Mapping[str, object]
 ) -> tuple[BedrockAIProvider, FakeAgentRuntimeClient, FakeRuntimeClient]:
@@ -44,7 +55,8 @@ def _provider(
     return (
         BedrockAIProvider(
             knowledge_base_id="kb-123",
-            model_id="model-123",
+            primary_model_id=PRIMARY_PROFILE,
+            fallback_model_id=FALLBACK_PROFILE,
             agent_runtime_client=agent_client,
             runtime_client=runtime_client,
         ),
@@ -85,11 +97,37 @@ def test_answer_retrieves_filtered_context_then_returns_separate_sources() -> No
     retrieval_configuration = cast(dict[str, object], request["retrievalConfiguration"])
     vector_search = cast(dict[str, object], retrieval_configuration["vectorSearchConfiguration"])
     assert vector_search["filter"] == {"equals": {"key": "city", "value": "Madurai"}}
+    assert runtime_client.requests[0]["modelId"] == PRIMARY_PROFILE
     messages = cast(list[dict[str, object]], runtime_client.requests[0]["messages"])
     content = cast(list[dict[str, object]], messages[0]["content"])
     prompt = cast(str, content[0]["text"])
     assert "Retrieved Namma Ooru travel data" in prompt
     assert "Meenakshi Temple" in prompt
+
+
+def test_answer_retries_the_configured_fallback_profile_after_primary_failure() -> None:
+    retrieval_response: Mapping[str, object] = {
+        "retrievalResults": [{"content": {"text": "Source URL: https://example.test/place.md"}}]
+    }
+    agent_client = FakeAgentRuntimeClient(retrieval_response)
+    runtime_client = PrimaryFailingRuntimeClient(
+        {"output": {"message": {"content": [{"text": "Fallback grounded answer."}]}}}
+    )
+    provider = BedrockAIProvider(
+        knowledge_base_id="kb-123",
+        primary_model_id=PRIMARY_PROFILE,
+        fallback_model_id=FALLBACK_PROFILE,
+        agent_runtime_client=agent_client,
+        runtime_client=runtime_client,
+    )
+
+    answer = provider.answer("Question", RetrievalFilters())
+
+    assert answer.answer == "Fallback grounded answer."
+    assert [request["modelId"] for request in runtime_client.requests] == [
+        PRIMARY_PROFILE,
+        FALLBACK_PROFILE,
+    ]
 
 
 def test_answer_returns_unavailable_without_calling_generation_when_retrieval_is_empty() -> None:
@@ -111,7 +149,8 @@ def test_answer_converts_bedrock_errors_to_safe_dependency_failure() -> None:
 
     provider = BedrockAIProvider(
         knowledge_base_id="kb-123",
-        model_id="model-123",
+        primary_model_id=PRIMARY_PROFILE,
+        fallback_model_id=FALLBACK_PROFILE,
         agent_runtime_client=FailingAgentRuntimeClient(),
         runtime_client=FakeRuntimeClient({}),
     )
@@ -131,7 +170,8 @@ def test_answer_enforces_dependency_deadline() -> None:
 
     provider = BedrockAIProvider(
         knowledge_base_id="kb-123",
-        model_id="model-123",
+        primary_model_id=PRIMARY_PROFILE,
+        fallback_model_id=FALLBACK_PROFILE,
         agent_runtime_client=SlowAgentRuntimeClient(),
         runtime_client=FakeRuntimeClient({}),
         timeout_seconds=0.001,

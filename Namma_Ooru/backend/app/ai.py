@@ -76,20 +76,22 @@ class BedrockAIProvider:
         self,
         *,
         knowledge_base_id: str,
-        model_id: str,
+        primary_model_id: str,
+        fallback_model_id: str | None,
         agent_runtime_client: BedrockAgentRuntimeClient,
         runtime_client: BedrockRuntimeClient,
         timeout_seconds: float = 10.0,
         max_results: int = 5,
     ) -> None:
-        if not knowledge_base_id.strip() or not model_id.strip():
-            raise ValueError("Bedrock Knowledge Base and model identifiers are required.")
+        if not knowledge_base_id.strip() or not primary_model_id.strip():
+            raise ValueError("Bedrock Knowledge Base and primary model identifiers are required.")
         if timeout_seconds <= 0:
             raise ValueError("Bedrock timeout must be positive.")
         if max_results < 1:
             raise ValueError("Bedrock retrieval result count must be positive.")
         self._knowledge_base_id = knowledge_base_id
-        self._model_id = model_id
+        self._primary_model_id = primary_model_id
+        self._fallback_model_id = fallback_model_id.strip() if fallback_model_id else None
         self._agent_runtime_client = agent_runtime_client
         self._runtime_client = runtime_client
         self._timeout_seconds = timeout_seconds
@@ -116,11 +118,7 @@ class BedrockAIProvider:
             if not excerpts:
                 return GroundedAnswer(answer=UNAVAILABLE_ANSWER, sources=[], unavailable=True)
 
-            generated_response = self._run_bounded(
-                lambda: self._runtime_client.converse(
-                    **self._generation_request(question, excerpts)
-                )
-            )
+            generated_response = self._generate_with_fallback(question, excerpts)
             answer = self._generated_text(generated_response)
             if not answer:
                 raise DependencyUnavailableError()
@@ -182,12 +180,31 @@ class BedrockAIProvider:
             return None
         return clauses[0] if len(clauses) == 1 else {"andAll": clauses}
 
-    def _generation_request(
+    def _generate_with_fallback(
         self, question: str, excerpts: Sequence[Mapping[str, object]]
+    ) -> Mapping[str, object]:
+        """Use the primary inference profile, retrying once with the configured fallback."""
+        try:
+            return self._run_bounded(
+                lambda: self._runtime_client.converse(
+                    **self._generation_request(question, excerpts, self._primary_model_id)
+                )
+            )
+        except Exception:
+            if self._fallback_model_id is None:
+                raise
+            return self._run_bounded(
+                lambda: self._runtime_client.converse(
+                    **self._generation_request(question, excerpts, self._fallback_model_id)
+                )
+            )
+
+    def _generation_request(
+        self, question: str, excerpts: Sequence[Mapping[str, object]], model_id: str
     ) -> dict[str, object]:
         context = "\n\n---\n\n".join(self._excerpt_text(excerpt) for excerpt in excerpts)
         return {
-            "modelId": self._model_id,
+            "modelId": model_id,
             "system": [{"text": _GROUNDED_SYSTEM_PROMPT}],
             "messages": [
                 {
@@ -287,7 +304,11 @@ class BedrockAIProvider:
 
 
 def create_bedrock_provider(
-    *, knowledge_base_id: str, model_id: str, region_name: str | None = None
+    *,
+    knowledge_base_id: str,
+    primary_model_id: str,
+    fallback_model_id: str | None = None,
+    region_name: str | None = None,
 ) -> BedrockAIProvider:
     """Build production clients through the standard AWS credential chain."""
     try:
@@ -299,7 +320,8 @@ def create_bedrock_provider(
         )
         return BedrockAIProvider(
             knowledge_base_id=knowledge_base_id,
-            model_id=model_id,
+            primary_model_id=primary_model_id,
+            fallback_model_id=fallback_model_id,
             agent_runtime_client=boto3.client(
                 "bedrock-agent-runtime", region_name=region_name, config=config
             ),

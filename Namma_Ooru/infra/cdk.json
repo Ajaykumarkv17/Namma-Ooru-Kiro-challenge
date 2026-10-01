@@ -14,7 +14,9 @@
     "namma-ooru:appName": "namma-ooru",
     "namma-ooru:vectorDimension": 1024,
     "namma-ooru:embeddingModelId": "amazon.titan-embed-text-v2:0",
-    "namma-ooru:knowledgeBaseModelId": "anthropic.claude-3-sonnet-20240229-v1:0",
+    "namma-ooru:primaryGenerationModelId": "us.amazon.nova-pro-v1:0",
+    "namma-ooru:fallbackGenerationModelId": "global.amazon.nova-2-lite-v1:0",
+    "namma-ooru:corsAllowedOrigins": ["http://localhost:5173"],
     "@aws-cdk/aws-iam:minimizePolicies": true,
     "@aws-cdk/core:checkSecretUsage": true,
     "@aws-cdk/core:target-partitions": ["aws"]

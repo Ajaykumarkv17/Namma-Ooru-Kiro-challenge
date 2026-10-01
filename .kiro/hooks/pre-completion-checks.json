@@ -4,10 +4,11 @@
     {
       "name": "Pre-Task-Completion Checks",
       "trigger": "PostTaskExec",
-      "description": "Before a spec task is marked completed, verifies tests pass, no secrets are committed, and relevant documentation is updated (Kiro University Lesson 3, Hook D).",
+      "description": "Before a spec task is marked completed, verifies scaffolded tests, data validation, formatting, types, CDK synthesis, tracked secrets, and documentation review (Kiro University Lesson 3, Hook D).",
       "action": {
-        "type": "agent",
-        "prompt": "A spec task was just completed. Before moving on, verify: (1) backend unit + property tests pass (`Set-Location Namma_Ooru/backend; python -m pytest tests -q`); (2) the destination dataset validates (`python data/scripts/validate.py`) if data changed; (3) no secrets or .env files with values are staged/committed (scan for AWS keys, tokens); (4) relevant documentation (README, docs/, spec) is updated to reflect the change. Report any failures clearly and do not silently pass."
+        "type": "command",
+        "command": "$ErrorActionPreference = 'Stop'; $root = Join-Path $PSScriptRoot '..\\..'; function Invoke-Checked { param([scriptblock]$Command) & $Command; if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE } }; Set-Location (Join-Path $root 'Namma_Ooru\\backend'); Invoke-Checked { python -m pytest tests -q }; Set-Location (Join-Path $root 'Namma_Ooru'); Invoke-Checked { python data/scripts/validate.py }; Set-Location (Join-Path $root 'Namma_Ooru\\frontend'); Invoke-Checked { npm run format:check }; Invoke-Checked { npm run lint }; Invoke-Checked { npm run typecheck }; Invoke-Checked { npm test }; Set-Location (Join-Path $root 'Namma_Ooru\\infra'); Invoke-Checked { python -m pytest tests -q }; Invoke-Checked { cdk synth }; Set-Location $root; Invoke-Checked { git diff --check }; $secretPattern = '(?i)(AKIA[0-9A-Z]{16}|ASIA[0-9A-Z]{16}|aws_secret_access_key\\s*[:=]|github_pat_[A-Za-z0-9_]{20,}|ghp_[A-Za-z0-9]{36})'; $matches = git grep -n -I -E $secretPattern -- ':!*.example' ':!.kiro/hooks/pre-completion-checks.json'; if ($LASTEXITCODE -eq 0) { Write-Error ('Potential tracked secret: ' + ($matches -join '; ')); exit 1 }; if ($LASTEXITCODE -ne 1) { exit $LASTEXITCODE }; Write-Host 'Pre-completion checks passed. Review changed documentation before marking the task complete.'",
+        "timeout": 900
       }
     }
   ]

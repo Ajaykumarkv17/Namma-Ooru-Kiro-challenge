@@ -24,7 +24,8 @@ def get_ai_provider() -> AIProvider:
     if provider_name == "bedrock":
         return create_bedrock_provider(
             knowledge_base_id=os.getenv("BEDROCK_KB_ID", ""),
-            model_id=os.getenv("BEDROCK_MODEL_ID", ""),
+            primary_model_id=os.getenv("BEDROCK_PRIMARY_MODEL_ID", ""),
+            fallback_model_id=os.getenv("BEDROCK_FALLBACK_MODEL_ID", ""),
             region_name=os.getenv("AWS_REGION") or None,
         )
     return LocalMockAIProvider()

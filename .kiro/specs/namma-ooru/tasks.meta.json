@@ -392,6 +392,16 @@
         "executionId": "de4a0d93-91a8-4dd3-9a16-94472a0c4c65",
         "chatSessionId": "sess_2fb6e6a9-59e6-4eb6-8ad8-5715752af8b7",
         "timestamp": 1790681533713
+      },
+      {
+        "executionId": "3a18bac7-31de-4be0-bd4f-3fbadc82eda4",
+        "chatSessionId": "sess_3cfc0f10-bb6e-4744-938f-e532fe319069",
+        "timestamp": 1790857643252
+      },
+      {
+        "executionId": "3a18bac7-31de-4be0-bd4f-3fbadc82eda4",
+        "chatSessionId": "sess_3cfc0f10-bb6e-4744-938f-e532fe319069",
+        "timestamp": 1790857964579
       }
     ],
     "9.2 Create CDK FrontendStack and MonitoringStack with Amplify Hosting configuration, backend URL injection, logs, alarms, and dashboard resources.": [
@@ -399,6 +409,16 @@
         "executionId": "de4a0d93-91a8-4dd3-9a16-94472a0c4c65",
         "chatSessionId": "sess_2fb6e6a9-59e6-4eb6-8ad8-5715752af8b7",
         "timestamp": 1790681533780
+      },
+      {
+        "executionId": "3a18bac7-31de-4be0-bd4f-3fbadc82eda4",
+        "chatSessionId": "sess_3cfc0f10-bb6e-4744-938f-e532fe319069",
+        "timestamp": 1790857975462
+      },
+      {
+        "executionId": "3a18bac7-31de-4be0-bd4f-3fbadc82eda4",
+        "chatSessionId": "sess_3cfc0f10-bb6e-4744-938f-e532fe319069",
+        "timestamp": 1790858398856
       }
     ],
     "9.3 Write CDK assertions and synthesis tests for stack resources, outputs, CORS, and IAM scopes.": [
@@ -406,6 +426,16 @@
         "executionId": "de4a0d93-91a8-4dd3-9a16-94472a0c4c65",
         "chatSessionId": "sess_2fb6e6a9-59e6-4eb6-8ad8-5715752af8b7",
         "timestamp": 1790681533831
+      },
+      {
+        "executionId": "3a18bac7-31de-4be0-bd4f-3fbadc82eda4",
+        "chatSessionId": "sess_3cfc0f10-bb6e-4744-938f-e532fe319069",
+        "timestamp": 1790858409765
+      },
+      {
+        "executionId": "3a18bac7-31de-4be0-bd4f-3fbadc82eda4",
+        "chatSessionId": "sess_3cfc0f10-bb6e-4744-938f-e532fe319069",
+        "timestamp": 1790858684147
       }
     ],
     "10.1 Implement and verify source-format, backend-test, data-validation, and pre-completion hooks against the scaffolded commands.": [
@@ -413,6 +443,21 @@
         "executionId": "de4a0d93-91a8-4dd3-9a16-94472a0c4c65",
         "chatSessionId": "sess_2fb6e6a9-59e6-4eb6-8ad8-5715752af8b7",
         "timestamp": 1790681533876
+      },
+      {
+        "executionId": "fd5385c6-e7b8-4282-8a3a-0ffcf11d0dae",
+        "chatSessionId": "sess_cb0036bf-5f70-4bb4-bc80-9045c6f4be03",
+        "timestamp": 1790858734276
+      },
+      {
+        "executionId": "fd5385c6-e7b8-4282-8a3a-0ffcf11d0dae",
+        "chatSessionId": "sess_cb0036bf-5f70-4bb4-bc80-9045c6f4be03",
+        "timestamp": 1790858754059
+      },
+      {
+        "executionId": "1062e973-a2f0-4753-aa00-43d324d0809b",
+        "chatSessionId": "sess_cb0036bf-5f70-4bb4-bc80-9045c6f4be03",
+        "timestamp": 1790859901601
       }
     ],
     "10.2 Activate and use the Namma Ooru Power skills for destination curation, itinerary planning, content, and review analysis; record evidence.": [
@@ -420,6 +465,11 @@
         "executionId": "de4a0d93-91a8-4dd3-9a16-94472a0c4c65",
         "chatSessionId": "sess_2fb6e6a9-59e6-4eb6-8ad8-5715752af8b7",
         "timestamp": 1790681533925
+      },
+      {
+        "executionId": "fd5385c6-e7b8-4282-8a3a-0ffcf11d0dae",
+        "chatSessionId": "sess_cb0036bf-5f70-4bb4-bc80-9045c6f4be03",
+        "timestamp": 1790858734388
       }
     ],
     "10.3 Use the destination-curator and spec-reviewer Custom Agents for dataset and specification review; record evidence.": [
@@ -427,6 +477,11 @@
         "executionId": "de4a0d93-91a8-4dd3-9a16-94472a0c4c65",
         "chatSessionId": "sess_2fb6e6a9-59e6-4eb6-8ad8-5715752af8b7",
         "timestamp": 1790681533982
+      },
+      {
+        "executionId": "fd5385c6-e7b8-4282-8a3a-0ffcf11d0dae",
+        "chatSessionId": "sess_cb0036bf-5f70-4bb4-bc80-9045c6f4be03",
+        "timestamp": 1790858734477
       }
     ],
     "10.4 Configure the approved MCP servers through Kiro settings and retain an evidence record of AWS and repository research.": [
@@ -434,6 +489,11 @@
         "executionId": "de4a0d93-91a8-4dd3-9a16-94472a0c4c65",
         "chatSessionId": "sess_2fb6e6a9-59e6-4eb6-8ad8-5715752af8b7",
         "timestamp": 1790681534052
+      },
+      {
+        "executionId": "fd5385c6-e7b8-4282-8a3a-0ffcf11d0dae",
+        "chatSessionId": "sess_cb0036bf-5f70-4bb4-bc80-9045c6f4be03",
+        "timestamp": 1790858734544
       }
     ],
     "10.5 Add property-test tags and traceability evidence for every implemented design property.": [
@@ -441,6 +501,11 @@
         "executionId": "de4a0d93-91a8-4dd3-9a16-94472a0c4c65",
         "chatSessionId": "sess_2fb6e6a9-59e6-4eb6-8ad8-5715752af8b7",
         "timestamp": 1790681534119
+      },
+      {
+        "executionId": "fd5385c6-e7b8-4282-8a3a-0ffcf11d0dae",
+        "chatSessionId": "sess_cb0036bf-5f70-4bb4-bc80-9045c6f4be03",
+        "timestamp": 1790858734642
       }
     ],
     "11. Checkpoint - Validate the catalog and discovery slice": [
@@ -448,6 +513,11 @@
         "executionId": "de4a0d93-91a8-4dd3-9a16-94472a0c4c65",
         "chatSessionId": "sess_2fb6e6a9-59e6-4eb6-8ad8-5715752af8b7",
         "timestamp": 1790681534179
+      },
+      {
+        "executionId": "fd5385c6-e7b8-4282-8a3a-0ffcf11d0dae",
+        "chatSessionId": "sess_cb0036bf-5f70-4bb4-bc80-9045c6f4be03",
+        "timestamp": 1790858734704
       }
     ],
     "12. Checkpoint - Validate the itinerary and review slice": [
@@ -455,6 +525,11 @@
         "executionId": "de4a0d93-91a8-4dd3-9a16-94472a0c4c65",
         "chatSessionId": "sess_2fb6e6a9-59e6-4eb6-8ad8-5715752af8b7",
         "timestamp": 1790681534239
+      },
+      {
+        "executionId": "fd5385c6-e7b8-4282-8a3a-0ffcf11d0dae",
+        "chatSessionId": "sess_cb0036bf-5f70-4bb4-bc80-9045c6f4be03",
+        "timestamp": 1790858734757
       }
     ],
     "13. Final checkpoint - Ensure all required tests and validation commands pass": [
@@ -462,6 +537,11 @@
         "executionId": "de4a0d93-91a8-4dd3-9a16-94472a0c4c65",
         "chatSessionId": "sess_2fb6e6a9-59e6-4eb6-8ad8-5715752af8b7",
         "timestamp": 1790681534301
+      },
+      {
+        "executionId": "fd5385c6-e7b8-4282-8a3a-0ffcf11d0dae",
+        "chatSessionId": "sess_cb0036bf-5f70-4bb4-bc80-9045c6f4be03",
+        "timestamp": 1790858734874
       }
     ],
     "2.4 Write a property-based test for filter intersection soundness.": [
@@ -543,6 +623,13 @@
         "executionId": "fb2db439-9665-4113-bb04-7ecac86e0d34",
         "chatSessionId": "sess_f8be5e01-33e4-443e-b3ec-c7582fc1f9d5",
         "timestamp": 1790848093808
+      }
+    ],
+    "9. Provision deployable backend and frontend infrastructure": [
+      {
+        "executionId": "3a18bac7-31de-4be0-bd4f-3fbadc82eda4",
+        "chatSessionId": "sess_3cfc0f10-bb6e-4744-938f-e532fe319069",
+        "timestamp": 1790858684248
       }
     ]
   }

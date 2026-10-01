@@ -4,11 +4,11 @@
     {
       "name": "Validate Destination Data",
       "trigger": "PostFileSave",
-      "description": "Validates the destination dataset (required fields, valid districts/categories, coordinates, duplicates, ratings, sources, URLs) after dataset changes (Kiro University Lesson 3, Hook C).",
-      "matcher": "data[\\\\/](destinations|schema)[\\\\/].*\\.json$",
+      "description": "Runs the scaffolded destination-data validator after destination dataset or schema changes (Kiro University Lesson 3, Hook C).",
+      "matcher": "data[\\\\/](?:destinations\\.json|schema[\\\\/].*\\.json)$",
       "action": {
         "type": "command",
-        "command": "python data/scripts/validate.py",
+        "command": "$ErrorActionPreference = 'Stop'; $root = Join-Path $PSScriptRoot '..\\..'; Set-Location (Join-Path $root 'Namma_Ooru'); python data/scripts/validate.py; if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }",
         "timeout": 120
       }
     }

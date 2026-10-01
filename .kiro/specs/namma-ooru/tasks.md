@@ -124,16 +124,16 @@ challenge evidence. No property test invokes Bedrock or AWS services.
   - [x] 8.4 Implement ChatWidget, source links, AI labels, AI review summaries, and AI itinerary narrative enrichment.
     - _Requirements: 5.5, 10.4, 10.5, 6.6_
 
-- [ ] 9. Provision deployable backend and frontend infrastructure
-  - [ ] 9.1 Create CDK BackendStack with Lambda, HTTP API, safe CORS origins, API URL output, and scoped runtime permissions.
+- [x] 9. Provision deployable backend and frontend infrastructure
+  - [x] 9.1 Create CDK BackendStack with Lambda, HTTP API, safe CORS origins, API URL output, and scoped runtime permissions.
     - _Requirements: 11.2, 11.5, 12.1, 12.2, 12.3, 12.4_
-  - [ ] 9.2 Create CDK FrontendStack and MonitoringStack with Amplify Hosting configuration, backend URL injection, logs, alarms, and dashboard resources.
+  - [x] 9.2 Create CDK FrontendStack and MonitoringStack with Amplify Hosting configuration, backend URL injection, logs, alarms, and dashboard resources.
     - _Requirements: 12.1, 12.5_
-  - [ ] 9.3 Write CDK assertions and synthesis tests for stack resources, outputs, CORS, and IAM scopes.
+  - [x] 9.3 Write CDK assertions and synthesis tests for stack resources, outputs, CORS, and IAM scopes.
     - _Requirements: 11.2, 11.5, 12.1, 12.3, 12.4, 12.5_
 
-- [ ] 10. Complete Kiro University evidence and quality automation
-  - [ ] 10.1 Implement and verify source-format, backend-test, data-validation, and pre-completion hooks against the scaffolded commands.
+- [x] 10. Complete Kiro University evidence and quality automation
+  - [x] 10.1 Implement and verify source-format, backend-test, data-validation, and pre-completion hooks against the scaffolded commands.
     - _Requirements: 13.3_
   - [ ] 10.2 Activate and use the Namma Ooru Power skills for destination curation, itinerary planning, content, and review analysis; record evidence.
     - _Requirements: 13.4_
