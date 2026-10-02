@@ -1,0 +1,77 @@
+{
+  "mcpServers": {
+    "aws-docs": {
+      "command": "uvx",
+      "args": [
+        "awslabs.aws-documentation-mcp-server@latest"
+      ],
+      "env": {
+        "FASTMCP_LOG_LEVEL": "ERROR"
+      },
+      "disabled": false,
+      "autoApprove": [
+        "search_documentation",
+        "read_documentation",
+        "recommend",
+        "read_sections"
+      ],
+      "disabledTools": []
+    },
+    "aws-mcp": {
+      "command": "uvx",
+      "args": [
+        "mcp-proxy-for-aws@latest",
+        "https://aws-mcp.us-east-1.api.aws/mcp"
+      ],
+      "autoApprove": [
+        "aws___call_aws",
+        "aws___retrieve_agent_sop",
+        "aws___search_documentation",
+        "aws___read_documentation",
+        "aws___run_script",
+        "aws___list_regions",
+        "aws___get_tasks"
+      ],
+      "disabledTools": []
+    },
+    "aws-knowledge-mcp-server": {
+      "command": "uvx",
+      "args": [
+        "fastmcp",
+        "run",
+        "https://knowledge-mcp.global.api.aws"
+      ],
+      "autoApprove": [
+        "aws___search_documentation",
+        "aws___get_regional_availability",
+        "aws___read_documentation",
+        "aws___recommend",
+        "aws___retrieve_skill"
+      ],
+      "disabled": true
+    },
+    "awslabs.aws-api-mcp-server": {
+      "command": "uvx",
+      "args": [
+        "--from",
+        "awslabs.aws-api-mcp-server@latest",
+        "awslabs.aws-api-mcp-server.exe"
+      ],
+      "env": {
+        "AWS_REGION": "us-east-1",
+        "FASTMCP_LOG_LEVEL": "ERROR"
+      },
+      "timeout": 120,
+      "disabled": true,
+      "autoApprove": [
+        "call_aws",
+        "suggest_aws_commands"
+      ],
+      "disabledTools": [
+        "suggest_aws_commands",
+        "call_aws"
+      ]
+    }
+    
+  }
+}
