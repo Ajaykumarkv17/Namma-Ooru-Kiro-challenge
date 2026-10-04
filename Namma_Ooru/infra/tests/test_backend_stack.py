@@ -6,7 +6,7 @@ import aws_cdk as cdk
 import pytest
 from aws_cdk import assertions
 
-from namma_ooru_infra.backend_stack import BackendStack
+from namma_ooru_infra.backend_stack import LAMBDA_BUNDLING_COMMAND, BackendStack
 from namma_ooru_infra.config import NammaOoruConfig
 
 ACCOUNT = "111122223333"
@@ -54,6 +54,14 @@ def test_restricts_cors_to_configured_frontend_origin(template: assertions.Templ
     )
 
 
+def test_lambda_bundling_installs_dependencies_and_copies_catalog() -> None:
+    command = LAMBDA_BUNDLING_COMMAND[2]
+    assert "/asset-input/backend/requirements.txt" in command
+    assert "-t /asset-output" in command
+    assert "/asset-input/data/destinations.json" in command
+    assert "/asset-output/data/destinations.json" in command
+
+
 def test_exposes_backend_api_url(template: assertions.Template) -> None:
     assert "BackendApiUrl" in template.find_outputs("*")
 
@@ -96,6 +104,7 @@ def test_lambda_receives_non_secret_runtime_configuration(template: assertions.T
             "Environment": {
                 "Variables": {
                     "AI_PROVIDER": "bedrock",
+                    "CORS_ALLOWED_ORIGINS": "https://app.example.test",
                     "BEDROCK_KB_ID": KNOWLEDGE_BASE_ID,
                     "BEDROCK_PRIMARY_MODEL_ID": PRIMARY_PROFILE,
                     "BEDROCK_FALLBACK_MODEL_ID": FALLBACK_PROFILE,

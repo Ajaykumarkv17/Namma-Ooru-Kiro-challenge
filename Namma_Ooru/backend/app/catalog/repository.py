@@ -197,10 +197,17 @@ class _InMemoryDestinationRepository:
 
 
 def _default_dataset_path() -> Path:
-    """Locate ``data/destinations.json`` relative to the repository root."""
-    # backend/app/catalog/repository.py -> repo root is three parents up from app.
-    backend_root = Path(__file__).resolve().parents[2]
-    return backend_root.parent / "data" / "destinations.json"
+    """Locate the catalog in either the local checkout or Lambda asset.
+
+    CDK bundles the application at the Lambda asset root alongside
+    ``data/destinations.json``.  In a local checkout the dataset remains at the
+    project root, one level above ``backend``.
+    """
+    application_root = Path(__file__).resolve().parents[2]
+    packaged_dataset = application_root / "data" / "destinations.json"
+    if packaged_dataset.is_file():
+        return packaged_dataset
+    return application_root.parent / "data" / "destinations.json"
 
 
 def load_destinations(path: Path) -> list[Destination]:

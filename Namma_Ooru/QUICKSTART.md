@@ -17,7 +17,7 @@ The repository implements catalog browsing, details and filters, search, map mar
 Do not present the deployment as a statewide production catalog yet:
 
 - The checked-in catalog and KB source currently contain **one destination**: `madurai-meenakshi-amman-temple`.
-- The Lambda packages and loads `backend/data/destinations.json`; it does **not** read the S3 source bucket at runtime. No catalog S3 seed is required.
+- The Lambda bundles and loads `data/destinations.json`; it does **not** read the S3 source bucket at runtime. No catalog S3 seed is required.
 - Bedrock chat needs an uploaded, successfully ingested KB before it can return grounded deployed answers.
 - Reviews and generated itineraries are in-memory. Lambda cold starts/recycles lose them; they are not persistent multi-session records.
 - In deployed Bedrock mode, natural-language search-intent extraction and itinerary-edit parsing are intentionally unavailable. The local mock supports deterministic versions of those flows.
@@ -38,6 +38,7 @@ Install/configure the following:
 | Node.js and npm | Use npm because `frontend/package-lock.json` is committed. |
 | AWS CLI v2 | Authenticate with a named profile, AWS IAM role, or AWS IAM Identity Center/SSO. |
 | AWS CDK v2 | Use the project-local invocation `npx cdk` from `infra`; a global CDK install is not required. |
+| Docker Desktop | Must be running with Linux containers enabled. CDK uses the Python 3.11 SAM build image to create a Lambda-compatible dependency bundle. |
 | AWS account and deployment region | The account must support Bedrock Knowledge Bases with S3 Vectors and the configured Bedrock models/inference profiles, and must have the required model access. These conditions were not live-tested by the audit. |
 
 The repository template one directory above the project root is `..\.env.example`. It lists a non-secret `AWS_REGION=ap-south-1`, but the actual CDK target comes from your AWS/CDK environment—not from that file. Never put AWS access keys in `.env` files.

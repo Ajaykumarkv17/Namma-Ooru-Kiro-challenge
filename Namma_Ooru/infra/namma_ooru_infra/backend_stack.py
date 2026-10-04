@@ -5,7 +5,7 @@ from __future__ import annotations
 from pathlib import Path
 from typing import Any
 
-from aws_cdk import CfnOutput, Duration, Stack
+from aws_cdk import BundlingOptions, CfnOutput, Duration, Stack
 from aws_cdk import aws_apigatewayv2 as apigwv2
 from aws_cdk import aws_apigatewayv2_integrations as integrations
 from aws_cdk import aws_iam as iam
@@ -14,6 +14,15 @@ from aws_cdk import aws_logs as logs
 from constructs import Construct
 
 from namma_ooru_infra.config import NammaOoruConfig
+
+LAMBDA_BUNDLING_COMMAND = [
+    "bash",
+    "-c",
+    "pip install --no-cache-dir -r /asset-input/backend/requirements.txt -t /asset-output && "
+    "cp -r /asset-input/backend/app /asset-output/app && "
+    "mkdir -p /asset-output/data && "
+    "cp /asset-input/data/destinations.json /asset-output/data/destinations.json",
+]
 
 
 class BackendStack(Stack):
@@ -30,7 +39,7 @@ class BackendStack(Stack):
     ) -> None:
         super().__init__(scope, construct_id, **kwargs)
 
-        backend_directory = Path(__file__).resolve().parents[2] / "backend"
+        project_directory = Path(__file__).resolve().parents[2]
         function_name = f"{config.app_name}-backend"
         self.log_group = logs.LogGroup(
             self,
@@ -97,14 +106,30 @@ class BackendStack(Stack):
             runtime=lambda_.Runtime.PYTHON_3_11,
             handler="app.lambda_handler.handler",
             code=lambda_.Code.from_asset(
-                str(backend_directory),
-                exclude=[".hypothesis", ".mypy_cache", ".pytest_cache", ".ruff_cache", "tests"],
+                str(project_directory),
+                exclude=[
+                    ".git",
+                    ".workflow-artifacts",
+                    "backend/.hypothesis",
+                    "backend/.mypy_cache",
+                    "backend/.pytest_cache",
+                    "backend/.ruff_cache",
+                    "backend/tests",
+                    "backend/.venv",
+                    "frontend",
+                    "infra",
+                ],
+                bundling=BundlingOptions(
+                    image=lambda_.Runtime.PYTHON_3_11.bundling_image,
+                    command=LAMBDA_BUNDLING_COMMAND,
+                ),
             ),
             role=self.runtime_role,
             timeout=Duration.seconds(29),
             memory_size=512,
             environment={
                 "AI_PROVIDER": "bedrock",
+                "CORS_ALLOWED_ORIGINS": ",".join(config.cors_allowed_origins),
                 "BEDROCK_KB_ID": knowledge_base_id,
                 "BEDROCK_PRIMARY_MODEL_ID": config.primary_generation_model_id,
                 "BEDROCK_FALLBACK_MODEL_ID": config.fallback_generation_model_id,

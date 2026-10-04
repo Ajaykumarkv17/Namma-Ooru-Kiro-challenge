@@ -5,7 +5,7 @@ from __future__ import annotations
 from fastapi.testclient import TestClient
 
 from app.ai import UNAVAILABLE_ANSWER, LocalMockAIProvider
-from app.dependencies import get_ai_provider
+from app.dependencies import get_ai_provider, get_destination_repository
 from app.errors import DependencyUnavailableError
 from app.main import create_app
 from app.models import GroundedAnswer, RetrievalFilters, SearchIntent
@@ -64,6 +64,44 @@ def test_chat_uses_injected_ai_provider_and_separates_sources() -> None:
         "sources": [],
         "unavailable": False,
     }
+
+
+def test_catalog_uses_shipped_dataset_without_initializing_ai() -> None:
+    def unavailable_ai() -> LocalMockAIProvider:
+        raise AssertionError("Catalog endpoints must not initialize an AI provider.")
+
+    get_destination_repository.cache_clear()
+    app = create_app()
+    app.dependency_overrides[get_ai_provider] = unavailable_ai
+    try:
+        response = TestClient(app).get("/api/destinations")
+    finally:
+        get_destination_repository.cache_clear()
+
+    assert response.status_code == 200
+    assert response.json()
+
+
+def test_chat_preflight_allows_only_configured_local_origin(monkeypatch) -> None:
+    monkeypatch.delenv("CORS_ALLOWED_ORIGINS", raising=False)
+    client = TestClient(create_app())
+    headers = {
+        "Origin": "http://localhost:5173",
+        "Access-Control-Request-Method": "POST",
+        "Access-Control-Request-Headers": "content-type",
+    }
+
+    allowed = client.options("/api/chat", headers=headers)
+    rejected = client.options(
+        "/api/chat",
+        headers={**headers, "Origin": "http://localhost:3000"},
+    )
+
+    assert allowed.status_code == 200
+    assert allowed.headers["access-control-allow-origin"] == "http://localhost:5173"
+    assert allowed.headers["access-control-allow-methods"] == "GET, POST"
+    assert rejected.status_code == 400
+    assert "access-control-allow-origin" not in rejected.headers
 
 
 def test_expected_dependency_error_has_safe_structured_response() -> None:

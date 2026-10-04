@@ -2,9 +2,11 @@
 
 from __future__ import annotations
 
+import os
 from typing import Annotated
 
 from fastapi import Depends, FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 
 from app.ai import AIProvider
 from app.catalog.router import router as catalog_router
@@ -17,10 +19,26 @@ from app.recommendations.router import router as recommendations_router
 from app.reviews.router import router as reviews_router
 from app.search.router import router as search_router
 
+DEFAULT_CORS_ALLOWED_ORIGINS = ("http://localhost:5173",)
+
+
+def _cors_allowed_origins() -> list[str]:
+    """Return the configured, non-wildcard browser origins."""
+    configured = os.getenv("CORS_ALLOWED_ORIGINS", "")
+    origins = [origin.strip() for origin in configured.split(",") if origin.strip()]
+    return origins or list(DEFAULT_CORS_ALLOWED_ORIGINS)
+
 
 def create_app() -> FastAPI:
     """Create an application with centralized error handling and injectable services."""
     app = FastAPI(title="Namma Ooru API", version="0.1.0")
+    app.add_middleware(
+        CORSMiddleware,
+        allow_origins=_cors_allowed_origins(),
+        allow_credentials=False,
+        allow_methods=["GET", "POST"],
+        allow_headers=["content-type"],
+    )
     register_exception_handlers(app)
     app.include_router(catalog_router)
     app.include_router(itinerary_router)
