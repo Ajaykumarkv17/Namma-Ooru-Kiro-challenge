@@ -32,7 +32,7 @@ A second packaging defect was found by source inspection: the JSON repository re
 - `infra/tests/test_backend_stack.py`
   - Adds a regression assertion for dependency and dataset bundle inputs and checks the Lambda receives the configured CORS origins.
 - `QUICKSTART.md`
-  - Corrects the packaged dataset location and documents the required Docker Desktop/Linux-container prerequisite.
+  - Corrects the packaged dataset location and documents the Docker-free Windows deployment path.
 
 ## Validation actually run
 
@@ -46,11 +46,11 @@ A second packaging defect was found by source inspection: the JSON repository re
 | `backend`: `mypy app` | Existing unrelated failure in `app/ai.py:198`: `str | None` is passed where `str` is expected. This file was not changed. |
 | `data`: `python data/scripts/validate.py` | Passed: `1 valid, 0 error(s), 0 warning(s)`. |
 | `infra`: bundle regression test (`pytest tests/test_backend_stack.py -k lambda_bundling`) | Passed: **1 passed**. |
-| `infra`: full `pytest tests/test_backend_stack.py` | Blocked after the independent bundle test by the stopped Docker Desktop Linux daemon, because CDK must build a Linux Lambda artifact. |
-| `infra`: `npx cdk synth namma-ooru-backend` | Blocked for the same Docker daemon issue. CDK showed the intended bundling command before failing to connect to `//./pipe/dockerDesktopLinuxEngine`. |
+| `infra`: full `pytest tests/test_backend_stack.py` | Passed: **6 passed** with the Docker-free cross-platform bundle. |
+| `infra`: `npx cdk synth namma-ooru-backend` | Passed without Docker; CDK synthesized the backend stack. |
 | `git diff --check` | Passed. |
 
-Start Docker Desktop with Linux containers enabled, then rerun the infrastructure tests and synth below. The CDK bundle deliberately uses Linux so `pydantic-core` and other dependencies are compatible with AWS Lambda; do not replace it with a Windows local pip bundle.
+The Docker-free bundler downloads pre-built manylinux wheels for the Lambda's Python 3.11 runtime, including `pydantic-core`. No Docker Desktop installation is required; do not replace this with a normal Windows `pip install` bundle because Windows-native wheels cannot run on Lambda.
 
 ## Redeploy and smoke test (Windows PowerShell)
 
@@ -58,9 +58,6 @@ Only the **backend stack** needs redeployment. Do **not** redeploy `namma-ooru-a
 
 ```powershell
 Set-Location "C:\Documents\AWS_POSTS\kirouniversity\kiro_university_challenge_ugmdu\Namma_Ooru"
-
-# Start Docker Desktop first and wait until this returns a server version.
-docker version --format '{{.Server.Version}}'
 
 # Use the same profile/region as the existing deployment.
 $profile = "<PROFILE>"

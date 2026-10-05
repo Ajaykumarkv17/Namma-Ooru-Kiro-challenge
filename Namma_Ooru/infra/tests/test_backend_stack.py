@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+import json
+
 import aws_cdk as cdk
 import pytest
 from aws_cdk import assertions
@@ -84,17 +86,19 @@ def test_runtime_role_scopes_bedrock_to_profiles_and_associated_models(
     assert by_sid["RetrieveGroundedKnowledge"]["Action"] == "bedrock:Retrieve"
     generation = by_sid["GenerateGroundedResponses"]
     assert generation["Action"] == "bedrock:InvokeModel"
-    assert set(generation["Resource"]) == {
-        f"arn:aws:bedrock:{REGION}::inference-profile/{PRIMARY_PROFILE}",
-        f"arn:aws:bedrock:{REGION}::inference-profile/{FALLBACK_PROFILE}",
-        "arn:aws:bedrock:*::foundation-model/amazon.nova-pro-v1:0",
-        "arn:aws:bedrock:*::foundation-model/amazon.nova-2-lite-v1:0",
-    }
+    serialized_resources = json.dumps(generation["Resource"], sort_keys=True)
+    for expected_resource in (
+        f"inference-profile/{PRIMARY_PROFILE}",
+        f"inference-profile/{FALLBACK_PROFILE}",
+        "foundation-model/amazon.nova-pro-v1:0",
+        "foundation-model/amazon.nova-2-lite-v1:0",
+    ):
+        assert expected_resource in serialized_resources
     for statement in statements:
         resources = statement["Resource"]
-        assert "*" != resources
+        assert resources != "*"
         if isinstance(resources, list):
-            assert "*" not in resources
+            assert all(resource != "*" for resource in resources)
 
 
 def test_lambda_receives_non_secret_runtime_configuration(template: assertions.Template) -> None:

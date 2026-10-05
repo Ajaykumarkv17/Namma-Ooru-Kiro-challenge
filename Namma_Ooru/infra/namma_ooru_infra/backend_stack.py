@@ -3,9 +3,13 @@
 from __future__ import annotations
 
 from pathlib import Path
+import shutil
+import subprocess
+import sys
 from typing import Any
 
-from aws_cdk import BundlingOptions, CfnOutput, Duration, Stack
+import jsii
+from aws_cdk import BundlingOptions, CfnOutput, Duration, ILocalBundling, Stack
 from aws_cdk import aws_apigatewayv2 as apigwv2
 from aws_cdk import aws_apigatewayv2_integrations as integrations
 from aws_cdk import aws_iam as iam
@@ -23,6 +27,57 @@ LAMBDA_BUNDLING_COMMAND = [
     "mkdir -p /asset-output/data && "
     "cp /asset-input/data/destinations.json /asset-output/data/destinations.json",
 ]
+
+
+@jsii.implements(ILocalBundling)
+class CrossPlatformPythonBundling:
+    """Build a Linux-compatible Python 3.11 Lambda asset without Docker.
+
+    pip downloads pre-built manylinux wheels rather than using the current host's
+    interpreter or platform. This lets Windows developers deploy the Lambda
+    without Docker Desktop while preserving Lambda's Linux runtime compatibility.
+    """
+
+    def __init__(self, project_directory: Path) -> None:
+        self._project_directory = project_directory
+
+    def try_bundle(self, output_dir: str, _options: BundlingOptions) -> bool:
+        output_directory = Path(output_dir)
+        requirements_file = self._project_directory / "backend" / "requirements.txt"
+
+        subprocess.run(
+            [
+                sys.executable,
+                "-m",
+                "pip",
+                "install",
+                "--no-cache-dir",
+                "--only-binary=:all:",
+                "--platform",
+                "manylinux2014_x86_64",
+                "--implementation",
+                "cp",
+                "--python-version",
+                "3.11",
+                "--target",
+                str(output_directory),
+                "--requirement",
+                str(requirements_file),
+            ],
+            check=True,
+        )
+        shutil.copytree(
+            self._project_directory / "backend" / "app",
+            output_directory / "app",
+            dirs_exist_ok=True,
+        )
+        data_directory = output_directory / "data"
+        data_directory.mkdir(parents=True, exist_ok=True)
+        shutil.copy2(
+            self._project_directory / "data" / "destinations.json",
+            data_directory / "destinations.json",
+        )
+        return True
 
 
 class BackendStack(Stack):
@@ -122,6 +177,7 @@ class BackendStack(Stack):
                 bundling=BundlingOptions(
                     image=lambda_.Runtime.PYTHON_3_11.bundling_image,
                     command=LAMBDA_BUNDLING_COMMAND,
+                    local=CrossPlatformPythonBundling(project_directory),
                 ),
             ),
             role=self.runtime_role,

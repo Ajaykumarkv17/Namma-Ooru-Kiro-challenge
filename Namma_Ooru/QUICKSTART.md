@@ -37,8 +37,7 @@ Install/configure the following:
 | Python **3.11** | Backend tooling and the Lambda runtime target Python 3.11. |
 | Node.js and npm | Use npm because `frontend/package-lock.json` is committed. |
 | AWS CLI v2 | Authenticate with a named profile, AWS IAM role, or AWS IAM Identity Center/SSO. |
-| AWS CDK v2 | Use the project-local invocation `npx cdk` from `infra`; a global CDK install is not required. |
-| Docker Desktop | Must be running with Linux containers enabled. CDK uses the Python 3.11 SAM build image to create a Lambda-compatible dependency bundle. |
+| AWS CDK v2 | Use the project-local invocation `npx cdk` from `infra`; a global CDK install is not required. The backend bundle uses cross-platform Linux wheels and does not require Docker Desktop. |
 | AWS account and deployment region | The account must support Bedrock Knowledge Bases with S3 Vectors and the configured Bedrock models/inference profiles, and must have the required model access. These conditions were not live-tested by the audit. |
 
 The repository template one directory above the project root is `..\.env.example`. It lists a non-secret `AWS_REGION=ap-south-1`, but the actual CDK target comes from your AWS/CDK environment—not from that file. Never put AWS access keys in `.env` files.
