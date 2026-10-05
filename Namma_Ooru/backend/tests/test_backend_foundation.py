@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import pytest
 from fastapi.testclient import TestClient
 
 from app.ai import UNAVAILABLE_ANSWER, LocalMockAIProvider
@@ -82,7 +83,9 @@ def test_catalog_uses_shipped_dataset_without_initializing_ai() -> None:
     assert response.json()
 
 
-def test_chat_preflight_allows_only_configured_local_origin(monkeypatch) -> None:
+def test_chat_preflight_allows_only_configured_local_origin(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
     monkeypatch.delenv("CORS_ALLOWED_ORIGINS", raising=False)
     client = TestClient(create_app())
     headers = {

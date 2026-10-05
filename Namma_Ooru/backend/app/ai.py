@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import logging
 import re
 from collections.abc import Callable, Mapping, Sequence
 from concurrent.futures import ThreadPoolExecutor, TimeoutError
@@ -30,6 +31,19 @@ _GROUNDED_SYSTEM_PROMPT = (
 _URL_PATTERN = re.compile(r"https?://[^\s)>\]}]+", re.IGNORECASE)
 _OPERATION_ADAPTER = TypeAdapter(ItineraryOperationEnvelope)
 _Result = TypeVar("_Result")
+logger = logging.getLogger(__name__)
+
+
+def _safe_bedrock_error_code(error: Exception) -> str:
+    """Return an AWS error code or exception class without logging request content."""
+    response = getattr(error, "response", None)
+    if isinstance(response, Mapping):
+        details = response.get("Error")
+        if isinstance(details, Mapping):
+            code = details.get("Code")
+            if isinstance(code, str) and code:
+                return code
+    return type(error).__name__
 
 
 class AIProvider(Protocol):
@@ -127,9 +141,11 @@ class BedrockAIProvider:
                 sources=self._sources_from_excerpts(excerpts),
                 unavailable=False,
             )
-        except DependencyUnavailableError:
+        except DependencyUnavailableError as error:
+            logger.warning("Bedrock AI request unavailable: %s", _safe_bedrock_error_code(error))
             raise
         except Exception as error:
+            logger.warning("Bedrock AI request failed: %s", _safe_bedrock_error_code(error))
             raise DependencyUnavailableError() from error
 
     def select_itinerary_candidates(
@@ -191,11 +207,12 @@ class BedrockAIProvider:
                 )
             )
         except Exception:
-            if self._fallback_model_id is None:
+            fallback_model_id = self._fallback_model_id
+            if fallback_model_id is None:
                 raise
             return self._run_bounded(
                 lambda: self._runtime_client.converse(
-                    **self._generation_request(question, excerpts, self._fallback_model_id)
+                    **self._generation_request(question, excerpts, fallback_model_id)
                 )
             )
 
@@ -312,8 +329,8 @@ def create_bedrock_provider(
 ) -> BedrockAIProvider:
     """Build production clients through the standard AWS credential chain."""
     try:
-        import boto3
-        from botocore.config import Config
+        import boto3  # type: ignore[import-untyped]
+        from botocore.config import Config  # type: ignore[import-untyped]
 
         config = Config(
             connect_timeout=3, read_timeout=8, retries={"max_attempts": 1, "mode": "standard"}

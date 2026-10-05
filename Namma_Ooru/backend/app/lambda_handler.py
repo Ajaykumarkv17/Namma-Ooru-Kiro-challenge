@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from mangum import Mangum
+from mangum import Mangum  # type: ignore[import-not-found]
 
 from app.main import app
 

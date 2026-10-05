@@ -150,6 +150,7 @@ class Itinerary(BaseModel):
     days: list[ItineraryDay] = Field(default_factory=list)
     allow_repeats: bool = False
     constraints: ItineraryConstraints = Field(default_factory=ItineraryConstraints)
+    no_data_reason: str | None = Field(default=None, max_length=500)
 
 
 class OperationType(str, Enum):

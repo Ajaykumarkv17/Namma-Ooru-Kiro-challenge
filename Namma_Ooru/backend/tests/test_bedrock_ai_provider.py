@@ -141,7 +141,9 @@ def test_answer_returns_unavailable_without_calling_generation_when_retrieval_is
     assert runtime_client.requests == []
 
 
-def test_answer_converts_bedrock_errors_to_safe_dependency_failure() -> None:
+def test_answer_converts_bedrock_errors_to_safe_dependency_failure(
+    caplog: pytest.LogCaptureFixture,
+) -> None:
     class FailingAgentRuntimeClient:
         def retrieve(self, **kwargs: object) -> Mapping[str, object]:
             del kwargs
@@ -159,6 +161,8 @@ def test_answer_converts_bedrock_errors_to_safe_dependency_failure() -> None:
         provider.answer("Question", RetrievalFilters())
 
     assert error.value.detail == "The requested service is temporarily unavailable."
+    assert "RuntimeError" in caplog.text
+    assert "credential details must not be exposed" not in caplog.text
 
 
 def test_answer_enforces_dependency_deadline() -> None:

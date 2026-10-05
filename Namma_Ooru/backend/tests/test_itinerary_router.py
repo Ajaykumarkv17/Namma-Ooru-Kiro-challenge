@@ -10,13 +10,15 @@ from app.itinerary.service import ItineraryService
 from app.main import create_app
 
 
-def _destination(destination_id: str) -> Destination:
+def _destination(
+    destination_id: str, city: str = "Madurai", district: str = "madurai"
+) -> Destination:
     return Destination.model_validate(
         {
             "id": destination_id,
             "name": destination_id.replace("-", " ").title(),
-            "city": "Madurai",
-            "district": "madurai",
+            "city": city,
+            "district": district,
             "region": "South Tamil Nadu",
             "category": "temples",
             "description": "A source-attributed test destination.",
@@ -78,3 +80,15 @@ def test_itinerary_request_rejects_invalid_day_count() -> None:
     )
     assert response.status_code == 400
     assert response.json()["error"] == "VALIDATION_ERROR"
+
+
+def test_named_location_with_no_catalog_data_never_uses_another_city() -> None:
+    """Regression: a Chennai request cannot silently schedule Madurai places."""
+    response = _client().post(
+        "/api/itineraries",
+        json={"destination_context": "3-day Chennai temples and food trip", "day_count": 3},
+    )
+    assert response.status_code == 200
+    payload = response.json()
+    assert payload["no_data_reason"]
+    assert all(not day["activities"] for day in payload["days"])
