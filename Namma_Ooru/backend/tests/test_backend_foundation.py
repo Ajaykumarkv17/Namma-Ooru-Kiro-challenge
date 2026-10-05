@@ -6,7 +6,7 @@ from fastapi.testclient import TestClient
 
 from app.ai import UNAVAILABLE_ANSWER, LocalMockAIProvider
 from app.dependencies import get_ai_provider, get_destination_repository
-from app.errors import DependencyUnavailableError
+from app.errors import DependencyUnavailableError, DomainError
 from app.main import create_app
 from app.models import GroundedAnswer, RetrievalFilters, SearchIntent
 
@@ -120,3 +120,8 @@ def test_expected_dependency_error_has_safe_structured_response() -> None:
         "error": "AI_UNAVAILABLE",
         "detail": "The requested service is temporarily unavailable.",
     }
+
+
+def test_domain_error_uses_status_code_supported_by_pinned_starlette() -> None:
+    """Prevent Lambda import failures from unavailable Starlette status aliases."""
+    assert DomainError.status_code == 422

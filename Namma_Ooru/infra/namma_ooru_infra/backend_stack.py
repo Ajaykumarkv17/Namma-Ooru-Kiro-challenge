@@ -45,6 +45,10 @@ class CrossPlatformPythonBundling:
         output_directory = Path(output_dir)
         requirements_file = self._project_directory / "backend" / "requirements.txt"
 
+        if output_directory.exists():
+            shutil.rmtree(output_directory)
+        output_directory.mkdir(parents=True, exist_ok=True)
+
         subprocess.run(
             [
                 sys.executable,

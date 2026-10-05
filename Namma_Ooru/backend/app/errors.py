@@ -12,7 +12,7 @@ from fastapi.responses import JSONResponse
 class DomainError(Exception):
     """Expected failure with a public code and client-safe message."""
 
-    status_code = status.HTTP_422_UNPROCESSABLE_CONTENT
+    status_code = 422
     error_code = "BUSINESS_RULE_VIOLATION"
     public_detail = "The request could not be completed."
 
