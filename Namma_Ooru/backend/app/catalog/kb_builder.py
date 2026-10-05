@@ -117,9 +117,16 @@ def build_metadata(destination: Destination) -> dict[str, object]:
     """Build the S3 sidecar metadata document for one Destination.
 
     The returned dict is JSON-serializable and wraps the filterable retrieval
-    keys under Bedrock's ``metadataAttributes`` envelope. Every key in
-    ``FILTERABLE_METADATA_KEYS`` is present so metadata-filtered retrieval never
-    misses a key. ``subcategory`` is included as additional (non-index) context.
+    keys under Bedrock's ``metadataAttributes`` envelope. ``subcategory`` is
+    included as additional (non-index) context.
+
+    Bedrock Knowledge Base rejects a metadata sidecar whose attribute values are
+    not ``String`` / ``Number`` / ``Boolean`` / non-empty ``StringList``. An
+    EMPTY list has no element type and is treated as an invalid attribute, which
+    makes Bedrock ignore the whole document on sync. ``travel_type`` is derived
+    and can legitimately be empty, so it is OMITTED entirely when it has no
+    values rather than written as ``[]``. Metadata-filtered retrieval still works
+    for documents that do have the key; absence simply means "no travel tags".
     """
     attributes: dict[str, object] = {
         "district": destination.district.value,
@@ -128,12 +135,15 @@ def build_metadata(destination: Destination) -> dict[str, object]:
         "region": destination.region,
         "heritage": destination.is_heritage or destination.is_unesco,
         "unesco": destination.is_unesco,
-        "travel_type": travel_types(destination),
         # Not an index key, but useful document context for downstream tooling.
         "subcategory": (
             destination.subcategory if destination.subcategory is not None else UNAVAILABLE
         ),
     }
+    # Omit the StringList key when empty: Bedrock rejects an empty-array value.
+    tags = travel_types(destination)
+    if tags:
+        attributes["travel_type"] = tags
     return {"metadataAttributes": attributes}
 
 

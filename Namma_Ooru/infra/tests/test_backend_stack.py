@@ -94,6 +94,11 @@ def test_runtime_role_scopes_bedrock_to_profiles_and_associated_models(
         "foundation-model/amazon.nova-2-lite-v1:0",
     ):
         assert expected_resource in serialized_resources
+    # Regression: inference-profile ARNs are account-scoped. An empty account
+    # segment ("region::inference-profile/") makes bedrock:InvokeModel fail with
+    # AccessDeniedException, so the account id must be present on the profile ARN.
+    for profile in (PRIMARY_PROFILE, FALLBACK_PROFILE):
+        assert f"::inference-profile/{profile}" not in serialized_resources
     for statement in statements:
         resources = statement["Resource"]
         assert resources != "*"

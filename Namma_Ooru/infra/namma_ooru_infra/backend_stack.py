@@ -130,8 +130,11 @@ class BackendStack(Stack):
             config.primary_generation_model_id,
             config.fallback_generation_model_id,
         )
+        # Inference profiles are account-scoped resources, so their ARN includes the
+        # account id (unlike a system/foundation-model ARN, which has none). Omitting
+        # it makes bedrock:InvokeModel fail with AccessDeniedException at Converse time.
         generation_resources = [
-            f"arn:{self.partition}:bedrock:{self.region}::inference-profile/{profile}"
+            f"arn:{self.partition}:bedrock:{self.region}:{self.account}:inference-profile/{profile}"
             for profile in generation_profiles
         ]
         # System inference profiles can route generation to their associated model in

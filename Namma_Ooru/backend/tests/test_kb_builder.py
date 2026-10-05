@@ -100,8 +100,12 @@ def test_metadata_keys_and_values_match_index_schema(tmp_path: Path) -> None:
 
     attributes = json.loads(sidecar.read_text(encoding="utf-8"))["metadataAttributes"]
 
-    # Every filterable index key is present.
+    # Every filterable index key is present, except travel_type which is
+    # conditional (omitted when empty — see the empty-travel_type regression
+    # test). The sample record has family_friendly=True, so it is present here.
     for key in FILTERABLE_METADATA_KEYS:
+        if key == "travel_type":
+            continue
         assert key in attributes, f"missing filterable metadata key: {key}"
     assert attributes["district"] == "madurai"
     assert attributes["city"] == "Madurai"
@@ -215,3 +219,28 @@ def test_metadata_subcategory_unavailable_when_null() -> None:
     attributes = _attributes(_destination(record))
 
     assert attributes["subcategory"] == UNAVAILABLE
+
+
+def test_metadata_omits_travel_type_when_empty() -> None:
+    """Regression: Bedrock KB rejects an empty-array metadata attribute.
+
+    A Destination with no derived travel-style tags must NOT emit
+    ``"travel_type": []`` — Bedrock treats the empty list as an invalid
+    attribute and ignores the whole document on sync. The key must be absent.
+    """
+    record = _valid_record()
+    # Clear every flag that derives a travel_type tag.
+    record["family_friendly"] = False
+    record["nature_related"] = False
+    record["adventure_related"] = False
+    record["is_hidden_gem"] = False
+    record["is_heritage"] = False
+    record["is_unesco"] = False
+
+    destination = _destination(record)
+    assert travel_types(destination) == []
+
+    attributes = _attributes(destination)
+    assert "travel_type" not in attributes
+    # No attribute value may be an empty list (Bedrock-invalid).
+    assert [] not in attributes.values()
