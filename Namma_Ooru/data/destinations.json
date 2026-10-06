@@ -1,52 +1,1877 @@
-{"destinations":[
-{"id":"chennai-marina-beach","name":"Marina Beach","city":"Chennai","district":"chennai","region":"North Tamil Nadu","category":"beaches","description":"A Chennai coastal destination listed by Tamil Nadu Tourism.","source_urls":["https://www.tamilnadutourism.tn.gov.in/destinations/chennai"],"sources":[{"name":"Tamil Nadu Tourism","type":"government-tourism","url":"https://www.tamilnadutourism.tn.gov.in/destinations/chennai","retrieved_on":"2026-10-05","notes":null}],"tags":["chennai","beach"]},
-{"id":"chennai-kapaleeshwarar-temple","name":"Kapaleeshwarar Temple","city":"Chennai","district":"chennai","region":"North Tamil Nadu","category":"temples","description":"A Chennai temple destination listed by Tamil Nadu Tourism.","source_urls":["https://www.tamilnadutourism.tn.gov.in/destinations/chennai"],"sources":[{"name":"Tamil Nadu Tourism","type":"government-tourism","url":"https://www.tamilnadutourism.tn.gov.in/destinations/chennai","retrieved_on":"2026-10-05","notes":null}],"tags":["chennai","temple"]},
-{"id":"chennai-fort-st-george","name":"Fort St George","city":"Chennai","district":"chennai","region":"North Tamil Nadu","category":"heritage","description":"A Chennai heritage destination listed by Tamil Nadu Tourism.","source_urls":["https://www.tamilnadutourism.tn.gov.in/destinations/chennai"],"sources":[{"name":"Tamil Nadu Tourism","type":"government-tourism","url":"https://www.tamilnadutourism.tn.gov.in/destinations/chennai","retrieved_on":"2026-10-05","notes":null}],"tags":["chennai","heritage"]},
-{"id":"madurai-meenakshi-amman-temple","name":"Meenakshi Amman Temple","city":"Madurai","district":"madurai","region":"South Tamil Nadu","category":"temples","description":"A Madurai temple destination listed by Tamil Nadu Tourism.","source_urls":["https://www.tamilnadutourism.tn.gov.in/destinations/madurai"],"sources":[{"name":"Tamil Nadu Tourism","type":"government-tourism","url":"https://www.tamilnadutourism.tn.gov.in/destinations/madurai","retrieved_on":"2026-10-05","notes":null}],"tags":["madurai","temple"]},
-{"id":"madurai-thirumalai-nayakkar-palace","name":"Thirumalai Nayakkar Palace","city":"Madurai","district":"madurai","region":"South Tamil Nadu","category":"heritage","description":"A Madurai heritage destination listed by Tamil Nadu Tourism.","source_urls":["https://www.tamilnadutourism.tn.gov.in/destinations/madurai"],"sources":[{"name":"Tamil Nadu Tourism","type":"government-tourism","url":"https://www.tamilnadutourism.tn.gov.in/destinations/madurai","retrieved_on":"2026-10-05","notes":null}],"tags":["madurai","heritage"]},
-{"id":"madurai-gandhi-memorial-museum","name":"Gandhi Memorial Museum","city":"Madurai","district":"madurai","region":"South Tamil Nadu","category":"heritage","description":"A Madurai museum destination listed by Tamil Nadu Tourism.","source_urls":["https://www.tamilnadutourism.tn.gov.in/destinations/madurai"],"sources":[{"name":"Tamil Nadu Tourism","type":"government-tourism","url":"https://www.tamilnadutourism.tn.gov.in/destinations/madurai","retrieved_on":"2026-10-05","notes":null}],"tags":["madurai","museum"]},
-{"id":"coimbatore-marudamalai-temple","name":"Marudamalai Temple","city":"Coimbatore","district":"coimbatore","region":"West Tamil Nadu","category":"temples","description":"A Coimbatore temple destination listed by Tamil Nadu Tourism.","source_urls":["https://www.tamilnadutourism.tn.gov.in/destinations/coimbatore"],"sources":[{"name":"Tamil Nadu Tourism","type":"government-tourism","url":"https://www.tamilnadutourism.tn.gov.in/destinations/coimbatore","retrieved_on":"2026-10-05","notes":null}],"tags":["coimbatore","temple"]},
-{"id":"coimbatore-voc-park","name":"VOC Park","city":"Coimbatore","district":"coimbatore","region":"West Tamil Nadu","category":"nature","description":"A Coimbatore visitor destination listed by Tamil Nadu Tourism.","source_urls":["https://www.tamilnadutourism.tn.gov.in/destinations/coimbatore"],"sources":[{"name":"Tamil Nadu Tourism","type":"government-tourism","url":"https://www.tamilnadutourism.tn.gov.in/destinations/coimbatore","retrieved_on":"2026-10-05","notes":null}],"tags":["coimbatore","park"]},
-{"id":"coimbatore-gedee-car-museum","name":"G.D. Naidu Car Museum","city":"Coimbatore","district":"coimbatore","region":"West Tamil Nadu","category":"heritage","description":"A Coimbatore museum destination listed by Tamil Nadu Tourism.","source_urls":["https://www.tamilnadutourism.tn.gov.in/destinations/coimbatore"],"sources":[{"name":"Tamil Nadu Tourism","type":"government-tourism","url":"https://www.tamilnadutourism.tn.gov.in/destinations/coimbatore","retrieved_on":"2026-10-05","notes":null}],"tags":["coimbatore","museum"]},
-{"id":"ooty-botanical-garden","name":"Government Botanical Garden","city":"Ooty","district":"nilgiris","region":"West Tamil Nadu","category":"nature","description":"An Ooty garden destination listed by Tamil Nadu Tourism.","source_urls":["https://www.tamilnadutourism.tn.gov.in/destinations/ooty"],"sources":[{"name":"Tamil Nadu Tourism","type":"government-tourism","url":"https://www.tamilnadutourism.tn.gov.in/destinations/ooty","retrieved_on":"2026-10-05","notes":null}],"tags":["ooty","garden"]},
-{"id":"ooty-doddabetta-peak","name":"Doddabetta Peak","city":"Ooty","district":"nilgiris","region":"West Tamil Nadu","category":"hills","description":"An Ooty hill destination listed by Tamil Nadu Tourism.","source_urls":["https://www.tamilnadutourism.tn.gov.in/destinations/ooty"],"sources":[{"name":"Tamil Nadu Tourism","type":"government-tourism","url":"https://www.tamilnadutourism.tn.gov.in/destinations/ooty","retrieved_on":"2026-10-05","notes":null}],"tags":["ooty","hills"]},
-{"id":"ooty-rose-garden","name":"Government Rose Garden","city":"Ooty","district":"nilgiris","region":"West Tamil Nadu","category":"nature","description":"An Ooty garden destination listed by Tamil Nadu Tourism.","source_urls":["https://www.tamilnadutourism.tn.gov.in/destinations/ooty"],"sources":[{"name":"Tamil Nadu Tourism","type":"government-tourism","url":"https://www.tamilnadutourism.tn.gov.in/destinations/ooty","retrieved_on":"2026-10-05","notes":null}],"tags":["ooty","garden"]},
-{"id":"tiruchirappalli-sri-ranganathaswamy-temple","name":"Sri Ranganathaswamy Temple","city":"Tiruchirappalli","district":"tiruchirappalli","region":"Central Tamil Nadu","category":"temples","description":"A Tiruchirappalli temple destination listed by Tamil Nadu Tourism.","source_urls":["https://www.tamilnadutourism.tn.gov.in/destinations/trichy"],"sources":[{"name":"Tamil Nadu Tourism","type":"government-tourism","url":"https://www.tamilnadutourism.tn.gov.in/destinations/trichy","retrieved_on":"2026-10-05","notes":null}],"tags":["tiruchirappalli","temple"]},
-{"id":"tiruchirappalli-rockfort-temple","name":"Rockfort Temple","city":"Tiruchirappalli","district":"tiruchirappalli","region":"Central Tamil Nadu","category":"temples","description":"A Tiruchirappalli temple destination listed by Tamil Nadu Tourism.","source_urls":["https://www.tamilnadutourism.tn.gov.in/destinations/trichy"],"sources":[{"name":"Tamil Nadu Tourism","type":"government-tourism","url":"https://www.tamilnadutourism.tn.gov.in/destinations/trichy","retrieved_on":"2026-10-05","notes":null}],"tags":["tiruchirappalli","temple"]},
-{"id":"tiruchirappalli-kallanai-dam","name":"Kallanai Dam","city":"Tiruchirappalli","district":"tiruchirappalli","region":"Central Tamil Nadu","category":"heritage","description":"A Tiruchirappalli heritage destination listed by Tamil Nadu Tourism.","source_urls":["https://www.tamilnadutourism.tn.gov.in/destinations/trichy"],"sources":[{"name":"Tamil Nadu Tourism","type":"government-tourism","url":"https://www.tamilnadutourism.tn.gov.in/destinations/trichy","retrieved_on":"2026-10-05","notes":null}],"tags":["tiruchirappalli","heritage"]},
-{"id":"thanjavur-brihadeeswarar-temple","name":"Brihadeeswarar Temple","city":"Thanjavur","district":"thanjavur","region":"Central Tamil Nadu","category":"temples","description":"A Thanjavur temple destination listed by Tamil Nadu Tourism.","source_urls":["https://www.tamilnadutourism.tn.gov.in/destinations/thanjavur"],"sources":[{"name":"Tamil Nadu Tourism","type":"government-tourism","url":"https://www.tamilnadutourism.tn.gov.in/destinations/thanjavur","retrieved_on":"2026-10-05","notes":null}],"tags":["thanjavur","temple"]},
-{"id":"thanjavur-royal-palace","name":"Thanjavur Royal Palace","city":"Thanjavur","district":"thanjavur","region":"Central Tamil Nadu","category":"heritage","description":"A Thanjavur heritage destination listed by Tamil Nadu Tourism.","source_urls":["https://www.tamilnadutourism.tn.gov.in/destinations/thanjavur"],"sources":[{"name":"Tamil Nadu Tourism","type":"government-tourism","url":"https://www.tamilnadutourism.tn.gov.in/destinations/thanjavur","retrieved_on":"2026-10-05","notes":null}],"tags":["thanjavur","heritage"]},
-{"id":"thanjavur-saraswathi-mahal-library","name":"Saraswathi Mahal Library","city":"Thanjavur","district":"thanjavur","region":"Central Tamil Nadu","category":"heritage","description":"A Thanjavur heritage destination listed by Tamil Nadu Tourism.","source_urls":["https://www.tamilnadutourism.tn.gov.in/destinations/thanjavur"],"sources":[{"name":"Tamil Nadu Tourism","type":"government-tourism","url":"https://www.tamilnadutourism.tn.gov.in/destinations/thanjavur","retrieved_on":"2026-10-05","notes":null}],"tags":["thanjavur","library"]},
-{"id":"mamallapuram-shore-temple","name":"Shore Temple","city":"Mamallapuram","district":"chengalpattu","region":"North Tamil Nadu","category":"heritage","description":"A Mamallapuram heritage destination listed by Tamil Nadu Tourism.","source_urls":["https://www.tamilnadutourism.tn.gov.in/destinations/mahabalipuram"],"sources":[{"name":"Tamil Nadu Tourism","type":"government-tourism","url":"https://www.tamilnadutourism.tn.gov.in/destinations/mahabalipuram","retrieved_on":"2026-10-05","notes":null}],"tags":["mamallapuram","heritage"]},
-{"id":"mamallapuram-pancha-rathas","name":"Pancha Rathas","city":"Mamallapuram","district":"chengalpattu","region":"North Tamil Nadu","category":"heritage","description":"A Mamallapuram heritage destination listed by Tamil Nadu Tourism.","source_urls":["https://www.tamilnadutourism.tn.gov.in/destinations/mahabalipuram"],"sources":[{"name":"Tamil Nadu Tourism","type":"government-tourism","url":"https://www.tamilnadutourism.tn.gov.in/destinations/mahabalipuram","retrieved_on":"2026-10-05","notes":null}],"tags":["mamallapuram","heritage"]},
-{"id":"kanchipuram-kamakshi-amman-temple","name":"Kamakshi Amman Temple","city":"Kanchipuram","district":"kanchipuram","region":"North Tamil Nadu","category":"temples","description":"A Kanchipuram temple destination listed by Tamil Nadu Tourism.","source_urls":["https://www.tamilnadutourism.tn.gov.in/destinations/kanchipuram"],"sources":[{"name":"Tamil Nadu Tourism","type":"government-tourism","url":"https://www.tamilnadutourism.tn.gov.in/destinations/kanchipuram","retrieved_on":"2026-10-05","notes":null}],"tags":["kanchipuram","temple"]},
-{"id":"kanchipuram-kailasanathar-temple","name":"Kailasanathar Temple","city":"Kanchipuram","district":"kanchipuram","region":"North Tamil Nadu","category":"temples","description":"A Kanchipuram temple destination listed by Tamil Nadu Tourism.","source_urls":["https://www.tamilnadutourism.tn.gov.in/destinations/kanchipuram"],"sources":[{"name":"Tamil Nadu Tourism","type":"government-tourism","url":"https://www.tamilnadutourism.tn.gov.in/destinations/kanchipuram","retrieved_on":"2026-10-05","notes":null}],"tags":["kanchipuram","temple"]},
-{"id":"rameswaram-ramanathaswamy-temple","name":"Ramanathaswamy Temple","city":"Rameswaram","district":"ramanathapuram","region":"South Tamil Nadu","category":"temples","description":"A Rameswaram temple destination listed by Tamil Nadu Tourism.","source_urls":["https://www.tamilnadutourism.tn.gov.in/destinations/rameswaram"],"sources":[{"name":"Tamil Nadu Tourism","type":"government-tourism","url":"https://www.tamilnadutourism.tn.gov.in/destinations/rameswaram","retrieved_on":"2026-10-05","notes":null}],"tags":["rameswaram","temple"]},
-{"id":"rameswaram-dhanushkodi","name":"Dhanushkodi","city":"Rameswaram","district":"ramanathapuram","region":"South Tamil Nadu","category":"beaches","description":"A Rameswaram coastal destination listed by Tamil Nadu Tourism.","source_urls":["https://www.tamilnadutourism.tn.gov.in/destinations/rameswaram"],"sources":[{"name":"Tamil Nadu Tourism","type":"government-tourism","url":"https://www.tamilnadutourism.tn.gov.in/destinations/rameswaram","retrieved_on":"2026-10-05","notes":null}],"tags":["rameswaram","beach"]},
-{"id":"kanyakumari-vivekananda-rock-memorial","name":"Vivekananda Rock Memorial","city":"Kanyakumari","district":"kanyakumari","region":"South Tamil Nadu","category":"heritage","description":"A Kanyakumari heritage destination listed by Tamil Nadu Tourism.","source_urls":["https://www.tamilnadutourism.tn.gov.in/destinations/kanyakumari"],"sources":[{"name":"Tamil Nadu Tourism","type":"government-tourism","url":"https://www.tamilnadutourism.tn.gov.in/destinations/kanyakumari","retrieved_on":"2026-10-05","notes":null}],"tags":["kanyakumari","heritage"]},
-{"id":"kanyakumari-thiruvalluvar-statue","name":"Thiruvalluvar Statue","city":"Kanyakumari","district":"kanyakumari","region":"South Tamil Nadu","category":"heritage","description":"A Kanyakumari heritage destination listed by Tamil Nadu Tourism.","source_urls":["https://www.tamilnadutourism.tn.gov.in/destinations/kanyakumari"],"sources":[{"name":"Tamil Nadu Tourism","type":"government-tourism","url":"https://www.tamilnadutourism.tn.gov.in/destinations/kanyakumari","retrieved_on":"2026-10-05","notes":null}],"tags":["kanyakumari","heritage"]},
-{"id":"vellore-fort","name":"Vellore Fort","city":"Vellore","district":"vellore","region":"North Tamil Nadu","category":"heritage","description":"A Vellore heritage destination listed by Tamil Nadu Tourism.","source_urls":["https://www.tamilnadutourism.tn.gov.in/destinations/vellore"],"sources":[{"name":"Tamil Nadu Tourism","type":"government-tourism","url":"https://www.tamilnadutourism.tn.gov.in/destinations/vellore","retrieved_on":"2026-10-05"}],"tags":["vellore","heritage"]},
-{"id":"vellore-jalakandeswarar-temple","name":"Jalakandeswarar Temple","city":"Vellore","district":"vellore","region":"North Tamil Nadu","category":"temples","description":"A Vellore temple destination listed by Tamil Nadu Tourism.","source_urls":["https://www.tamilnadutourism.tn.gov.in/destinations/vellore"],"sources":[{"name":"Tamil Nadu Tourism","type":"government-tourism","url":"https://www.tamilnadutourism.tn.gov.in/destinations/vellore","retrieved_on":"2026-10-05"}],"tags":["vellore","temple"]},
-{"id":"salem-yercaud","name":"Yercaud","city":"Salem","district":"salem","region":"West Tamil Nadu","category":"hills","description":"A Salem hill destination listed by Tamil Nadu Tourism.","source_urls":["https://www.tamilnadutourism.tn.gov.in/destinations/yercaud"],"sources":[{"name":"Tamil Nadu Tourism","type":"government-tourism","url":"https://www.tamilnadutourism.tn.gov.in/destinations/yercaud","retrieved_on":"2026-10-05"}],"tags":["salem","hills"]},
-{"id":"salem-mettur-dam","name":"Mettur Dam","city":"Mettur","district":"salem","region":"West Tamil Nadu","category":"nature","description":"A Salem destination listed by Tamil Nadu Tourism.","source_urls":["https://www.tamilnadutourism.tn.gov.in/destinations/salem"],"sources":[{"name":"Tamil Nadu Tourism","type":"government-tourism","url":"https://www.tamilnadutourism.tn.gov.in/destinations/salem","retrieved_on":"2026-10-05"}],"tags":["salem","dam"]},
-{"id":"erode-bhavanisagar-dam","name":"Bhavanisagar Dam","city":"Erode","district":"erode","region":"West Tamil Nadu","category":"nature","description":"An Erode destination listed by Tamil Nadu Tourism.","source_urls":["https://www.tamilnadutourism.tn.gov.in/destinations/erode"],"sources":[{"name":"Tamil Nadu Tourism","type":"government-tourism","url":"https://www.tamilnadutourism.tn.gov.in/destinations/erode","retrieved_on":"2026-10-05"}],"tags":["erode","dam"]},
-{"id":"erode-kodiveri-dam","name":"Kodiveri Dam","city":"Erode","district":"erode","region":"West Tamil Nadu","category":"nature","description":"An Erode destination listed by Tamil Nadu Tourism.","source_urls":["https://www.tamilnadutourism.tn.gov.in/destinations/erode"],"sources":[{"name":"Tamil Nadu Tourism","type":"government-tourism","url":"https://www.tamilnadutourism.tn.gov.in/destinations/erode","retrieved_on":"2026-10-05"}],"tags":["erode","dam"]},
-{"id":"tirunelveli-nellaiappar-temple","name":"Nellaiappar Temple","city":"Tirunelveli","district":"tirunelveli","region":"South Tamil Nadu","category":"temples","description":"A Tirunelveli temple destination listed by Tamil Nadu Tourism.","source_urls":["https://www.tamilnadutourism.tn.gov.in/destinations/tirunelveli"],"sources":[{"name":"Tamil Nadu Tourism","type":"government-tourism","url":"https://www.tamilnadutourism.tn.gov.in/destinations/tirunelveli","retrieved_on":"2026-10-05"}],"tags":["tirunelveli","temple"]},
-{"id":"tirunelveli-papanasam","name":"Papanasam","city":"Tirunelveli","district":"tirunelveli","region":"South Tamil Nadu","category":"waterfalls","description":"A Tirunelveli destination listed by Tamil Nadu Tourism.","source_urls":["https://www.tamilnadutourism.tn.gov.in/destinations/tirunelveli"],"sources":[{"name":"Tamil Nadu Tourism","type":"government-tourism","url":"https://www.tamilnadutourism.tn.gov.in/destinations/tirunelveli","retrieved_on":"2026-10-05"}],"tags":["tirunelveli","waterfall"]},
-{"id":"thoothukudi-kattabomman-memorial","name":"Kattabomman Memorial Fort","city":"Thoothukudi","district":"thoothukudi","region":"South Tamil Nadu","category":"heritage","description":"A Thoothukudi heritage destination listed by Tamil Nadu Tourism.","source_urls":["https://www.tamilnadutourism.tn.gov.in/destinations/thoothukudi"],"sources":[{"name":"Tamil Nadu Tourism","type":"government-tourism","url":"https://www.tamilnadutourism.tn.gov.in/destinations/thoothukudi","retrieved_on":"2026-10-05"}],"tags":["thoothukudi","heritage"]},
-{"id":"thoothukudi-hare-island","name":"Hare Island","city":"Thoothukudi","district":"thoothukudi","region":"South Tamil Nadu","category":"beaches","description":"A Thoothukudi coastal destination listed by Tamil Nadu Tourism.","source_urls":["https://www.tamilnadutourism.tn.gov.in/destinations/thoothukudi"],"sources":[{"name":"Tamil Nadu Tourism","type":"government-tourism","url":"https://www.tamilnadutourism.tn.gov.in/destinations/thoothukudi","retrieved_on":"2026-10-05"}],"tags":["thoothukudi","beach"]},
-{"id":"dindigul-kodaikanal-lake","name":"Kodaikanal Lake","city":"Kodaikanal","district":"dindigul","region":"South Tamil Nadu","category":"nature","description":"A Dindigul destination listed by Tamil Nadu Tourism.","source_urls":["https://www.tamilnadutourism.tn.gov.in/destinations/kodaikanal"],"sources":[{"name":"Tamil Nadu Tourism","type":"government-tourism","url":"https://www.tamilnadutourism.tn.gov.in/destinations/kodaikanal","retrieved_on":"2026-10-05"}],"tags":["kodaikanal","lake"]},
-{"id":"dindigul-bryant-park","name":"Bryant Park","city":"Kodaikanal","district":"dindigul","region":"South Tamil Nadu","category":"nature","description":"A Dindigul destination listed by Tamil Nadu Tourism.","source_urls":["https://www.tamilnadutourism.tn.gov.in/destinations/kodaikanal"],"sources":[{"name":"Tamil Nadu Tourism","type":"government-tourism","url":"https://www.tamilnadutourism.tn.gov.in/destinations/kodaikanal","retrieved_on":"2026-10-05"}],"tags":["kodaikanal","park"]},
-{"id":"theni-vaigai-dam","name":"Vaigai Dam","city":"Theni","district":"theni","region":"South Tamil Nadu","category":"nature","description":"A Theni destination listed by Tamil Nadu Tourism.","source_urls":["https://www.tamilnadutourism.tn.gov.in/destinations/theni"],"sources":[{"name":"Tamil Nadu Tourism","type":"government-tourism","url":"https://www.tamilnadutourism.tn.gov.in/destinations/theni","retrieved_on":"2026-10-05"}],"tags":["theni","dam"]},
-{"id":"theni-meghamalai","name":"Meghamalai","city":"Theni","district":"theni","region":"South Tamil Nadu","category":"hills","description":"A Theni hill destination listed by Tamil Nadu Tourism.","source_urls":["https://www.tamilnadutourism.tn.gov.in/destinations/theni"],"sources":[{"name":"Tamil Nadu Tourism","type":"government-tourism","url":"https://www.tamilnadutourism.tn.gov.in/destinations/theni","retrieved_on":"2026-10-05"}],"tags":["theni","hills"]},
-{"id":"tenkasi-courtallam-falls","name":"Courtallam Falls","city":"Tenkasi","district":"tenkasi","region":"South Tamil Nadu","category":"waterfalls","description":"A Tenkasi waterfall destination listed by Tamil Nadu Tourism.","source_urls":["https://www.tamilnadutourism.tn.gov.in/destinations/courtallam"],"sources":[{"name":"Tamil Nadu Tourism","type":"government-tourism","url":"https://www.tamilnadutourism.tn.gov.in/destinations/courtallam","retrieved_on":"2026-10-05"}],"tags":["tenkasi","waterfall"]},
-{"id":"tenkasi-kutralanathar-temple","name":"Kutralanathar Temple","city":"Tenkasi","district":"tenkasi","region":"South Tamil Nadu","category":"temples","description":"A Tenkasi temple destination listed by Tamil Nadu Tourism.","source_urls":["https://www.tamilnadutourism.tn.gov.in/destinations/courtallam"],"sources":[{"name":"Tamil Nadu Tourism","type":"government-tourism","url":"https://www.tamilnadutourism.tn.gov.in/destinations/courtallam","retrieved_on":"2026-10-05"}],"tags":["tenkasi","temple"]},
-{"id":"tiruvannamalai-arunachaleswarar-temple","name":"Arunachaleswarar Temple","city":"Tiruvannamalai","district":"tiruvannamalai","region":"North Tamil Nadu","category":"temples","description":"A Tiruvannamalai temple destination listed by Tamil Nadu Tourism.","source_urls":["https://www.tamilnadutourism.tn.gov.in/destinations/tiruvannamalai"],"sources":[{"name":"Tamil Nadu Tourism","type":"government-tourism","url":"https://www.tamilnadutourism.tn.gov.in/destinations/tiruvannamalai","retrieved_on":"2026-10-05"}],"tags":["tiruvannamalai","temple"]},
-{"id":"tiruvannamalai-gingee-fort","name":"Gingee Fort","city":"Gingee","district":"viluppuram","region":"North Tamil Nadu","category":"heritage","description":"A Viluppuram heritage destination listed by Tamil Nadu Tourism.","source_urls":["https://www.tamilnadutourism.tn.gov.in/destinations/gingee"],"sources":[{"name":"Tamil Nadu Tourism","type":"government-tourism","url":"https://www.tamilnadutourism.tn.gov.in/destinations/gingee","retrieved_on":"2026-10-05"}],"tags":["gingee","heritage"]},
-{"id":"nagapattinam-velankanni","name":"Velankanni","city":"Velankanni","district":"nagapattinam","region":"Central Tamil Nadu","category":"culture","description":"A Nagapattinam destination listed by Tamil Nadu Tourism.","source_urls":["https://www.tamilnadutourism.tn.gov.in/destinations/velankanni"],"sources":[{"name":"Tamil Nadu Tourism","type":"government-tourism","url":"https://www.tamilnadutourism.tn.gov.in/destinations/velankanni","retrieved_on":"2026-10-05"}],"tags":["velankanni","culture"]},
-{"id":"nagapattinam-kodiyakkarai","name":"Kodiyakkarai","city":"Nagapattinam","district":"nagapattinam","region":"Central Tamil Nadu","category":"wildlife","description":"A Nagapattinam wildlife destination listed by Tamil Nadu Tourism.","source_urls":["https://www.tamilnadutourism.tn.gov.in/destinations/nagapattinam"],"sources":[{"name":"Tamil Nadu Tourism","type":"government-tourism","url":"https://www.tamilnadutourism.tn.gov.in/destinations/nagapattinam","retrieved_on":"2026-10-05"}],"tags":["nagapattinam","wildlife"]},
-{"id":"cuddalore-pichavaram","name":"Pichavaram","city":"Cuddalore","district":"cuddalore","region":"Central Tamil Nadu","category":"nature","description":"A Cuddalore destination listed by Tamil Nadu Tourism.","source_urls":["https://www.tamilnadutourism.tn.gov.in/destinations/pichavaram"],"sources":[{"name":"Tamil Nadu Tourism","type":"government-tourism","url":"https://www.tamilnadutourism.tn.gov.in/destinations/pichavaram","retrieved_on":"2026-10-05"}],"tags":["cuddalore","nature"]},
-{"id":"ariyalur-gangaikonda-cholapuram","name":"Gangaikonda Cholapuram","city":"Ariyalur","district":"ariyalur","region":"Central Tamil Nadu","category":"heritage","description":"An Ariyalur heritage destination listed by Tamil Nadu Tourism.","source_urls":["https://www.tamilnadutourism.tn.gov.in/destinations/ariyalur"],"sources":[{"name":"Tamil Nadu Tourism","type":"government-tourism","url":"https://www.tamilnadutourism.tn.gov.in/destinations/ariyalur","retrieved_on":"2026-10-05"}],"tags":["ariyalur","heritage"]},
-{"id":"krishnagiri-krishnagiri-dam","name":"Krishnagiri Dam","city":"Krishnagiri","district":"krishnagiri","region":"North Tamil Nadu","category":"nature","description":"A Krishnagiri destination listed by Tamil Nadu Tourism.","source_urls":["https://www.tamilnadutourism.tn.gov.in/destinations/krishnagiri"],"sources":[{"name":"Tamil Nadu Tourism","type":"government-tourism","url":"https://www.tamilnadutourism.tn.gov.in/destinations/krishnagiri","retrieved_on":"2026-10-05"}],"tags":["krishnagiri","dam"]},
-{"id":"sivaganga-chettinad-palace","name":"Chettinad Palace","city":"Karaikudi","district":"sivaganga","region":"South Tamil Nadu","category":"heritage","description":"A Sivaganga heritage destination listed by Tamil Nadu Tourism.","source_urls":["https://www.tamilnadutourism.tn.gov.in/destinations/chettinad"],"sources":[{"name":"Tamil Nadu Tourism","type":"government-tourism","url":"https://www.tamilnadutourism.tn.gov.in/destinations/chettinad","retrieved_on":"2026-10-05"}],"tags":["karaikudi","heritage"]}
-]}
+{
+  "destinations": [
+    {
+      "id": "chennai-marina-beach",
+      "name": "Marina Beach",
+      "city": "Chennai",
+      "district": "chennai",
+      "region": "North Tamil Nadu",
+      "category": "beaches",
+      "description": "Marina Beach, or simply the Marina, is a natural urban beach in Chennai, Tamil Nadu, India, along the Bay of Bengal. The beach runs from near Fort St. George in the north to Foreshore Estate in the south, a distance of 6.0 km (3.7 mi), It is a prominent landmark in Chennai.",
+      "source_urls": [
+        "https://www.tamilnadutourism.tn.gov.in/destinations/chennai",
+        "https://en.wikipedia.org/wiki/Marina_Beach"
+      ],
+      "sources": [
+        {
+          "name": "Tamil Nadu Tourism",
+          "type": "government-tourism",
+          "url": "https://www.tamilnadutourism.tn.gov.in/destinations/chennai",
+          "retrieved_on": "2026-10-05",
+          "notes": null
+        },
+        {
+          "name": "Wikipedia",
+          "type": "reference-encyclopedia",
+          "url": "https://en.wikipedia.org/wiki/Marina_Beach",
+          "retrieved_on": "2026-10-06",
+          "notes": "Coordinates, lead image, and factual summary."
+        }
+      ],
+      "tags": [
+        "chennai",
+        "beach"
+      ],
+      "nature_related": true,
+      "family_friendly": true,
+      "latitude": 13.05418,
+      "longitude": 80.28368,
+      "image_reference": "https://upload.wikimedia.org/wikipedia/commons/d/d9/Chennai_-_bird%27s-eye_view.jpg",
+      "detailed_description": "Marina Beach, or simply the Marina, is a natural urban beach in Chennai, Tamil Nadu, India, along the Bay of Bengal. The beach runs from near Fort St. George in the north to Foreshore Estate in the south, a distance of 6.0 km (3.7 mi), It is a prominent landmark in Chennai.\nThe Marina is a primarily sandy beach, with an average width of 300 m (980 ft) and the width at the widest stretch is 437 m (1,434 ft). Bathing and swimming at the Marina are legally prohibited because of the dangers, as the undercurrent is very turbulent. It is one of the most crowded beaches in the country and attracts about 30,000 visitors a day during weekdays and 50,000 visitors a day during the weekends and on holidays. During summer months, about 15,000 to 20,000 people visit the beach daily."
+    },
+    {
+      "id": "chennai-kapaleeshwarar-temple",
+      "name": "Kapaleeshwarar Temple",
+      "city": "Chennai",
+      "district": "chennai",
+      "region": "North Tamil Nadu",
+      "category": "temples",
+      "description": "The Kapaleeshwarar Temple is a Hindu temple dedicated to the god Shiva. It is located in Mylapore, Chennai in the Indian state of Tamil Nadu. The temple was built around the 17th century A.D.",
+      "source_urls": [
+        "https://www.tamilnadutourism.tn.gov.in/destinations/chennai",
+        "https://en.wikipedia.org/wiki/Kapaleeshwarar_Temple"
+      ],
+      "sources": [
+        {
+          "name": "Tamil Nadu Tourism",
+          "type": "government-tourism",
+          "url": "https://www.tamilnadutourism.tn.gov.in/destinations/chennai",
+          "retrieved_on": "2026-10-05",
+          "notes": null
+        },
+        {
+          "name": "Wikipedia",
+          "type": "reference-encyclopedia",
+          "url": "https://en.wikipedia.org/wiki/Kapaleeshwarar_Temple",
+          "retrieved_on": "2026-10-06",
+          "notes": "Coordinates, lead image, and factual summary."
+        }
+      ],
+      "tags": [
+        "chennai",
+        "temple"
+      ],
+      "latitude": 13.0337,
+      "longitude": 80.2699,
+      "image_reference": "https://upload.wikimedia.org/wikipedia/commons/9/99/Kapaleeswarar1.jpg",
+      "detailed_description": "The Kapaleeshwarar Temple is a Hindu temple dedicated to the god Shiva. It is located in Mylapore, Chennai in the Indian state of Tamil Nadu. The temple was built around the 17th century A.D. and is an example of South Indian Architecture.\nAccording to the Puranas, Parvati worshipped her husband Shiva in the form of a peahen (mayil in Tamil), giving the vernacular name Mylai (Mayilāi) to the area that developed around the temple. Shiva is worshiped as Kapaleeshwarar, and is represented by the lingam. Parvati is worshipped as Karpagambal (goddess of the wish-yielding tree). The presiding deity is revered in the 7th-century Tamil Shaiva canonical work, the Tevaram, written by Tamil saint poets known as the Nayanars and classified as one of the Paadal Petra Sthalam.\nThe temple has numerous shrines, with those of Kapaleeshwarar and Karpagambal being the most prominent. The temple complex houses many halls. The temple has six daily rituals at various times from 5:30 a.m. to 10 p.m., and four yearly festivals on its calendar. The Aṟupatimūvar festival celebrated during the Tamil month of Panguni as part of the brahmotsava is the most prominent festival in the temple.\nThe temple is maintained and administered by the Hindu Religious and Charitable Endowments Department of the Government of Tamil Nadu."
+    },
+    {
+      "id": "chennai-fort-st-george",
+      "name": "Fort St George",
+      "city": "Chennai",
+      "district": "chennai",
+      "region": "North Tamil Nadu",
+      "category": "heritage",
+      "description": "Fort St. George (or historically, White Town) is a fortress at the coastal city of Chennai, India. Founded in 1639, it was the first English (later British) fortress in India.",
+      "source_urls": [
+        "https://www.tamilnadutourism.tn.gov.in/destinations/chennai",
+        "https://en.wikipedia.org/wiki/Fort_St._George"
+      ],
+      "sources": [
+        {
+          "name": "Tamil Nadu Tourism",
+          "type": "government-tourism",
+          "url": "https://www.tamilnadutourism.tn.gov.in/destinations/chennai",
+          "retrieved_on": "2026-10-05",
+          "notes": null
+        },
+        {
+          "name": "Wikipedia",
+          "type": "reference-encyclopedia",
+          "url": "https://en.wikipedia.org/wiki/Fort_St._George",
+          "retrieved_on": "2026-10-06",
+          "notes": "Coordinates, lead image, and factual summary."
+        }
+      ],
+      "tags": [
+        "chennai",
+        "heritage"
+      ],
+      "is_heritage": true,
+      "latitude": 13.079722,
+      "longitude": 80.286944,
+      "image_reference": "https://upload.wikimedia.org/wikipedia/commons/b/b0/Fort_St._George%2C_Chennai_2.jpg",
+      "detailed_description": "Fort St. George (or historically, White Town) is a fortress at the coastal city of Chennai, India. Founded in 1639, it was the first English (later British) fortress in India. The construction of the fort provided the impetus for further settlements and trading activity, in what was originally an uninhabited land. Thus, it is a feasible contention to say that the city (named Madras since before the arrival of the Europeans until July 1996) evolved around the fortress. The fort currently houses the Tamil Nadu legislative assembly and other official buildings."
+    },
+    {
+      "id": "madurai-meenakshi-amman-temple",
+      "name": "Meenakshi Amman Temple",
+      "city": "Madurai",
+      "district": "madurai",
+      "region": "South Tamil Nadu",
+      "category": "temples",
+      "description": "Meenakshi Temple, also known as Meenakshi Sundareswarar Temple, is a historic Hindu temple located on the southern bank of the Vaigai River in Madurai, Tamil Nadu, India.",
+      "source_urls": [
+        "https://www.tamilnadutourism.tn.gov.in/destinations/madurai",
+        "https://en.wikipedia.org/wiki/Meenakshi_Temple"
+      ],
+      "sources": [
+        {
+          "name": "Tamil Nadu Tourism",
+          "type": "government-tourism",
+          "url": "https://www.tamilnadutourism.tn.gov.in/destinations/madurai",
+          "retrieved_on": "2026-10-05",
+          "notes": null
+        },
+        {
+          "name": "Wikipedia",
+          "type": "reference-encyclopedia",
+          "url": "https://en.wikipedia.org/wiki/Meenakshi_Temple",
+          "retrieved_on": "2026-10-06",
+          "notes": "Coordinates, lead image, and factual summary."
+        }
+      ],
+      "tags": [
+        "madurai",
+        "temple"
+      ],
+      "latitude": 9.9197,
+      "longitude": 78.1194,
+      "image_reference": "https://upload.wikimedia.org/wikipedia/commons/e/e9/An_aerial_view_of_Madurai_city_from_atop_of_Meenakshi_Amman_temple.jpg",
+      "detailed_description": "Meenakshi Temple, also known as Meenakshi Sundareswarar Temple, is a historic Hindu temple located on the southern bank of the Vaigai River in Madurai, Tamil Nadu, India. It is dedicated to Meenakshi, a form of Parvati, and her consort Sundareswarar (Shiva). The temple is theologically significant as it represents a confluence of various denominations of Hinduism such as Shaivism, Shaktism, and Vaishnavism.\nWhile the Sangam literature mentions the temple city of Madurai, the existence of a temple is first referenced in the Tamil texts from 6th century. It is one of the Paadal Petra Sthalams, Shiva temples that are revered in the Tevaram verses composed by the Nayanars between the 6th and 11th century. The early structures of the temple were built during the reign of the Pandyas in the 12th to 13th centuries. It was later rebuilt by the Vijayanagara Empire in the 14th century, after its destruction by the armies of the Delhi Sultanate. The temple complex was later expanded extensively by the Madurai Nayaks in the 16th and 17th centuries. While a few structural improvements were made during the 18th and 19th centuries, the temple condition degraded due to negligence during the British Raj. After the Indian independence in the mid 20th century, the temple was restored with donations collected from people. Further restoration and kumbhabhishekam of the temple was conducted in 1974, 1995, 2009, and 2026.\nThe temple complex is spread over 5.7 hectares (14 acres). It consists of monuments inside several concentric enclosures (prakara), each layer fortified with high masonry walls. The outer walls have four large gopurams (ornamental gateways), one on each cardinal direction, and 10 smaller gopurams. The tallest is the southern tower, which was built in the 16th century and rises to 170 ft (52 m). The shrines of Meenakshi and Sundareswarar, the prominent and largest of the shrines in the temple, is located in the courtyard of the innermost prakara. The complex has numerous mandapas, including the thousand pillared hall, which are used for housing idols, temple festivities, and as choultry. There are images of various Hindu gods located across various shrines and mandapas in the temple. The golden lotus pond (potramarai kulam) is the main temple tank, located within the premises.\nThe temple is managed by the Hindu Religious and Charitable Endowments Department of the Government of Tamil Nadu. The temple complex is a prominent landmark in Madurai and attracts thousands of visitors every day. Hence, it serves as an economic center, with the goods and services associate with the temple and its activities forming a significant part of the economy of Madurai. The state emblem of Tamil Nadu is based on the west gopuram (ornate tower) of the temple. In October 2017, the temple was adjudged the best 'Swachh Iconic Place' in India under the Swachh Bharat Abhiyan by the Government of India."
+    },
+    {
+      "id": "madurai-thirumalai-nayakkar-palace",
+      "name": "Thirumalai Nayakkar Palace",
+      "city": "Madurai",
+      "district": "madurai",
+      "region": "South Tamil Nadu",
+      "category": "heritage",
+      "description": "Thirumalai Nayakkar Mahal is a palace located 2 km (1.2 mi) to the southeast of the Meenakshi Amman Temple in central Madurai, Tamil Nadu, India. It was built by Tirumala Nayaka, a king of the Madurai Nayak dynasty who ruled Madurai from 1623 to 1659, and was completed in 1636.",
+      "source_urls": [
+        "https://www.tamilnadutourism.tn.gov.in/destinations/madurai",
+        "https://en.wikipedia.org/wiki/Thirumalai_Nayakkar_Mahal"
+      ],
+      "sources": [
+        {
+          "name": "Tamil Nadu Tourism",
+          "type": "government-tourism",
+          "url": "https://www.tamilnadutourism.tn.gov.in/destinations/madurai",
+          "retrieved_on": "2026-10-05",
+          "notes": null
+        },
+        {
+          "name": "Wikipedia",
+          "type": "reference-encyclopedia",
+          "url": "https://en.wikipedia.org/wiki/Thirumalai_Nayakkar_Mahal",
+          "retrieved_on": "2026-10-06",
+          "notes": "Coordinates, lead image, and factual summary."
+        }
+      ],
+      "tags": [
+        "madurai",
+        "heritage"
+      ],
+      "is_heritage": true,
+      "latitude": 9.9148,
+      "longitude": 78.1243,
+      "image_reference": "https://upload.wikimedia.org/wikipedia/commons/8/87/Madurai_Nayak_Palace_Collage.jpg",
+      "detailed_description": "Thirumalai Nayakkar Mahal is a palace located 2 km (1.2 mi) to the southeast of the Meenakshi Amman Temple in central Madurai, Tamil Nadu, India. It was built by Tirumala Nayaka, a king of the Madurai Nayak dynasty who ruled Madurai from 1623 to 1659, and was completed in 1636. The remaining structure is the main palace which served as the living quarters of the king, but the original palace complex was four times larger. It is now a protected national monument."
+    },
+    {
+      "id": "madurai-gandhi-memorial-museum",
+      "name": "Gandhi Memorial Museum",
+      "city": "Madurai",
+      "district": "madurai",
+      "region": "South Tamil Nadu",
+      "category": "heritage",
+      "description": "Gandhi Memorial Museum, established in 1959, is a memorial museum for Mahatma Gandhi located in the city of Madurai in Tamil Nadu, India. Known as Gandhi Museum, it is now one of the five Gandhi Sanghralayas (Gandhi Museums) in the country.",
+      "source_urls": [
+        "https://www.tamilnadutourism.tn.gov.in/destinations/madurai",
+        "https://en.wikipedia.org/wiki/Gandhi_Memorial_Museum,_Madurai"
+      ],
+      "sources": [
+        {
+          "name": "Tamil Nadu Tourism",
+          "type": "government-tourism",
+          "url": "https://www.tamilnadutourism.tn.gov.in/destinations/madurai",
+          "retrieved_on": "2026-10-05",
+          "notes": null
+        },
+        {
+          "name": "Wikipedia",
+          "type": "reference-encyclopedia",
+          "url": "https://en.wikipedia.org/wiki/Gandhi_Memorial_Museum,_Madurai",
+          "retrieved_on": "2026-10-06",
+          "notes": "Coordinates, lead image, and factual summary."
+        }
+      ],
+      "tags": [
+        "madurai",
+        "museum"
+      ],
+      "is_heritage": true,
+      "latitude": 9.929923,
+      "longitude": 78.138593,
+      "image_reference": "https://upload.wikimedia.org/wikipedia/commons/e/e1/Gandhi_Memorial_Museum.jpg",
+      "detailed_description": "Gandhi Memorial Museum, established in 1959, is a memorial museum for Mahatma Gandhi located in the city of Madurai in Tamil Nadu, India. Known as Gandhi Museum, it is now one of the five Gandhi Sanghralayas (Gandhi Museums) in the country. It includes a part of the blood-stained garment worn by Gandhi when he was assassinated by Nathuram Godse."
+    },
+    {
+      "id": "coimbatore-marudamalai-temple",
+      "name": "Marudamalai Temple",
+      "city": "Coimbatore",
+      "district": "coimbatore",
+      "region": "West Tamil Nadu",
+      "category": "temples",
+      "description": "The Marudhamalai Murugan Temple, or the Maruthamalai Marudhachalamurthy Temple, is a 12th-century hill temple situated in Coimbatore, Tamil Nadu, India. Built by Tamil kings during the Sangam period as indicated in the Purananuru, the temple is dedicated to Murugan, a form of Kartikeya.",
+      "source_urls": [
+        "https://www.tamilnadutourism.tn.gov.in/destinations/coimbatore",
+        "https://en.wikipedia.org/wiki/Maruthamalai_Marudhachalamurthy_Temple"
+      ],
+      "sources": [
+        {
+          "name": "Tamil Nadu Tourism",
+          "type": "government-tourism",
+          "url": "https://www.tamilnadutourism.tn.gov.in/destinations/coimbatore",
+          "retrieved_on": "2026-10-05",
+          "notes": null
+        },
+        {
+          "name": "Wikipedia",
+          "type": "reference-encyclopedia",
+          "url": "https://en.wikipedia.org/wiki/Maruthamalai_Marudhachalamurthy_Temple",
+          "retrieved_on": "2026-10-06",
+          "notes": "Coordinates, lead image, and factual summary."
+        }
+      ],
+      "tags": [
+        "coimbatore",
+        "temple"
+      ],
+      "latitude": 11.046111,
+      "longitude": 76.851944,
+      "image_reference": "https://upload.wikimedia.org/wikipedia/commons/4/46/Maruthamalai_Rajagopuram_1.jpg",
+      "detailed_description": "The Marudhamalai Murugan Temple, or the Maruthamalai Marudhachalamurthy Temple, is a 12th-century hill temple situated in Coimbatore, Tamil Nadu, India. Built by Tamil kings during the Sangam period as indicated in the Purananuru, the temple is dedicated to Murugan, a form of Kartikeya. It is traditionally regarded to be the seventh in the list of the Six Abodes of Murugan.\nLike most Murugan temples, the temple is situated upon a hill, part of the Western Ghats about 12 km west from the centre of the city of Coimbatore. Thaipusam and other festivals dedicated to the deity are celebrated here. On many evenings, devotees gather for a procession of Murugan sitting in a chariot (ratha yatra) and encircle the temple.\nThe temple is maintained and administered by the Hindu Religious and Charitable Endowments Department of the Government of Tamil Nadu."
+    },
+    {
+      "id": "coimbatore-voc-park",
+      "name": "VOC Park",
+      "city": "Coimbatore",
+      "district": "coimbatore",
+      "region": "West Tamil Nadu",
+      "category": "nature",
+      "description": "V O Chidambaranar park and zoo (abbreviated VOC park) is a zoological garden and amusement park located in Coimbatore, Tamil Nadu, India. As of 2013, the park houses around 890 animals including 335 birds, 106 mammals and 54 reptiles.",
+      "source_urls": [
+        "https://www.tamilnadutourism.tn.gov.in/destinations/coimbatore",
+        "https://en.wikipedia.org/wiki/VOC_park_and_zoo"
+      ],
+      "sources": [
+        {
+          "name": "Tamil Nadu Tourism",
+          "type": "government-tourism",
+          "url": "https://www.tamilnadutourism.tn.gov.in/destinations/coimbatore",
+          "retrieved_on": "2026-10-05",
+          "notes": null
+        },
+        {
+          "name": "Wikipedia",
+          "type": "reference-encyclopedia",
+          "url": "https://en.wikipedia.org/wiki/VOC_park_and_zoo",
+          "retrieved_on": "2026-10-06",
+          "notes": "Coordinates, lead image, and factual summary."
+        }
+      ],
+      "tags": [
+        "coimbatore",
+        "park"
+      ],
+      "nature_related": true,
+      "family_friendly": true,
+      "latitude": 11.005718,
+      "longitude": 76.970914,
+      "image_reference": "https://upload.wikimedia.org/wikipedia/commons/2/21/VOCFountain.jpg",
+      "detailed_description": "V O Chidambaranar park and zoo (abbreviated VOC park) is a zoological garden and amusement park located in Coimbatore, Tamil Nadu, India. As of 2013, the park houses around 890 animals including 335 birds, 106 mammals and 54 reptiles. The park is named after freedom fighter V O Chidambaram Pillai and is managed by Coimbatore city Corporation."
+    },
+    {
+      "id": "coimbatore-gedee-car-museum",
+      "name": "G.D. Naidu Car Museum",
+      "city": "Coimbatore",
+      "district": "coimbatore",
+      "region": "West Tamil Nadu",
+      "category": "heritage",
+      "description": "Gedee Car Museum is a private vintage car museum located in the city of Coimbatore, India.",
+      "source_urls": [
+        "https://www.tamilnadutourism.tn.gov.in/destinations/coimbatore",
+        "https://en.wikipedia.org/wiki/Gedee_Car_Museum"
+      ],
+      "sources": [
+        {
+          "name": "Tamil Nadu Tourism",
+          "type": "government-tourism",
+          "url": "https://www.tamilnadutourism.tn.gov.in/destinations/coimbatore",
+          "retrieved_on": "2026-10-05",
+          "notes": null
+        },
+        {
+          "name": "Wikipedia",
+          "type": "reference-encyclopedia",
+          "url": "https://en.wikipedia.org/wiki/Gedee_Car_Museum",
+          "retrieved_on": "2026-10-06",
+          "notes": "Coordinates, lead image, and factual summary."
+        }
+      ],
+      "tags": [
+        "coimbatore",
+        "museum"
+      ],
+      "is_heritage": true,
+      "latitude": 11.006616,
+      "longitude": 76.978001,
+      "image_reference": "https://upload.wikimedia.org/wikipedia/commons/0/02/1956_Plymouth_Plaza%2C_Gedee_Car_Museum%2C_Coimbatore%2C_IND_%281%29.jpg",
+      "detailed_description": "Gedee Car Museum is a private vintage car museum located in the city of Coimbatore, India."
+    },
+    {
+      "id": "ooty-botanical-garden",
+      "name": "Government Botanical Garden",
+      "city": "Ooty",
+      "district": "nilgiris",
+      "region": "West Tamil Nadu",
+      "category": "nature",
+      "description": "The Government Botanical Garden is a botanical garden in Udhagamandalam, near Coimbatore (Ooty), Tamil Nadu state, India laid out in 1848. The gardens, divided into several sections, cover an area of around 22 hectares (54 acres), and lie on the lower slopes of Doddabetta peak.",
+      "source_urls": [
+        "https://www.tamilnadutourism.tn.gov.in/destinations/ooty",
+        "https://en.wikipedia.org/wiki/Government_Botanical_Garden"
+      ],
+      "sources": [
+        {
+          "name": "Tamil Nadu Tourism",
+          "type": "government-tourism",
+          "url": "https://www.tamilnadutourism.tn.gov.in/destinations/ooty",
+          "retrieved_on": "2026-10-05",
+          "notes": null
+        },
+        {
+          "name": "Wikipedia",
+          "type": "reference-encyclopedia",
+          "url": "https://en.wikipedia.org/wiki/Government_Botanical_Garden",
+          "retrieved_on": "2026-10-06",
+          "notes": "Coordinates, lead image, and factual summary."
+        }
+      ],
+      "tags": [
+        "ooty",
+        "garden"
+      ],
+      "nature_related": true,
+      "family_friendly": true,
+      "latitude": 11.418752,
+      "longitude": 76.711038,
+      "image_reference": "https://upload.wikimedia.org/wikipedia/commons/c/c1/Botanical_Gardens_-_Ootacamund_%28Ooty%29_-_India_03.JPG",
+      "detailed_description": "The Government Botanical Garden is a botanical garden in Udhagamandalam, near Coimbatore (Ooty), Tamil Nadu state, India laid out in 1848. The gardens, divided into several sections, cover an area of around 22 hectares (54 acres), and lie on the lower slopes of Doddabetta peak. The garden has a terraced layout. It is maintained by the Tamil Nadu Horticulture Department.\nIt ascends the slopes of the hill at an elevation of 2250–2500 metres above mean sea level. The garden enjoys a temperate climate, with an average rainfall of 140 cm, the most of which is received during south-west monsoon, with frosty nights from November to February. The maximum and minimum temperatures are 28 °C and 0 °C respectively."
+    },
+    {
+      "id": "ooty-doddabetta-peak",
+      "name": "Doddabetta Peak",
+      "city": "Ooty",
+      "district": "nilgiris",
+      "region": "West Tamil Nadu",
+      "category": "hills",
+      "description": "Doddabetta (IPA: [d̪oɖːɐbeʈːɐ]) is the highest mountain in the Nilgiri Mountains at 2,637 metres (8,652 ft). There is a reserved forest area around the peak. It is 9 km (5.6 mi) from Ooty, on the Ooty-Kotagiri Road in the Nilgiris District of Tamil Nadu, India.",
+      "source_urls": [
+        "https://www.tamilnadutourism.tn.gov.in/destinations/ooty",
+        "https://en.wikipedia.org/wiki/Doddabetta"
+      ],
+      "sources": [
+        {
+          "name": "Tamil Nadu Tourism",
+          "type": "government-tourism",
+          "url": "https://www.tamilnadutourism.tn.gov.in/destinations/ooty",
+          "retrieved_on": "2026-10-05",
+          "notes": null
+        },
+        {
+          "name": "Wikipedia",
+          "type": "reference-encyclopedia",
+          "url": "https://en.wikipedia.org/wiki/Doddabetta",
+          "retrieved_on": "2026-10-06",
+          "notes": "Coordinates, lead image, and factual summary."
+        }
+      ],
+      "tags": [
+        "ooty",
+        "hills"
+      ],
+      "nature_related": true,
+      "family_friendly": true,
+      "latitude": 11.402417,
+      "longitude": 76.736722,
+      "image_reference": "https://upload.wikimedia.org/wikipedia/commons/7/7c/Arts_College_Hill_Ooty_Nilgiris_Mar21_A7C_00188.jpg",
+      "detailed_description": "Doddabetta (IPA: [d̪oɖːɐbeʈːɐ]) is the highest mountain in the Nilgiri Mountains at 2,637 metres (8,652 ft). There is a reserved forest area around the peak. It is 9 km (5.6 mi) from Ooty, on the Ooty-Kotagiri Road in the Nilgiris District of Tamil Nadu, India. It is a popular tourist attraction with road access to the summit. It is the third highest peak in South India next to Anamudi and Meesapulimala. The peaks Hecuba (2,375 m (7,792 ft)), Kattadadu (2,418 m (7,933 ft)) and Kulkudi (2,439 m (8,002 ft)) are the three closely linked summits in the west of the Doddabetta range near to Udagamandalam. The word Doddabetta is derived from either Kannada or Badaga, meaning 'big hill' in both the languages."
+    },
+    {
+      "id": "ooty-rose-garden",
+      "name": "Government Rose Garden",
+      "city": "Ooty",
+      "district": "nilgiris",
+      "region": "West Tamil Nadu",
+      "category": "nature",
+      "description": "The Government Rose Garden (formerly known as the Jayalalithaa Rose Garden, Centenary Rose Park and Nootrandu Roja Poonga) is situated on the slopes of Elk Hill in Vijayanagaram of Ooty town in Tamil Nadu, India at an altitude of 2200 meters.",
+      "source_urls": [
+        "https://www.tamilnadutourism.tn.gov.in/destinations/ooty",
+        "https://en.wikipedia.org/wiki/Government_Rose_Garden"
+      ],
+      "sources": [
+        {
+          "name": "Tamil Nadu Tourism",
+          "type": "government-tourism",
+          "url": "https://www.tamilnadutourism.tn.gov.in/destinations/ooty",
+          "retrieved_on": "2026-10-05",
+          "notes": null
+        },
+        {
+          "name": "Wikipedia",
+          "type": "reference-encyclopedia",
+          "url": "https://en.wikipedia.org/wiki/Government_Rose_Garden",
+          "retrieved_on": "2026-10-06",
+          "notes": "Coordinates, lead image, and factual summary."
+        }
+      ],
+      "tags": [
+        "ooty",
+        "garden"
+      ],
+      "nature_related": true,
+      "family_friendly": true,
+      "latitude": 11.406111,
+      "longitude": 76.708611,
+      "image_reference": "https://upload.wikimedia.org/wikipedia/commons/c/c2/Government_Rose_Garden%2C_Ooty%2C_Tamil_Nadu%2C_India.jpg",
+      "detailed_description": "The Government Rose Garden (formerly known as the Jayalalithaa Rose Garden, Centenary Rose Park and Nootrandu Roja Poonga) is situated on the slopes of Elk Hill in Vijayanagaram of Ooty town in Tamil Nadu, India at an altitude of 2200 meters."
+    },
+    {
+      "id": "tiruchirappalli-sri-ranganathaswamy-temple",
+      "name": "Sri Ranganathaswamy Temple",
+      "city": "Tiruchirappalli",
+      "district": "tiruchirappalli",
+      "region": "Central Tamil Nadu",
+      "category": "temples",
+      "description": "The Ranganathaswamy Temple, also known as Arulmigu Ranganathar Thirukovil, is a Hindu temple dedicated to Ranganathar (a form of Vishnu) and his consort Ranganayaki (a form of Lakshmi).",
+      "source_urls": [
+        "https://www.tamilnadutourism.tn.gov.in/destinations/trichy",
+        "https://en.wikipedia.org/wiki/Ranganathaswamy_Temple,_Srirangam"
+      ],
+      "sources": [
+        {
+          "name": "Tamil Nadu Tourism",
+          "type": "government-tourism",
+          "url": "https://www.tamilnadutourism.tn.gov.in/destinations/trichy",
+          "retrieved_on": "2026-10-05",
+          "notes": null
+        },
+        {
+          "name": "Wikipedia",
+          "type": "reference-encyclopedia",
+          "url": "https://en.wikipedia.org/wiki/Ranganathaswamy_Temple,_Srirangam",
+          "retrieved_on": "2026-10-06",
+          "notes": "Coordinates, lead image, and factual summary."
+        }
+      ],
+      "tags": [
+        "tiruchirappalli",
+        "temple"
+      ],
+      "latitude": 10.8625,
+      "longitude": 78.689722,
+      "image_reference": "https://upload.wikimedia.org/wikipedia/commons/9/99/Ranganathaswamy_temple_tiruchirappalli.jpg",
+      "detailed_description": "The Ranganathaswamy Temple, also known as Arulmigu Ranganathar Thirukovil, is a Hindu temple dedicated to Ranganathar (a form of Vishnu) and his consort Ranganayaki (a form of Lakshmi). The temple is located in Srirangam, Tiruchirappalli, Tamil Nadu, India. Constructed in the Tamil architectural style, the temple is glorified by the Tamil poet-saints called the Alvars in their canon, the Naalayira Divya Prabhandham, and has the unique distinction of being the foremost among the 108 Divya Desams dedicated to the god Vishnu. The Srirangam temple stands as the largest functioning religious complex in the world in active worship with a continuous historical presence as a Hindu temple. Some of these structures have been renovated, expanded, and rebuilt over the centuries as a living temple. The latest addition is the outer rajagopuram (tower) that is approximately 73 metres (240 ft) tall, which was completed in 1987 with support from the Ahobila Mutt among others. The temple is a thriving Hindu house of worship and follows the Thenkalai tradition of Sri Vaishnavism, based on the Pancharatra Agama. The annual 21-day festival conducted during the Tamil month of Margazhi (December–January) attracts one million visitors. The temple complex has been nominated as a UNESCO World Heritage Site and is in UNESCO's tentative list. In 2017, the temple won the UNESCO Asia-Pacific Award of Merit for cultural heritage conservation, making it the first temple in Tamil Nadu to receive the award from UNESCO. The temple is notable for its vibrant colors; the BBC ranked it as \"one of the most colorful buildings in the world.\"\nIt is among the most illustrious Vaishnava temples in the world, rich in legend and history. The deity finds a mention in the Sanskrit epic Ramayana which is dated to between the 4th century BCE and the 3rd century CE (completed version). The temple has played an important role in Vaishnava history starting with the 11th-century career of Ramanuja and his predecessors Nathamuni and Yamunacharya in Srirangam. Its location, on an island between the Kollidam and Kaveri rivers, has rendered it vulnerable to flooding as well as the rampaging of invading armies which repeatedly commandeered the site for military encampment. The temple was looted and destroyed by the Delhi Sultanate armies in a broad plunder raid on various cities of the Pandyan kingdom in the early 14th century. The temple was rebuilt in the late 14th century, the site fortified and expanded with many more gopurams in the 16th and 17th centuries. It was one of the hubs of early Bhakti movement with a devotional singing and dance tradition, but this tradition stopped during the 14th century and was revived in a limited way much later.\nThe temple and temple town occupy an area of 63 hectares (155 acres) with 81 shrines, 21 towers, 39 pavilions, and many water tanks integrated into the complex. The temple town is a significant archaeological and epigraphical site, providing a historic window into the early and mid medieval South Indian society and culture. Numerous inscriptions suggest that this Hindu temple served not only as a spiritual center, but also a major economic and charitable institution that operated education and hospital facilities, ran a free kitchen, and financed regional infrastructure projects from the gifts and donations it received.\nThe temple is part of the famous pilgrimage Tri Ranga darshana, where three ranga temples are visited on a single day, situated on the three naturally formed islands of Kaveri. Other two being Adi Ranga and Madhya Ranga."
+    },
+    {
+      "id": "tiruchirappalli-rockfort-temple",
+      "name": "Rockfort Temple",
+      "city": "Tiruchirappalli",
+      "district": "tiruchirappalli",
+      "region": "Central Tamil Nadu",
+      "category": "temples",
+      "description": "Tiruchirappalli Rock Fort, locally known as Malaikottai, is a historic fortification and temple complex built on an ancient rock. It is located in the city of Tiruchirappalli, on the banks of river Kaveri, Tamil Nadu, India.",
+      "source_urls": [
+        "https://www.tamilnadutourism.tn.gov.in/destinations/trichy",
+        "https://en.wikipedia.org/wiki/Tiruchirappalli_Rock_Fort"
+      ],
+      "sources": [
+        {
+          "name": "Tamil Nadu Tourism",
+          "type": "government-tourism",
+          "url": "https://www.tamilnadutourism.tn.gov.in/destinations/trichy",
+          "retrieved_on": "2026-10-05",
+          "notes": null
+        },
+        {
+          "name": "Wikipedia",
+          "type": "reference-encyclopedia",
+          "url": "https://en.wikipedia.org/wiki/Tiruchirappalli_Rock_Fort",
+          "retrieved_on": "2026-10-06",
+          "notes": "Coordinates, lead image, and factual summary."
+        }
+      ],
+      "tags": [
+        "tiruchirappalli",
+        "temple"
+      ],
+      "latitude": 10.828,
+      "longitude": 78.697,
+      "image_reference": "https://upload.wikimedia.org/wikipedia/commons/6/62/The_tank_and_Rockfort_Trichinopoly.jpg",
+      "detailed_description": "Tiruchirappalli Rock Fort, locally known as Malaikottai, is a historic fortification and temple complex built on an ancient rock. It is located in the city of Tiruchirappalli, on the banks of river Kaveri, Tamil Nadu, India. It is constructed on an 83 metres (272 ft) high rock. There are two Hindu temples inside, the Ucchi Pillayar Temple, Rockfort and the Thayumanaswami Temple, Rockfort. Other local tourist attractions include the famous Pallava-era Ganesha temple and the Madurai Nayak-era fort. The fort complex has witnessed fierce battles between the Madurai Nayakas and Adil Shahi dynasty of Bijapur, Carnatic region and Maratha Imperial forces. The fort played an important part during the Carnatic Wars, helping lay the foundations of the British Empire in India. The Rockfort is the most prominent landmark of the city."
+    },
+    {
+      "id": "tiruchirappalli-kallanai-dam",
+      "name": "Kallanai Dam",
+      "city": "Tiruchirappalli",
+      "district": "tiruchirappalli",
+      "region": "Central Tamil Nadu",
+      "category": "heritage",
+      "description": "Kallanai (literally “stone dam”, also known as the Grand Anicut) is an ancient dam built by Karikala of Chola dynasty in 150 CE. It was built (in running water) across the Kaveri river flowing from Tiruchirapalli District to Thanjavur district, Tamil Nadu, India.",
+      "source_urls": [
+        "https://www.tamilnadutourism.tn.gov.in/destinations/trichy",
+        "https://en.wikipedia.org/wiki/Kallanai_Dam"
+      ],
+      "sources": [
+        {
+          "name": "Tamil Nadu Tourism",
+          "type": "government-tourism",
+          "url": "https://www.tamilnadutourism.tn.gov.in/destinations/trichy",
+          "retrieved_on": "2026-10-05",
+          "notes": null
+        },
+        {
+          "name": "Wikipedia",
+          "type": "reference-encyclopedia",
+          "url": "https://en.wikipedia.org/wiki/Kallanai_Dam",
+          "retrieved_on": "2026-10-06",
+          "notes": "Coordinates, lead image, and factual summary."
+        }
+      ],
+      "tags": [
+        "tiruchirappalli",
+        "heritage"
+      ],
+      "is_heritage": true,
+      "image_reference": "https://upload.wikimedia.org/wikipedia/commons/f/f1/Grand_Anicut%2C_Kallanai_%2811876067114%29.jpg",
+      "detailed_description": "Kallanai (literally “stone dam”, also known as the Grand Anicut) is an ancient dam built by Karikala of Chola dynasty in 150 CE. It was built (in running water) across the Kaveri river flowing from Tiruchirapalli District to Thanjavur district, Tamil Nadu, India. The dam is located in Thanjavur district, 15 km from Tiruchirapalli and 45 km from Thanjavur. It is the fourth oldest water-diversion or water-regulator structure in the world and the oldest in India that is still in use."
+    },
+    {
+      "id": "thanjavur-brihadeeswarar-temple",
+      "name": "Brihadeeswarar Temple",
+      "city": "Thanjavur",
+      "district": "thanjavur",
+      "region": "Central Tamil Nadu",
+      "category": "temples",
+      "description": "Brihadisvara Temple, called Rajarajesvaram (lit. 'Lord of Rajaraja') by its builder, and known locally as Thanjai Periya Kovil (lit. 'Thanjavur Big Temple') and Peruvudaiyar Kovil (lit.",
+      "source_urls": [
+        "https://www.tamilnadutourism.tn.gov.in/destinations/thanjavur",
+        "https://en.wikipedia.org/wiki/Brihadisvara_Temple"
+      ],
+      "sources": [
+        {
+          "name": "Tamil Nadu Tourism",
+          "type": "government-tourism",
+          "url": "https://www.tamilnadutourism.tn.gov.in/destinations/thanjavur",
+          "retrieved_on": "2026-10-05",
+          "notes": null
+        },
+        {
+          "name": "Wikipedia",
+          "type": "reference-encyclopedia",
+          "url": "https://en.wikipedia.org/wiki/Brihadisvara_Temple",
+          "retrieved_on": "2026-10-06",
+          "notes": "Coordinates, lead image, and factual summary."
+        }
+      ],
+      "tags": [
+        "thanjavur",
+        "temple"
+      ],
+      "is_unesco": true,
+      "is_heritage": true,
+      "latitude": 10.782778,
+      "longitude": 79.131667,
+      "image_reference": "https://upload.wikimedia.org/wikipedia/commons/d/dd/Brihadisvara_Temple_during_Maha_Shivaratri-WUS03611_%28edit%29.jpg",
+      "detailed_description": "Brihadisvara Temple, called Rajarajesvaram (lit. 'Lord of Rajaraja') by its builder, and known locally as Thanjai Periya Kovil (lit. 'Thanjavur Big Temple') and Peruvudaiyar Kovil (lit. 'Temple of the great lord'), is a Shaivite Hindu temple built in a Chola architectural style located on the south bank of the Cauvery river in Thanjavur, Tamil Nadu, India. It is one of the largest Hindu temples and an exemplar of Tamil architecture. It is also called Dakshina Meru (Meru of the South). Built by Chola emperor Rajaraja I between 1003 and 1010 CE, the temple is a part of the UNESCO World Heritage Site known as the \"Great Living Chola Temples\", along with the Chola-era Gangaikonda Cholapuram temple and Airavatesvara temple, which are about 70 kilometres (43 mi) and 40 kilometres (25 mi) to its northeast respectively.\nThe original monuments of this 11th-century temple were built around a moat. It included gopura, the main temple, its massive tower, inscriptions, frescoes, and sculptures predominantly related to Shaivism, but also of Vaishnavism and Shaktism. The temple was damaged in its history and some artwork is now missing. Additional mandapam and monuments were added in the centuries that followed. The temple now stands amidst fortified walls that were added after the 16th century.\nBuilt using granite, the vimana tower above the shrine is one of the tallest in South India. The temple has a massive colonnaded prakara (corridor) and one of the largest Shiva lingas in India. It is also famed for the quality of its sculpture, as well as being the location that commissioned the brass Nataraja, Shiva as the lord of dance, in the 11th century. The complex includes shrines for Nandi, Parvati, Murugan, Ganesha, Sabhapati, Dakshinamurti, Chandeshvara, Varahi, Thiyagarajar of Thiruvarur, Siddhar Karuvoorar and others. The temple is one of the most visited tourist attractions in Tamil Nadu."
+    },
+    {
+      "id": "thanjavur-royal-palace",
+      "name": "Thanjavur Royal Palace",
+      "city": "Thanjavur",
+      "district": "thanjavur",
+      "region": "Central Tamil Nadu",
+      "category": "heritage",
+      "description": "The Thanjavur Maratha Palace, known locally as Aranmanai (« the Palace » in Tamil), is the official residence of the Bhonsle family that ruled Tanjore from 1674 to 1855.",
+      "source_urls": [
+        "https://www.tamilnadutourism.tn.gov.in/destinations/thanjavur",
+        "https://en.wikipedia.org/wiki/Thanjavur_Maratha_Palace"
+      ],
+      "sources": [
+        {
+          "name": "Tamil Nadu Tourism",
+          "type": "government-tourism",
+          "url": "https://www.tamilnadutourism.tn.gov.in/destinations/thanjavur",
+          "retrieved_on": "2026-10-05",
+          "notes": null
+        },
+        {
+          "name": "Wikipedia",
+          "type": "reference-encyclopedia",
+          "url": "https://en.wikipedia.org/wiki/Thanjavur_Maratha_Palace",
+          "retrieved_on": "2026-10-06",
+          "notes": "Coordinates, lead image, and factual summary."
+        }
+      ],
+      "tags": [
+        "thanjavur",
+        "heritage"
+      ],
+      "is_heritage": true,
+      "image_reference": "https://upload.wikimedia.org/wikipedia/commons/b/b8/Thanjavur_Maratha_Palace-WUS02790.jpg",
+      "detailed_description": "The Thanjavur Maratha Palace, known locally as Aranmanai (« the Palace » in Tamil), is the official residence of the Bhonsle family that ruled Tanjore from 1674 to 1855. Located at the heart of the historical city of Thanjavur, Tamil Nadu, this palace has served as the residence of the successive rulers of the kingdom from at least the 16th century."
+    },
+    {
+      "id": "thanjavur-saraswathi-mahal-library",
+      "name": "Saraswathi Mahal Library",
+      "city": "Thanjavur",
+      "district": "thanjavur",
+      "region": "Central Tamil Nadu",
+      "category": "heritage",
+      "description": "Saraswathi Mahal Library, also called Thanjavur Maharaja Serfoji's Saraswathi Mahal Library is a library located in Thanjavur (Tanjore), Tamil Nadu, India.",
+      "source_urls": [
+        "https://www.tamilnadutourism.tn.gov.in/destinations/thanjavur",
+        "https://en.wikipedia.org/wiki/Saraswathi_Mahal_Library"
+      ],
+      "sources": [
+        {
+          "name": "Tamil Nadu Tourism",
+          "type": "government-tourism",
+          "url": "https://www.tamilnadutourism.tn.gov.in/destinations/thanjavur",
+          "retrieved_on": "2026-10-05",
+          "notes": null
+        },
+        {
+          "name": "Wikipedia",
+          "type": "reference-encyclopedia",
+          "url": "https://en.wikipedia.org/wiki/Saraswathi_Mahal_Library",
+          "retrieved_on": "2026-10-06",
+          "notes": "Coordinates, lead image, and factual summary."
+        }
+      ],
+      "tags": [
+        "thanjavur",
+        "library"
+      ],
+      "is_heritage": true,
+      "latitude": 10.791389,
+      "longitude": 79.136111,
+      "image_reference": "https://upload.wikimedia.org/wikipedia/commons/7/76/2013-Sarasvati-Mahal-Library-101.JPG",
+      "detailed_description": "Saraswathi Mahal Library, also called Thanjavur Maharaja Serfoji's Saraswathi Mahal Library is a library located in Thanjavur (Tanjore), Tamil Nadu, India. It is one of the oldest subsisting libraries in Asia established during 16th century by the Nayak kings of Thanjavur and has on display a rare collection of Palm leaf manuscripts and paper written in Tamil and Sanskrit and a few other indigenous languages of india (especially southern regional languages). The collection comprises well over 49,000 volumes, though only a tiny fraction of these are on display. The library has a complete catalog of holdings, which is being made available online. Some rare holdings can be viewed on site by prior arrangement. Encyclopedia Britannica mentions the library as the \"Most remarkable library of India\"."
+    },
+    {
+      "id": "mamallapuram-shore-temple",
+      "name": "Shore Temple",
+      "city": "Mamallapuram",
+      "district": "chengalpattu",
+      "region": "North Tamil Nadu",
+      "category": "heritage",
+      "description": "The Shore Temple (c. 725 AD) is a complex of temples and shrines that overlooks the shore of the Bay of Bengal. It is located in Mahabalipuram, about 60 kilometres (37 mi) south of Chennai in Tamil Nadu, India.",
+      "source_urls": [
+        "https://www.tamilnadutourism.tn.gov.in/destinations/mahabalipuram",
+        "https://en.wikipedia.org/wiki/Shore_Temple"
+      ],
+      "sources": [
+        {
+          "name": "Tamil Nadu Tourism",
+          "type": "government-tourism",
+          "url": "https://www.tamilnadutourism.tn.gov.in/destinations/mahabalipuram",
+          "retrieved_on": "2026-10-05",
+          "notes": null
+        },
+        {
+          "name": "Wikipedia",
+          "type": "reference-encyclopedia",
+          "url": "https://en.wikipedia.org/wiki/Shore_Temple",
+          "retrieved_on": "2026-10-06",
+          "notes": "Coordinates, lead image, and factual summary."
+        }
+      ],
+      "tags": [
+        "mamallapuram",
+        "heritage"
+      ],
+      "is_unesco": true,
+      "is_heritage": true,
+      "latitude": 12.616389,
+      "longitude": 80.198611,
+      "image_reference": "https://upload.wikimedia.org/wikipedia/commons/7/74/Shore_Temple_-Mamallapuram_-Tamil_Nadu_-N-TN-C55.jpg",
+      "detailed_description": "The Shore Temple (c. 725 AD) is a complex of temples and shrines that overlooks the shore of the Bay of Bengal. It is located in Mahabalipuram, about 60 kilometres (37 mi) south of Chennai in Tamil Nadu, India.\nIt is a structural temple, built with blocks of granite, dating from the 8th century AD. At the time of its creation, the site was a busy port during the reign of Narasimhavarman II of the Indian Pallava dynasty. As one of the Group of Monuments at Mahabalipuram, it has been classified as a UNESCO World Heritage Site since 1984. It is one of the oldest structural (versus rock-cut) stone temples of Southern India."
+    },
+    {
+      "id": "mamallapuram-pancha-rathas",
+      "name": "Pancha Rathas",
+      "city": "Mamallapuram",
+      "district": "chengalpattu",
+      "region": "North Tamil Nadu",
+      "category": "heritage",
+      "description": "Pancha Rathas (also known as Five Rathas or Pandava Rathas or Ainthinai kovil) is a monument complex at Mahabalipuram, on the Coromandel Coast of the Bay of Bengal, in the Chengalpattu district of the state of Tamil Nadu, India.",
+      "source_urls": [
+        "https://www.tamilnadutourism.tn.gov.in/destinations/mahabalipuram",
+        "https://en.wikipedia.org/wiki/Pancha_Rathas"
+      ],
+      "sources": [
+        {
+          "name": "Tamil Nadu Tourism",
+          "type": "government-tourism",
+          "url": "https://www.tamilnadutourism.tn.gov.in/destinations/mahabalipuram",
+          "retrieved_on": "2026-10-05",
+          "notes": null
+        },
+        {
+          "name": "Wikipedia",
+          "type": "reference-encyclopedia",
+          "url": "https://en.wikipedia.org/wiki/Pancha_Rathas",
+          "retrieved_on": "2026-10-06",
+          "notes": "Coordinates, lead image, and factual summary."
+        }
+      ],
+      "tags": [
+        "mamallapuram",
+        "heritage"
+      ],
+      "is_unesco": true,
+      "is_heritage": true,
+      "latitude": 12.608806,
+      "longitude": 80.189611,
+      "image_reference": "https://upload.wikimedia.org/wikipedia/commons/c/c2/Five_Rathas_at_Mahaballipuram%2CTamil_Nadu.jpg",
+      "detailed_description": "Pancha Rathas (also known as Five Rathas or Pandava Rathas or Ainthinai kovil) is a monument complex at Mahabalipuram, on the Coromandel Coast of the Bay of Bengal, in the Chengalpattu district of the state of Tamil Nadu, India. Pancha Rathas is an example of monolithic Indian rock-cut architecture. The complex was initially thought to have carved during the reign of King Narasimhavarman I (630–668 CE). However, historians such as Nagaswamy attributed all of monuments in Mahabalipuram to Narasimhavarman II (c. 690–725 CE) with the discovery of new inscriptions. The complex is under the auspices of the Archaeological Survey of India (ASI) and is part of the UNESCO World Heritage Site inscribed by UNESCO in 1984 as Group of Monuments at Mahabalipuram.\nEach of the five monuments in the Pancha Rathas complex resembles a chariot (ratha), and each is carved over a single, long stone or monolith, of granite which slopes in north–south direction with a slight incline. Though sometimes mistakenly referred to as temples, the structures were never consecrated because they were never completed following the death of Narasimhavarman I. The structures are named after the Pancha Pandavas and their common wife Draupadi, of epic Mahabharata fame. In order of their size, they include the Dharmaraja Ratha, Bhima Ratha, Arjuna Ratha, Nakula Sahadeva Ratha, and Draupadi Ratha."
+    },
+    {
+      "id": "kanchipuram-kamakshi-amman-temple",
+      "name": "Kamakshi Amman Temple",
+      "city": "Kanchipuram",
+      "district": "kanchipuram",
+      "region": "North Tamil Nadu",
+      "category": "temples",
+      "description": "The Kamakshi Amman Temple, also known as Kamakoti Nayaki Kovil, is a Hindu temple dedicated to the goddess Kamakshi, a primary aspect of Adi Shakti, the supreme goddess in Shaktism.",
+      "source_urls": [
+        "https://www.tamilnadutourism.tn.gov.in/destinations/kanchipuram",
+        "https://en.wikipedia.org/wiki/Kamakshi_Amman_Temple"
+      ],
+      "sources": [
+        {
+          "name": "Tamil Nadu Tourism",
+          "type": "government-tourism",
+          "url": "https://www.tamilnadutourism.tn.gov.in/destinations/kanchipuram",
+          "retrieved_on": "2026-10-05",
+          "notes": null
+        },
+        {
+          "name": "Wikipedia",
+          "type": "reference-encyclopedia",
+          "url": "https://en.wikipedia.org/wiki/Kamakshi_Amman_Temple",
+          "retrieved_on": "2026-10-06",
+          "notes": "Coordinates, lead image, and factual summary."
+        }
+      ],
+      "tags": [
+        "kanchipuram",
+        "temple"
+      ],
+      "latitude": 12.840684,
+      "longitude": 79.703238,
+      "image_reference": "https://upload.wikimedia.org/wikipedia/commons/9/90/Kanchipuram.in_Kamakshi-Amman_Temple_-_panoramio_-_SINHA_%28cropped%29.jpg",
+      "detailed_description": "The Kamakshi Amman Temple, also known as Kamakoti Nayaki Kovil, is a Hindu temple dedicated to the goddess Kamakshi, a primary aspect of Adi Shakti, the supreme goddess in Shaktism. The temple is located in the historic city of Kanchipuram, near Chennai, India.\nIt was founded in the 5th-8th century CE by the Pallava kings, whose capital was in Kanchipuram.\nClassified as one of the 18 main Shakta Pithas, it is a major centre of Shaktism in Tamil Nadu. The temple also houses a shrine for Vishnu, in his form of Varaha, and is one of the Divya Desams, the sacred sites of the Sri Vaishnava tradition."
+    },
+    {
+      "id": "kanchipuram-kailasanathar-temple",
+      "name": "Kailasanathar Temple",
+      "city": "Kanchipuram",
+      "district": "kanchipuram",
+      "region": "North Tamil Nadu",
+      "category": "temples",
+      "description": "The Kailasanathar Temple, Kanchipuram, also referred to as the Kailasanatha temple, is a Pallava-era historic Hindu temple in Kanchipuram, Tamil Nadu, India. Dedicated to Shiva, it is one of the oldest surviving monuments in Kanchipuram.",
+      "source_urls": [
+        "https://www.tamilnadutourism.tn.gov.in/destinations/kanchipuram",
+        "https://en.wikipedia.org/wiki/Kailasanathar_Temple,_Kanchipuram"
+      ],
+      "sources": [
+        {
+          "name": "Tamil Nadu Tourism",
+          "type": "government-tourism",
+          "url": "https://www.tamilnadutourism.tn.gov.in/destinations/kanchipuram",
+          "retrieved_on": "2026-10-05",
+          "notes": null
+        },
+        {
+          "name": "Wikipedia",
+          "type": "reference-encyclopedia",
+          "url": "https://en.wikipedia.org/wiki/Kailasanathar_Temple,_Kanchipuram",
+          "retrieved_on": "2026-10-06",
+          "notes": "Coordinates, lead image, and factual summary."
+        }
+      ],
+      "tags": [
+        "kanchipuram",
+        "temple"
+      ],
+      "latitude": 12.842306,
+      "longitude": 79.689667,
+      "image_reference": "https://upload.wikimedia.org/wikipedia/commons/1/19/7th_century_Sri_Kailashnathar_Temple_Kanchipuram_Tamil_Nadu_India_01_%2811%29.jpg",
+      "detailed_description": "The Kailasanathar Temple, Kanchipuram, also referred to as the Kailasanatha temple, is a Pallava-era historic Hindu temple in Kanchipuram, Tamil Nadu, India. Dedicated to Shiva, it is one of the oldest surviving monuments in Kanchipuram. It reflects a Dravidian architecture and was built around 700 CE by Narasimhavarman II with additions by Mahendravarman III. A square-plan temple, it has a mukha-mandapa (entrance hall), a maha-mandapa (gathering hall) and a primary garbha-griya (sanctum) topped with a four-storey vimana. The main sanctum is surrounded by nine shrines, seven outside and two inside flanking the entrance of the sanctum, all with forms of Shiva. The outer walls of the temple's prakara (courtyard) is also surrounded by cells.\nThe Kailasanathar temple is notable for its intricately carved galaxy of Hindu art in the late 7th- and early 8th-century Tamil tradition. These largely relate to Shaivism, yet also include significant number of themes from Vaishnavism, Shaktism and Vedic deities. The temple is also notable for one of the early and best specimens of Hindu mural art in Tamil Nadu. This is found in the inner walls of the courtyard cells. The murals are in a style that is also found in the Ajanta Caves, as well as in the historic paintings in the 8th-century Vaikunthaperumal temple, also in Kanchipuram. The temple walls have many inscriptions in early scripts, important to the epigraphical study of regional history and Tamil temple traditions.\nThe structure contains 58 small shrines which are dedicated to various forms of Shiva. These are built into niches on the inner face of the high compound wall of the circumambulatory passage. The temple is one of the most prominent tourist attractions of the city."
+    },
+    {
+      "id": "rameswaram-ramanathaswamy-temple",
+      "name": "Ramanathaswamy Temple",
+      "city": "Rameswaram",
+      "district": "ramanathapuram",
+      "region": "South Tamil Nadu",
+      "category": "temples",
+      "description": "Ramanathaswamy Temple (Rāmanātasvāmi Kōyil) is a Hindu temple dedicated to the Hindu god Shiva located on Rameswaram island in the state of Tamil Nadu, India. It is one of the twelve Jyotirlinga temples.",
+      "source_urls": [
+        "https://www.tamilnadutourism.tn.gov.in/destinations/rameswaram",
+        "https://en.wikipedia.org/wiki/Ramanathaswamy_Temple"
+      ],
+      "sources": [
+        {
+          "name": "Tamil Nadu Tourism",
+          "type": "government-tourism",
+          "url": "https://www.tamilnadutourism.tn.gov.in/destinations/rameswaram",
+          "retrieved_on": "2026-10-05",
+          "notes": null
+        },
+        {
+          "name": "Wikipedia",
+          "type": "reference-encyclopedia",
+          "url": "https://en.wikipedia.org/wiki/Ramanathaswamy_Temple",
+          "retrieved_on": "2026-10-06",
+          "notes": "Coordinates, lead image, and factual summary."
+        }
+      ],
+      "tags": [
+        "rameswaram",
+        "temple"
+      ],
+      "latitude": 9.288106,
+      "longitude": 79.317282,
+      "image_reference": "https://upload.wikimedia.org/wikipedia/commons/8/84/Ramanathaswamy_temple7.JPG",
+      "detailed_description": "Ramanathaswamy Temple (Rāmanātasvāmi Kōyil) is a Hindu temple dedicated to the Hindu god Shiva located on Rameswaram island in the state of Tamil Nadu, India. It is one of the twelve Jyotirlinga temples. It is one of the 276 Paadal Petra Sthalams, the sacred sites glorified by the Nayanars (Shaivite poet-saints), Appar, Sundarar, and Sambandar, with their songs. According to tradition, the lingam (an aniconic form of Shiva) of the Ramanathaswamy Temple was established and worshipped by Rama before he crossed the bridge called Rama Setu to the island kingdom of Lanka, identified with Sri Lanka. It is one of the Char Dham pilgrimage sites. The temple was expanded during the 12th century by the Pandya Dynasty, and its principal shrine’s sanctum was renovated by Jeyaveera Cinkaiariyan and his successor Gunaveera Cinkaiariyan, monarchs of the Jaffna kingdom. The temple has the longest corridor among all the Hindu temples of India. It was built by King Muthuramalinga Sethupathy. The temple is considered a pilgrimage site for Shaivites, Vaishnavites, and Smartas."
+    },
+    {
+      "id": "rameswaram-dhanushkodi",
+      "name": "Dhanushkodi",
+      "city": "Rameswaram",
+      "district": "ramanathapuram",
+      "region": "South Tamil Nadu",
+      "category": "beaches",
+      "description": "Dhanushkodi is an abandoned town at the south-eastern tip of Pamban Island of the state of Tamil Nadu in India. It is south-east of Pamban and is about 24 kilometres (15 mi) west of Talaimannar in Sri Lanka.",
+      "source_urls": [
+        "https://www.tamilnadutourism.tn.gov.in/destinations/rameswaram",
+        "https://en.wikipedia.org/wiki/Dhanushkodi"
+      ],
+      "sources": [
+        {
+          "name": "Tamil Nadu Tourism",
+          "type": "government-tourism",
+          "url": "https://www.tamilnadutourism.tn.gov.in/destinations/rameswaram",
+          "retrieved_on": "2026-10-05",
+          "notes": null
+        },
+        {
+          "name": "Wikipedia",
+          "type": "reference-encyclopedia",
+          "url": "https://en.wikipedia.org/wiki/Dhanushkodi",
+          "retrieved_on": "2026-10-06",
+          "notes": "Coordinates, lead image, and factual summary."
+        }
+      ],
+      "tags": [
+        "rameswaram",
+        "beach"
+      ],
+      "nature_related": true,
+      "family_friendly": true,
+      "latitude": 9.152011,
+      "longitude": 79.445851,
+      "image_reference": "https://upload.wikimedia.org/wikipedia/commons/f/ff/Final_Dhanush_002.jpg",
+      "detailed_description": "Dhanushkodi is an abandoned town at the south-eastern tip of Pamban Island of the state of Tamil Nadu in India. It is south-east of Pamban and is about 24 kilometres (15 mi) west of Talaimannar in Sri Lanka. The town was destroyed during the 1964 Rameswaram cyclone and remains uninhabited in the aftermath. Although devoid of inhabitants, Dhanushkodi remains a tourist attraction due to its historical and mythological relevance."
+    },
+    {
+      "id": "kanyakumari-vivekananda-rock-memorial",
+      "name": "Vivekananda Rock Memorial",
+      "city": "Kanyakumari",
+      "district": "kanyakumari",
+      "region": "South Tamil Nadu",
+      "category": "heritage",
+      "description": "Vivekananda Rock Memorial is a monument and popular tourist attraction in Kanyakumari, India's southernmost tip. The memorial stands on one of the two rocks located about 500 meters off mainland of Vavathurai, Tamil Nadu.",
+      "source_urls": [
+        "https://www.tamilnadutourism.tn.gov.in/destinations/kanyakumari",
+        "https://en.wikipedia.org/wiki/Vivekananda_Rock_Memorial"
+      ],
+      "sources": [
+        {
+          "name": "Tamil Nadu Tourism",
+          "type": "government-tourism",
+          "url": "https://www.tamilnadutourism.tn.gov.in/destinations/kanyakumari",
+          "retrieved_on": "2026-10-05",
+          "notes": null
+        },
+        {
+          "name": "Wikipedia",
+          "type": "reference-encyclopedia",
+          "url": "https://en.wikipedia.org/wiki/Vivekananda_Rock_Memorial",
+          "retrieved_on": "2026-10-06",
+          "notes": "Coordinates, lead image, and factual summary."
+        }
+      ],
+      "tags": [
+        "kanyakumari",
+        "heritage"
+      ],
+      "is_heritage": true,
+      "latitude": 8.078083,
+      "longitude": 77.555472,
+      "image_reference": "https://upload.wikimedia.org/wikipedia/commons/b/b6/RockMemorial.jpg",
+      "detailed_description": "Vivekananda Rock Memorial is a monument and popular tourist attraction in Kanyakumari, India's southernmost tip. The memorial stands on one of the two rocks located about 500 meters off mainland of Vavathurai, Tamil Nadu. It was built in 1970 in honour of Swami Vivekananda, who is said to have attained enlightenment on the rock.\nAccording to legends, it was on this rock that Goddess Kanyakumari (Parvathi) performed tapas in devotion of Lord Shiva. A meditation hall known as Dhyana Mandapam is also attached to the memorial for visitors to meditate. The design of the mandapa incorporates different styles of temple architecture from all over India. The rocks are surrounded by the Laccadive Sea where the three oceans Bay of Bengal, the Indian Ocean and the Arabian Sea meet. The memorial consists of two main structures, the Vivekananda Mandapam and the Shripada Mandapam."
+    },
+    {
+      "id": "kanyakumari-thiruvalluvar-statue",
+      "name": "Thiruvalluvar Statue",
+      "city": "Kanyakumari",
+      "district": "kanyakumari",
+      "region": "South Tamil Nadu",
+      "category": "heritage",
+      "description": "The Thiruvalluvar Statue, or Valluvar Statue, is a 40.6-metre-tall (133 ft) stone sculpture of Tamil poet and philosopher Valluvar, known as Thiruvalluvar, the author of the Thirukkural, an ancient Tamil work on morality.",
+      "source_urls": [
+        "https://www.tamilnadutourism.tn.gov.in/destinations/kanyakumari",
+        "https://en.wikipedia.org/wiki/Thiruvalluvar_Statue"
+      ],
+      "sources": [
+        {
+          "name": "Tamil Nadu Tourism",
+          "type": "government-tourism",
+          "url": "https://www.tamilnadutourism.tn.gov.in/destinations/kanyakumari",
+          "retrieved_on": "2026-10-05",
+          "notes": null
+        },
+        {
+          "name": "Wikipedia",
+          "type": "reference-encyclopedia",
+          "url": "https://en.wikipedia.org/wiki/Thiruvalluvar_Statue",
+          "retrieved_on": "2026-10-06",
+          "notes": "Coordinates, lead image, and factual summary."
+        }
+      ],
+      "tags": [
+        "kanyakumari",
+        "heritage"
+      ],
+      "is_heritage": true,
+      "latitude": 8.0777,
+      "longitude": 77.5539,
+      "image_reference": "https://upload.wikimedia.org/wikipedia/commons/d/d7/Thiruvalluvar_Statue_at_Kanyakumari_02.jpg",
+      "detailed_description": "The Thiruvalluvar Statue, or Valluvar Statue, is a 40.6-metre-tall (133 ft) stone sculpture of Tamil poet and philosopher Valluvar, known as Thiruvalluvar, the author of the Thirukkural, an ancient Tamil work on morality. It is atop a small island near the town of Kanniyakumari on the southernmost point of the Indian peninsula in the state of Tamil Nadu, India, where the Bay of Bengal, the Arabian Sea and the Indian Ocean meet. The statue was sculpted by Indian sculptor V. Ganapati Sthapati, who also created the Iraivan Temple, and was unveiled on the millennium day of 1 January 2000 by then Chief Minister M. Karunanidhi. It is currently the 25th tallest statue in India. During its silver jubilee celebrations on 1 January 2025, the Government of Tamil Nadu declared the statue as the \"Statue of Wisdom\"."
+    },
+    {
+      "id": "vellore-fort",
+      "name": "Vellore Fort",
+      "city": "Vellore",
+      "district": "vellore",
+      "region": "North Tamil Nadu",
+      "category": "heritage",
+      "description": "Vellore Fort is a large 16th-century fort situated in heart of the Vellore city, in the state of Tamil Nadu, India built by Chinna bommi reddy and Timma reddy ,nayakas( feudal lords) under Vijayanagar empire.",
+      "source_urls": [
+        "https://www.tamilnadutourism.tn.gov.in/destinations/vellore",
+        "https://en.wikipedia.org/wiki/Vellore_Fort"
+      ],
+      "sources": [
+        {
+          "name": "Tamil Nadu Tourism",
+          "type": "government-tourism",
+          "url": "https://www.tamilnadutourism.tn.gov.in/destinations/vellore",
+          "retrieved_on": "2026-10-05"
+        },
+        {
+          "name": "Wikipedia",
+          "type": "reference-encyclopedia",
+          "url": "https://en.wikipedia.org/wiki/Vellore_Fort",
+          "retrieved_on": "2026-10-06",
+          "notes": "Coordinates, lead image, and factual summary."
+        }
+      ],
+      "tags": [
+        "vellore",
+        "heritage"
+      ],
+      "is_heritage": true,
+      "latitude": 12.920833,
+      "longitude": 79.128333,
+      "image_reference": "https://upload.wikimedia.org/wikipedia/commons/e/ea/Vellorefort.jpg",
+      "detailed_description": "Vellore Fort is a large 16th-century fort situated in heart of the Vellore city, in the state of Tamil Nadu, India built by Chinna bommi reddy and Timma reddy ,nayakas( feudal lords) under Vijayanagar empire. The fort was at one time the imperial capital of the Aravidu Dynasty of the Vijayanagara Empire. The fort is known for its grand ramparts, wide moat and robust masonry.\nThe fort's ownership passed from Emperors of Vijayanagara, to the Bijapur sultans, to the Marathas, to the Carnatic Nawabs and finally to the British, who held the fort until India gained independence. The Indian government maintains the fort with the Archaeological Department. During British rule, the Tipu Sultan's family and the last King of Sri Lanka, Sri Vikrama Rajasinha were held as prisoners in the fort. It is also a witness to the massacre of the Vijayanagara royal family of Sriranga Raya. The fort houses the Jalakanteswarar Hindu temple, the Christian St. John's Church and a Muslim mosque, of which the Jalakanteswarar Temple is famous for its magnificent carvings. The first significant military rebellion against British rule, the Vellore Mutiny, erupted at this fort in 1806.\nVellore Fort is one of the most popular tourist destinations for both domestic and international visitors to Tamil Nadu."
+    },
+    {
+      "id": "vellore-jalakandeswarar-temple",
+      "name": "Jalakandeswarar Temple",
+      "city": "Vellore",
+      "district": "vellore",
+      "region": "North Tamil Nadu",
+      "category": "temples",
+      "description": "Jalakandeswarar Temple is a temple dedicated to Lord Shiva which is located in the Vellore Fort, in heart of the Vellore city, in the state of Tamil Nadu, India.",
+      "source_urls": [
+        "https://www.tamilnadutourism.tn.gov.in/destinations/vellore",
+        "https://en.wikipedia.org/wiki/Jalakandeswarar_Temple,_Vellore"
+      ],
+      "sources": [
+        {
+          "name": "Tamil Nadu Tourism",
+          "type": "government-tourism",
+          "url": "https://www.tamilnadutourism.tn.gov.in/destinations/vellore",
+          "retrieved_on": "2026-10-05"
+        },
+        {
+          "name": "Wikipedia",
+          "type": "reference-encyclopedia",
+          "url": "https://en.wikipedia.org/wiki/Jalakandeswarar_Temple,_Vellore",
+          "retrieved_on": "2026-10-06",
+          "notes": "Coordinates, lead image, and factual summary."
+        }
+      ],
+      "tags": [
+        "vellore",
+        "temple"
+      ],
+      "latitude": 12.920648,
+      "longitude": 79.127923,
+      "image_reference": "https://upload.wikimedia.org/wikipedia/commons/0/07/Jalakandeswari_Temple_Vellore%2C_Tamil_Nadu.jpg",
+      "detailed_description": "Jalakandeswarar Temple is a temple dedicated to Lord Shiva which is located in the Vellore Fort, in heart of the Vellore city, in the state of Tamil Nadu, India."
+    },
+    {
+      "id": "salem-yercaud",
+      "name": "Yercaud",
+      "city": "Salem",
+      "district": "salem",
+      "region": "West Tamil Nadu",
+      "category": "hills",
+      "description": "Yercaud or Erkadu, is a town and hill station in Salem District in Tamil Nadu, India. Located in Servarayan Hills in the Eastern Ghats, it is situated at an altitude of 1,515 m (4,970 ft).",
+      "source_urls": [
+        "https://www.tamilnadutourism.tn.gov.in/destinations/yercaud",
+        "https://en.wikipedia.org/wiki/Yercaud"
+      ],
+      "sources": [
+        {
+          "name": "Tamil Nadu Tourism",
+          "type": "government-tourism",
+          "url": "https://www.tamilnadutourism.tn.gov.in/destinations/yercaud",
+          "retrieved_on": "2026-10-05"
+        },
+        {
+          "name": "Wikipedia",
+          "type": "reference-encyclopedia",
+          "url": "https://en.wikipedia.org/wiki/Yercaud",
+          "retrieved_on": "2026-10-06",
+          "notes": "Coordinates, lead image, and factual summary."
+        }
+      ],
+      "tags": [
+        "salem",
+        "hills"
+      ],
+      "nature_related": true,
+      "family_friendly": true,
+      "latitude": 11.7794,
+      "longitude": 78.2034,
+      "image_reference": "https://upload.wikimedia.org/wikipedia/commons/0/0e/Yercaud_lake.jpg",
+      "detailed_description": "Yercaud or Erkadu, is a town and hill station in Salem District in Tamil Nadu, India. Located in Servarayan Hills in the Eastern Ghats, it is situated at an altitude of 1,515 m (4,970 ft)."
+    },
+    {
+      "id": "salem-mettur-dam",
+      "name": "Mettur Dam",
+      "city": "Mettur",
+      "district": "salem",
+      "region": "West Tamil Nadu",
+      "category": "nature",
+      "description": "The Mettur Dam is one of the largest dams in India, built during colonial rule, and the largest in Tamil Nadu, located across the river Kaveri where it enters the plains.",
+      "source_urls": [
+        "https://www.tamilnadutourism.tn.gov.in/destinations/salem",
+        "https://en.wikipedia.org/wiki/Mettur_Dam"
+      ],
+      "sources": [
+        {
+          "name": "Tamil Nadu Tourism",
+          "type": "government-tourism",
+          "url": "https://www.tamilnadutourism.tn.gov.in/destinations/salem",
+          "retrieved_on": "2026-10-05"
+        },
+        {
+          "name": "Wikipedia",
+          "type": "reference-encyclopedia",
+          "url": "https://en.wikipedia.org/wiki/Mettur_Dam",
+          "retrieved_on": "2026-10-06",
+          "notes": "Coordinates, lead image, and factual summary."
+        }
+      ],
+      "tags": [
+        "salem",
+        "dam"
+      ],
+      "nature_related": true,
+      "family_friendly": true,
+      "latitude": 11.8,
+      "longitude": 77.8,
+      "image_reference": "https://upload.wikimedia.org/wikipedia/commons/f/f4/Mettur_dam.jpg",
+      "detailed_description": "The Mettur Dam is one of the largest dams in India, built during colonial rule, and the largest in Tamil Nadu, located across the river Kaveri where it enters the plains. Built in 1934, it took nine years to complete. The maximum height and width of the dam are 214 and 171 feet, respectively. The dam receives inflows from its own catchment area, Kabini Dam and Krishna Raja Sagara Dams located in Karnataka. The dam provides irrigation and drinking water facilities for more than 12 districts of Tamil Nadu and hence is revered as the life and livelihood-giving asset of Tamil Nadu. There is a park at the base of the dam."
+    },
+    {
+      "id": "erode-bhavanisagar-dam",
+      "name": "Bhavanisagar Dam",
+      "city": "Erode",
+      "district": "erode",
+      "region": "West Tamil Nadu",
+      "category": "nature",
+      "description": "Bhavanisagar Dam or Lower Bhavani Dam, is an earthen dam located in Erode district in the Indian state of Tamil Nadu. The dam is constructed on the Bhavani River.",
+      "source_urls": [
+        "https://www.tamilnadutourism.tn.gov.in/destinations/erode",
+        "https://en.wikipedia.org/wiki/Bhavanisagar_Dam"
+      ],
+      "sources": [
+        {
+          "name": "Tamil Nadu Tourism",
+          "type": "government-tourism",
+          "url": "https://www.tamilnadutourism.tn.gov.in/destinations/erode",
+          "retrieved_on": "2026-10-05"
+        },
+        {
+          "name": "Wikipedia",
+          "type": "reference-encyclopedia",
+          "url": "https://en.wikipedia.org/wiki/Bhavanisagar_Dam",
+          "retrieved_on": "2026-10-06",
+          "notes": "Coordinates, lead image, and factual summary."
+        }
+      ],
+      "tags": [
+        "erode",
+        "dam"
+      ],
+      "nature_related": true,
+      "family_friendly": true,
+      "latitude": 11.470833,
+      "longitude": 77.113889,
+      "image_reference": "https://upload.wikimedia.org/wikipedia/commons/c/ca/BhavaniSagarDam.JPG",
+      "detailed_description": "Bhavanisagar Dam or Lower Bhavani Dam, is an earthen dam located in Erode district in the Indian state of Tamil Nadu. The dam is constructed on the Bhavani River. The dam is situated some 16 km (9.9 mi) west of Sathyamangalam, and is 35 km (22 mi) from Gobichettipalayam in Erode district."
+    },
+    {
+      "id": "erode-kodiveri-dam",
+      "name": "Kodiveri Dam",
+      "city": "Erode",
+      "district": "erode",
+      "region": "West Tamil Nadu",
+      "category": "nature",
+      "description": "Kodiveri Dam is a masonry dam located on the Bhavani River in Gobichettipalayam taluk, Erode district in the Indian state of Tamil Nadu. The dam is situated along the State Highway 15 about 15 km (9.3 mi) from Gobichettipalayam towards Sathyamangalam in the western region of the state.",
+      "source_urls": [
+        "https://www.tamilnadutourism.tn.gov.in/destinations/erode",
+        "https://en.wikipedia.org/wiki/Kodiveri_Dam"
+      ],
+      "sources": [
+        {
+          "name": "Tamil Nadu Tourism",
+          "type": "government-tourism",
+          "url": "https://www.tamilnadutourism.tn.gov.in/destinations/erode",
+          "retrieved_on": "2026-10-05"
+        },
+        {
+          "name": "Wikipedia",
+          "type": "reference-encyclopedia",
+          "url": "https://en.wikipedia.org/wiki/Kodiveri_Dam",
+          "retrieved_on": "2026-10-06",
+          "notes": "Coordinates, lead image, and factual summary."
+        }
+      ],
+      "tags": [
+        "erode",
+        "dam"
+      ],
+      "nature_related": true,
+      "family_friendly": true,
+      "latitude": 11.473056,
+      "longitude": 77.296389,
+      "image_reference": "https://upload.wikimedia.org/wikipedia/commons/a/af/Kodiveri.jpg",
+      "detailed_description": "Kodiveri Dam is a masonry dam located on the Bhavani River in Gobichettipalayam taluk, Erode district in the Indian state of Tamil Nadu. The dam is situated along the State Highway 15 about 15 km (9.3 mi) from Gobichettipalayam towards Sathyamangalam in the western region of the state."
+    },
+    {
+      "id": "tirunelveli-nellaiappar-temple",
+      "name": "Nellaiappar Temple",
+      "city": "Tirunelveli",
+      "district": "tirunelveli",
+      "region": "South Tamil Nadu",
+      "category": "temples",
+      "description": "The Nellaiappar Temple is a Hindu temple dedicated to the deity Shiva, located in Tirunelveli, a city in the South Indian state of Tamil Nadu. Shiva is worshipped as Nellaiappar (also called Venuvananathar) represented by the lingam and his consort Parvati is depicted as Kanthimathi Amman.",
+      "source_urls": [
+        "https://www.tamilnadutourism.tn.gov.in/destinations/tirunelveli",
+        "https://en.wikipedia.org/wiki/Nellaiappar_Temple"
+      ],
+      "sources": [
+        {
+          "name": "Tamil Nadu Tourism",
+          "type": "government-tourism",
+          "url": "https://www.tamilnadutourism.tn.gov.in/destinations/tirunelveli",
+          "retrieved_on": "2026-10-05"
+        },
+        {
+          "name": "Wikipedia",
+          "type": "reference-encyclopedia",
+          "url": "https://en.wikipedia.org/wiki/Nellaiappar_Temple",
+          "retrieved_on": "2026-10-06",
+          "notes": "Coordinates, lead image, and factual summary."
+        }
+      ],
+      "tags": [
+        "tirunelveli",
+        "temple"
+      ],
+      "latitude": 8.728444,
+      "longitude": 77.688722,
+      "image_reference": "https://upload.wikimedia.org/wikipedia/commons/9/9a/Nellaiappar_temple_tower.jpg",
+      "detailed_description": "The Nellaiappar Temple is a Hindu temple dedicated to the deity Shiva, located in Tirunelveli, a city in the South Indian state of Tamil Nadu. Shiva is worshipped as Nellaiappar (also called Venuvananathar) represented by the lingam and his consort Parvati is depicted as Kanthimathi Amman. The deity Vishnu is also worshipped here, having witnessed their wedding according to legend. Hence, this temple is regarded as an abhimana kshetram of Vaishnavism. The temple is located on the northern banks of Thamirabarani River in Tirunelveli district. The presiding deity is revered in the 7th century Tamil Saiva canonical work, the Tevaram, written by Tamil saint poets known as the nayanmars and classified as Paadal Petra Sthalam.\nThe temple complex covers an area of 5.9 hectares (14.5 acres) and all its shrines are enclosed with concentric rectangular walls. The temple has a number of shrines, with those of Swamy Nellaiappar and his consort Sri Kanthimathi Ambal being the most prominent.\nThe temple has three six rituals at various times from 6:00 a.m. to 9:00 p.m., and six yearly festivals on its calendar. Brahmotsavam festival during the Tamil month of Aani (June–July) is the most prominent festival celebrated in the temple.\nThe original complex is believed to have been built by Pandyas, while the present masonry structure was added by Cholas, Pallavas, Cheras, and Madurai Nayaks. In modern times, the temple is maintained and adminIstered by the Hindu Religious and Charitable Endowments Department of the Government of Tamil Nadu."
+    },
+    {
+      "id": "tirunelveli-papanasam",
+      "name": "Papanasam",
+      "city": "Tirunelveli",
+      "district": "tirunelveli",
+      "region": "South Tamil Nadu",
+      "category": "waterfalls",
+      "description": "Papanasam is a panchayat town in Thanjavur district in the Indian state of Tamil Nadu. It is located 25 kilometres (16 mi) from Thanjavur and 15 kilometres (9.3 mi) from Kumbakonam.",
+      "source_urls": [
+        "https://www.tamilnadutourism.tn.gov.in/destinations/tirunelveli",
+        "https://en.wikipedia.org/wiki/Papanasam"
+      ],
+      "sources": [
+        {
+          "name": "Tamil Nadu Tourism",
+          "type": "government-tourism",
+          "url": "https://www.tamilnadutourism.tn.gov.in/destinations/tirunelveli",
+          "retrieved_on": "2026-10-05"
+        },
+        {
+          "name": "Wikipedia",
+          "type": "reference-encyclopedia",
+          "url": "https://en.wikipedia.org/wiki/Papanasam",
+          "retrieved_on": "2026-10-06",
+          "notes": "Coordinates, lead image, and factual summary."
+        }
+      ],
+      "tags": [
+        "tirunelveli",
+        "waterfall"
+      ],
+      "nature_related": true,
+      "family_friendly": true,
+      "latitude": 10.9333,
+      "longitude": 79.2833,
+      "image_reference": "https://upload.wikimedia.org/wikipedia/commons/9/9c/Palaivananathar_tower1.JPG",
+      "detailed_description": "Papanasam is a panchayat town in Thanjavur district in the Indian state of Tamil Nadu. It is located 25 kilometres (16 mi) from Thanjavur and 15 kilometres (9.3 mi) from Kumbakonam. The name literally translates to \"Destruction of Sins\" in the Tamil language. It is the suburban region of Kumbakonam."
+    },
+    {
+      "id": "thoothukudi-kattabomman-memorial",
+      "name": "Kattabomman Memorial Fort",
+      "city": "Thoothukudi",
+      "district": "thoothukudi",
+      "region": "South Tamil Nadu",
+      "category": "heritage",
+      "description": "Panchalankurichi is a village, 3 km from Ottapidaram and 21 km from Thoothukudi in Thoothukudi district, Tamil Nadu, India.",
+      "source_urls": [
+        "https://www.tamilnadutourism.tn.gov.in/destinations/thoothukudi",
+        "https://en.wikipedia.org/wiki/Panchalankurichi"
+      ],
+      "sources": [
+        {
+          "name": "Tamil Nadu Tourism",
+          "type": "government-tourism",
+          "url": "https://www.tamilnadutourism.tn.gov.in/destinations/thoothukudi",
+          "retrieved_on": "2026-10-05"
+        },
+        {
+          "name": "Wikipedia",
+          "type": "reference-encyclopedia",
+          "url": "https://en.wikipedia.org/wiki/Panchalankurichi",
+          "retrieved_on": "2026-10-06",
+          "notes": "Coordinates, lead image, and factual summary."
+        }
+      ],
+      "tags": [
+        "thoothukudi",
+        "heritage"
+      ],
+      "is_heritage": true,
+      "detailed_description": "Panchalankurichi is a village, 3 km from Ottapidaram and 21 km from Thoothukudi in Thoothukudi district, Tamil Nadu, India. Panchalankurichi was once a Palayam and is best known as the birthplace of Veerapandiya Kattabomman, an 18th-century Palayakarrar ('Polygar'), who opposed the British East India Company governance in the area and its revenue-raising methods."
+    },
+    {
+      "id": "thoothukudi-hare-island",
+      "name": "Hare Island",
+      "city": "Thoothukudi",
+      "district": "thoothukudi",
+      "region": "South Tamil Nadu",
+      "category": "beaches",
+      "description": "Hare Island is an island which lies adjoining the V. O. Chidambaranar Port Trust in Thoothukudi, India. Hare Island forms a part of the Gulf of Mannar Marine National Park.",
+      "source_urls": [
+        "https://www.tamilnadutourism.tn.gov.in/destinations/thoothukudi",
+        "https://en.wikipedia.org/wiki/Hare_Island"
+      ],
+      "sources": [
+        {
+          "name": "Tamil Nadu Tourism",
+          "type": "government-tourism",
+          "url": "https://www.tamilnadutourism.tn.gov.in/destinations/thoothukudi",
+          "retrieved_on": "2026-10-05"
+        },
+        {
+          "name": "Wikipedia",
+          "type": "reference-encyclopedia",
+          "url": "https://en.wikipedia.org/wiki/Hare_Island",
+          "retrieved_on": "2026-10-06",
+          "notes": "Coordinates, lead image, and factual summary."
+        }
+      ],
+      "tags": [
+        "thoothukudi",
+        "beach"
+      ],
+      "nature_related": true,
+      "family_friendly": true,
+      "latitude": 9.2,
+      "longitude": 79.08,
+      "detailed_description": "Hare Island is an island which lies adjoining the V. O. Chidambaranar Port Trust in Thoothukudi, India.\nHare Island forms a part of the Gulf of Mannar Marine National Park. With an area of 1.29 square kilometres, Hare Island is the largest island in the Gulf of Mannar. Muyal Theevu is better known as Raja Theevu or Pandian Theevu. It was referred by the Portuguese as Isle Des Reis. History has it that as the indigenous people of this coast, famous for pearl fishing, the Paravars, resorted to mass conversion, they were persecuted by the Nayaks of Madurai. So they fled from Tuticorin to Muyal Theevu, from where they migrated again in course of time.\nMuyal Theevu is known for its healthy ecosystem of coral and sea grass.\nMany tourists visit here during the Pongal holidays when special buses are operated for the benefit of the tourists."
+    },
+    {
+      "id": "dindigul-kodaikanal-lake",
+      "name": "Kodaikanal Lake",
+      "city": "Kodaikanal",
+      "district": "dindigul",
+      "region": "South Tamil Nadu",
+      "category": "nature",
+      "description": "Kodaikanal Lake, also known as Kodai Lake, is a manmade lake located in the Kodaikanal city in Dindigul district in Tamil Nadu, India.",
+      "source_urls": [
+        "https://www.tamilnadutourism.tn.gov.in/destinations/kodaikanal",
+        "https://en.wikipedia.org/wiki/Kodaikanal_Lake"
+      ],
+      "sources": [
+        {
+          "name": "Tamil Nadu Tourism",
+          "type": "government-tourism",
+          "url": "https://www.tamilnadutourism.tn.gov.in/destinations/kodaikanal",
+          "retrieved_on": "2026-10-05"
+        },
+        {
+          "name": "Wikipedia",
+          "type": "reference-encyclopedia",
+          "url": "https://en.wikipedia.org/wiki/Kodaikanal_Lake",
+          "retrieved_on": "2026-10-06",
+          "notes": "Coordinates, lead image, and factual summary."
+        }
+      ],
+      "tags": [
+        "kodaikanal",
+        "lake"
+      ],
+      "nature_related": true,
+      "family_friendly": true,
+      "latitude": 10.2344,
+      "longitude": 77.4863,
+      "image_reference": "https://upload.wikimedia.org/wikipedia/commons/c/c4/Kodaikanal_lake.jpg",
+      "detailed_description": "Kodaikanal Lake, also known as Kodai Lake, is a manmade lake located in the Kodaikanal city in Dindigul district in Tamil Nadu, India. Sir Vere Henry Levinge, the then Collector of Madurai, was instrumental in creating the lake in 1863, amidst the Kodaikanal town which was developed by the British and early missionaries from USA. The lake is said to be Kodaikanal's most popular geographic landmark and tourist attraction.\nOver the years a boat club, boathouse and boat service (with rowing boats and pedalling boats and a public ferry) for the public and tourists has become fully functional and is of aesthetic significance for tourism. Boat Pageant and Flower Shows are a regular feature in the summer season which attracts tourists. Bryant Park is situated adjacent to the lake."
+    },
+    {
+      "id": "dindigul-bryant-park",
+      "name": "Bryant Park",
+      "city": "Kodaikanal",
+      "district": "dindigul",
+      "region": "South Tamil Nadu",
+      "category": "nature",
+      "description": "Kodaikanal Lake, also known as Kodai Lake, is a manmade lake located in the Kodaikanal city in Dindigul district in Tamil Nadu, India.",
+      "source_urls": [
+        "https://www.tamilnadutourism.tn.gov.in/destinations/kodaikanal",
+        "https://en.wikipedia.org/wiki/Kodaikanal_Lake"
+      ],
+      "sources": [
+        {
+          "name": "Tamil Nadu Tourism",
+          "type": "government-tourism",
+          "url": "https://www.tamilnadutourism.tn.gov.in/destinations/kodaikanal",
+          "retrieved_on": "2026-10-05"
+        },
+        {
+          "name": "Wikipedia",
+          "type": "reference-encyclopedia",
+          "url": "https://en.wikipedia.org/wiki/Kodaikanal_Lake",
+          "retrieved_on": "2026-10-06",
+          "notes": "Coordinates, lead image, and factual summary."
+        }
+      ],
+      "tags": [
+        "kodaikanal",
+        "park"
+      ],
+      "nature_related": true,
+      "family_friendly": true,
+      "latitude": 10.2344,
+      "longitude": 77.4863,
+      "image_reference": "https://upload.wikimedia.org/wikipedia/commons/c/c4/Kodaikanal_lake.jpg",
+      "detailed_description": "Kodaikanal Lake, also known as Kodai Lake, is a manmade lake located in the Kodaikanal city in Dindigul district in Tamil Nadu, India. Sir Vere Henry Levinge, the then Collector of Madurai, was instrumental in creating the lake in 1863, amidst the Kodaikanal town which was developed by the British and early missionaries from USA. The lake is said to be Kodaikanal's most popular geographic landmark and tourist attraction.\nOver the years a boat club, boathouse and boat service (with rowing boats and pedalling boats and a public ferry) for the public and tourists has become fully functional and is of aesthetic significance for tourism. Boat Pageant and Flower Shows are a regular feature in the summer season which attracts tourists. Bryant Park is situated adjacent to the lake."
+    },
+    {
+      "id": "theni-vaigai-dam",
+      "name": "Vaigai Dam",
+      "city": "Theni",
+      "district": "theni",
+      "region": "South Tamil Nadu",
+      "category": "nature",
+      "description": "The Vaigai Dam is built across the Vaigai River near Andipatti, in the Theni district (Madurai district, before British India) of Tamil Nadu, South India.",
+      "source_urls": [
+        "https://www.tamilnadutourism.tn.gov.in/destinations/theni",
+        "https://en.wikipedia.org/wiki/Vaigai_Dam"
+      ],
+      "sources": [
+        {
+          "name": "Tamil Nadu Tourism",
+          "type": "government-tourism",
+          "url": "https://www.tamilnadutourism.tn.gov.in/destinations/theni",
+          "retrieved_on": "2026-10-05"
+        },
+        {
+          "name": "Wikipedia",
+          "type": "reference-encyclopedia",
+          "url": "https://en.wikipedia.org/wiki/Vaigai_Dam",
+          "retrieved_on": "2026-10-06",
+          "notes": "Coordinates, lead image, and factual summary."
+        }
+      ],
+      "tags": [
+        "theni",
+        "dam"
+      ],
+      "nature_related": true,
+      "family_friendly": true,
+      "latitude": 10.053333,
+      "longitude": 77.589722,
+      "image_reference": "https://upload.wikimedia.org/wikipedia/commons/3/35/Vaigai_Dam_full_view.jpg",
+      "detailed_description": "The Vaigai Dam is built across the Vaigai River near Andipatti, in the Theni district (Madurai district, before British India) of Tamil Nadu, South India. Near the dam, the Government of Tamil Nadu has constructed an Agricultural Research Station to research the cultivation of various crops, including rice, sorghum, black gram, cowpea and cotton."
+    },
+    {
+      "id": "theni-meghamalai",
+      "name": "Meghamalai",
+      "city": "Theni",
+      "district": "theni",
+      "region": "South Tamil Nadu",
+      "category": "hills",
+      "description": "Meghamalai (Tamil: மேகமலை), commonly known as the High Wavy Mountains, is a mountain range located in the Western Ghats in the Theni district near Kumily, Tamil Nadu.",
+      "source_urls": [
+        "https://www.tamilnadutourism.tn.gov.in/destinations/theni",
+        "https://en.wikipedia.org/wiki/Meghamalai"
+      ],
+      "sources": [
+        {
+          "name": "Tamil Nadu Tourism",
+          "type": "government-tourism",
+          "url": "https://www.tamilnadutourism.tn.gov.in/destinations/theni",
+          "retrieved_on": "2026-10-05"
+        },
+        {
+          "name": "Wikipedia",
+          "type": "reference-encyclopedia",
+          "url": "https://en.wikipedia.org/wiki/Meghamalai",
+          "retrieved_on": "2026-10-06",
+          "notes": "Coordinates, lead image, and factual summary."
+        }
+      ],
+      "tags": [
+        "theni",
+        "hills"
+      ],
+      "nature_related": true,
+      "family_friendly": true,
+      "detailed_description": "Meghamalai (Tamil: மேகமலை), commonly known as the High Wavy Mountains, is a mountain range located in the Western Ghats in the Theni district near Kumily, Tamil Nadu. It is dotted with cardamom plantations and tea plantations. The mountain range is 1,500 metres above sea level, and it is rich in flora and fauna. The area, now mostly planted with tea plants, includes cloudlands, high wavys, venniar, and the manalar estates belonging to the Woodbriar Group. Access is largely restricted and includes largely untouched remnants of evergreen forest."
+    },
+    {
+      "id": "tenkasi-courtallam-falls",
+      "name": "Courtallam Falls",
+      "city": "Tenkasi",
+      "district": "tenkasi",
+      "region": "South Tamil Nadu",
+      "category": "waterfalls",
+      "description": "Rajah Courtallam, natively spelt Kutrālam or Kuttālam, is a panchayat town situated at a mean elevation of 160 m (520 ft) in the foothills of the Western Ghats in Tenkasi district of Tamil Nadu, India.",
+      "source_urls": [
+        "https://www.tamilnadutourism.tn.gov.in/destinations/courtallam",
+        "https://en.wikipedia.org/wiki/Courtallam"
+      ],
+      "sources": [
+        {
+          "name": "Tamil Nadu Tourism",
+          "type": "government-tourism",
+          "url": "https://www.tamilnadutourism.tn.gov.in/destinations/courtallam",
+          "retrieved_on": "2026-10-05"
+        },
+        {
+          "name": "Wikipedia",
+          "type": "reference-encyclopedia",
+          "url": "https://en.wikipedia.org/wiki/Courtallam",
+          "retrieved_on": "2026-10-06",
+          "notes": "Coordinates, lead image, and factual summary."
+        }
+      ],
+      "tags": [
+        "tenkasi",
+        "waterfall"
+      ],
+      "nature_related": true,
+      "family_friendly": true,
+      "latitude": 8.9342,
+      "longitude": 77.2778,
+      "image_reference": "https://upload.wikimedia.org/wikipedia/commons/f/f5/Courtallam.jpg",
+      "detailed_description": "Rajah Courtallam, natively spelt Kutrālam or Kuttālam, is a panchayat town situated at a mean elevation of 160 m (520 ft) in the foothills of the Western Ghats in Tenkasi district of Tamil Nadu, India. The Coutrallam Falls on the Chittar River is a major tourist attraction."
+    },
+    {
+      "id": "tenkasi-kutralanathar-temple",
+      "name": "Kutralanathar Temple",
+      "city": "Tenkasi",
+      "district": "tenkasi",
+      "region": "South Tamil Nadu",
+      "category": "temples",
+      "description": "Thirukutralam represents one of the five Pancha Sabhas of Nataraja - Chitra Sabhai. The five dance halls of Shiva are Chidambaram, Madurai, Thiruvalangadu, Tirunelveli and Kutralam.",
+      "source_urls": [
+        "https://www.tamilnadutourism.tn.gov.in/destinations/courtallam",
+        "https://en.wikipedia.org/wiki/Thirukutralam"
+      ],
+      "sources": [
+        {
+          "name": "Tamil Nadu Tourism",
+          "type": "government-tourism",
+          "url": "https://www.tamilnadutourism.tn.gov.in/destinations/courtallam",
+          "retrieved_on": "2026-10-05"
+        },
+        {
+          "name": "Wikipedia",
+          "type": "reference-encyclopedia",
+          "url": "https://en.wikipedia.org/wiki/Thirukutralam",
+          "retrieved_on": "2026-10-06",
+          "notes": "Coordinates, lead image, and factual summary."
+        }
+      ],
+      "tags": [
+        "tenkasi",
+        "temple"
+      ],
+      "latitude": 8.929167,
+      "longitude": 77.269167,
+      "image_reference": "https://upload.wikimedia.org/wikipedia/commons/5/5c/The_Kutraleeshwarar_temple_Gopuram.jpg",
+      "detailed_description": "Thirukutralam represents one of the five Pancha Sabhas of Nataraja - Chitra Sabhai. The five dance halls of Shiva are Chidambaram, Madurai, Thiruvalangadu, Tirunelveli and Kutralam. Kutralam is also known as Trikootaachalam. This temple is one among the 276 Paadal Petra Sthalams. Shiva is worshipped here as Kutralanathaswamy and Parvati as Kuzhalvaaimozhi Ambal."
+    },
+    {
+      "id": "tiruvannamalai-arunachaleswarar-temple",
+      "name": "Arunachaleswarar Temple",
+      "city": "Tiruvannamalai",
+      "district": "tiruvannamalai",
+      "region": "North Tamil Nadu",
+      "category": "temples",
+      "description": "The Arunachalesvara Temple or Annamalaiyar Temple, is a Hindu temple dedicated to Shiva and Parvati, located at the foothills of the Arunachala hill in Tiruvannamalai, Tamil Nadu, India.",
+      "source_urls": [
+        "https://www.tamilnadutourism.tn.gov.in/destinations/tiruvannamalai",
+        "https://en.wikipedia.org/wiki/Arunachalesvara_Temple"
+      ],
+      "sources": [
+        {
+          "name": "Tamil Nadu Tourism",
+          "type": "government-tourism",
+          "url": "https://www.tamilnadutourism.tn.gov.in/destinations/tiruvannamalai",
+          "retrieved_on": "2026-10-05"
+        },
+        {
+          "name": "Wikipedia",
+          "type": "reference-encyclopedia",
+          "url": "https://en.wikipedia.org/wiki/Arunachalesvara_Temple",
+          "retrieved_on": "2026-10-06",
+          "notes": "Coordinates, lead image, and factual summary."
+        }
+      ],
+      "tags": [
+        "tiruvannamalai",
+        "temple"
+      ],
+      "latitude": 12.2316,
+      "longitude": 79.0672,
+      "image_reference": "https://upload.wikimedia.org/wikipedia/commons/2/26/Arunachalam_temple_from_a_nearby_hill.jpg",
+      "detailed_description": "The Arunachalesvara Temple or Annamalaiyar Temple, is a Hindu temple dedicated to Shiva and Parvati, located at the foothills of the Arunachala hill in Tiruvannamalai, Tamil Nadu, India. It is regarded as one of the significant temples in the Tamil Shaivite tradition. It is one of the Pancha Bhuta Sthalams and is associated with the element of fire (Agni) among the five natural elements. The presiding deity of the temple is Annamalaiyar (meaning \"the mountain that cannot be reached\"), who is worshipped as the embodiment of the hill itself, and is represented by a lingam known as the Agni Lingam, symbolizing the element of fire. Parvathi, revered as Unnamulai ammai, is represented by the yoni, with her idol referred to as the Agni Yoni.\nThe temple is classified as one of the Paadal Petra Sthalams, one of the 276 sacred Saivite temples glorified in medieval Tamil Shaiva literature. It is celebrated in canonical Tamil devotional works such as the Tevaram composed by the Nayanars in 7th century CE, Tiruvempavai by Manikkavacakar in 9th century CE, and Tiruppukal by Arunagirinathar in the 14th century CE.\nThe present structure was built during the Chola Empire in the 9th century CE, while later expansions were done during the Vijayanagara rule (13th to 15th century CE). The temple complex covers 10 hectares, and is one of the largest in India. It has four large gopurams (ornamental gateway towers), with the east tower being the tallest at 66 m (217 ft) with 11 stories. The temple has numerous shrines, dedicated to various Hindu gods, and houses several large halls, the notable of which is the thousand-pillared hall built during the Vijayanagara rule. The temple is maintained and administered by the Hindu Religious and Charitable Endowments Department of the Government of Tamil Nadu.\nThe temple has six daily rituals, performed between 5:30 a.m. and 10:00 p.m., and twelve yearly festivals. During the Karthigai Deepam festival, celebrated during the purnima day in the Tamil month of Karthigai, and a large beacon is lit atop the Arunachala hill. The beacon, which can be seen from miles around, symbolizes the jyotirlinga form of Shiva, which extended as a pillar of fire. The event attracts million of pilgrims, who often circumambulate the hill called girivalam."
+    },
+    {
+      "id": "tiruvannamalai-gingee-fort",
+      "name": "Gingee Fort",
+      "city": "Gingee",
+      "district": "viluppuram",
+      "region": "North Tamil Nadu",
+      "category": "heritage",
+      "description": "Gingee Fort or Senji Fort (also known as Chenji, Chanchi, Jinji or Senchi) in Tamil Nadu, India is one of the surviving forts in Tamil Nadu, India. It is popularly known as Great Wall of South India.",
+      "source_urls": [
+        "https://www.tamilnadutourism.tn.gov.in/destinations/gingee",
+        "https://en.wikipedia.org/wiki/Gingee_Fort"
+      ],
+      "sources": [
+        {
+          "name": "Tamil Nadu Tourism",
+          "type": "government-tourism",
+          "url": "https://www.tamilnadutourism.tn.gov.in/destinations/gingee",
+          "retrieved_on": "2026-10-05"
+        },
+        {
+          "name": "Wikipedia",
+          "type": "reference-encyclopedia",
+          "url": "https://en.wikipedia.org/wiki/Gingee_Fort",
+          "retrieved_on": "2026-10-06",
+          "notes": "Coordinates, lead image, and factual summary."
+        }
+      ],
+      "tags": [
+        "gingee",
+        "heritage"
+      ],
+      "is_heritage": true,
+      "latitude": 12.2501,
+      "longitude": 79.3948,
+      "image_reference": "https://upload.wikimedia.org/wikipedia/commons/d/d9/Gingee_Fort_Hill_view_from_road.jpg",
+      "detailed_description": "Gingee Fort or Senji Fort (also known as Chenji, Chanchi, Jinji or Senchi) in Tamil Nadu, India is one of the surviving forts in Tamil Nadu, India. It is popularly known as Great Wall of South India. It lies in Villupuram District, 160 kilometres (99 mi) from the state capital, Chennai, and is close to the Union Territory of Puducherry. It is ranked as the \"most impregnable fortress in India\", and was called the \"Troy of the East\" by the British.\nOriginally mentioned as the territory of a Kadava chieftain titled Senjiyar Kon in Ottakoothar's Moovarula around 1123 AD. The fort was originally built by Ananda kon around 11th century AD. The fort was built as a strategic place of fending off any invading armies. As per one account, the fort was further fortified during the 15–16th century. The fort was won for Swarajya by Subedar Harji Rajemahadik for the Marathas under the leadership of Shivaji in 1677 AD. It was then conquered by the Bijapur sultans, the Moghuls, the Carnatic Nawabs, the French and finally the British in 1761. The fort is closely associated with Raja Tej Singh, who unsuccessfully revolted against the Nawab of Arcot and eventually lost his life in a battle.\nThe Gingee Fort complex is on three hillocks: Krishnagiri to the north, Rajagiri or Anandagiri to the west and Chakilidurg to the southeast. The three hills together constitute a fort complex, each having a separate and self-contained citadel. The fort walls are 13 km (8.1 mi) and the three hills are connected by walls enclosing an area of 11 square kilometres (4.2 mi2). It was built at a height of 800 feet (240 m) and protected by an 80 feet (24 m) wide moat. The complex has a seven-storeyed Kalyana Mahal(marriage hall)which has a pyramidical shikhara or summit on top, granaries, prison cells, and a temple dedicated to its presiding goddess called Chenjiamman. The fortifications contain a sacred pond known as Aanaikulam. On the top of the hillock, there are minor fortifications. The fort, in modern times, is maintained and administered by the Archaeological Survey of India. The fort is one of the prominent tourist destinations in Villupuram district."
+    },
+    {
+      "id": "nagapattinam-velankanni",
+      "name": "Velankanni",
+      "city": "Velankanni",
+      "district": "nagapattinam",
+      "region": "Central Tamil Nadu",
+      "category": "culture",
+      "description": "The Basilica of Our Lady of Good Health, also known as Sanctuary of Our Lady of Velankanni, is a Christian shrine located at the town of Velankanni, Tamil Nadu, India.",
+      "source_urls": [
+        "https://www.tamilnadutourism.tn.gov.in/destinations/velankanni",
+        "https://en.wikipedia.org/wiki/Basilica_of_Our_Lady_of_Good_Health,_Velankanni"
+      ],
+      "sources": [
+        {
+          "name": "Tamil Nadu Tourism",
+          "type": "government-tourism",
+          "url": "https://www.tamilnadutourism.tn.gov.in/destinations/velankanni",
+          "retrieved_on": "2026-10-05"
+        },
+        {
+          "name": "Wikipedia",
+          "type": "reference-encyclopedia",
+          "url": "https://en.wikipedia.org/wiki/Basilica_of_Our_Lady_of_Good_Health,_Velankanni",
+          "retrieved_on": "2026-10-06",
+          "notes": "Coordinates, lead image, and factual summary."
+        }
+      ],
+      "tags": [
+        "velankanni",
+        "culture"
+      ],
+      "latitude": 10.68,
+      "longitude": 79.849722,
+      "image_reference": "https://upload.wikimedia.org/wikipedia/commons/9/93/Velankanni_Church_2026.jpg",
+      "detailed_description": "The Basilica of Our Lady of Good Health, also known as Sanctuary of Our Lady of Velankanni, is a Christian shrine located at the town of Velankanni, Tamil Nadu, India. The shrine is dedicated to the Blessed Virgin Mary.\nThe devotion has existed since the mid-sixteenth century, it is attributed to three separate events which occurred at the site: The apparition of the Madonna and Child to a slumbering shepherd boy, the miraculous healing of a handicapped buttermilk vendor and the rescue of Portuguese sailors from a deadly sea storm.\nInitially, a modest chapel was built by the Portuguese from Goa and Bombay, soon after they washed ashore safely in spite of a severe tempest. An annual novena is celebrated and draws nearly 5 million pilgrims each year.\nPope John XXIII raised the Marian shrine to the status of a minor basilica via the pontifical decree Salutem Supplicibus Dilargiens, signed & notarised on 3 November 1962. He called the shrine \"the Lourdes of the East\" due to the massive influx of pilgrims."
+    },
+    {
+      "id": "nagapattinam-kodiyakkarai",
+      "name": "Kodiyakkarai",
+      "city": "Nagapattinam",
+      "district": "nagapattinam",
+      "region": "Central Tamil Nadu",
+      "category": "wildlife",
+      "description": "Point Calimere, also called Cape Calimere or Kodiakkarai, is a low headland of the Coromandel Coast, in the Nagapattinam district of the Indian state of Tamil Nadu.",
+      "source_urls": [
+        "https://www.tamilnadutourism.tn.gov.in/destinations/nagapattinam",
+        "https://en.wikipedia.org/wiki/Point_Calimere"
+      ],
+      "sources": [
+        {
+          "name": "Tamil Nadu Tourism",
+          "type": "government-tourism",
+          "url": "https://www.tamilnadutourism.tn.gov.in/destinations/nagapattinam",
+          "retrieved_on": "2026-10-05"
+        },
+        {
+          "name": "Wikipedia",
+          "type": "reference-encyclopedia",
+          "url": "https://en.wikipedia.org/wiki/Point_Calimere",
+          "retrieved_on": "2026-10-06",
+          "notes": "Coordinates, lead image, and factual summary."
+        }
+      ],
+      "tags": [
+        "nagapattinam",
+        "wildlife"
+      ],
+      "nature_related": true,
+      "latitude": 10.2845,
+      "longitude": 79.824111,
+      "image_reference": "https://upload.wikimedia.org/wikipedia/commons/6/66/Point_Calimere_aerial.jpg",
+      "detailed_description": "Point Calimere, also called Cape Calimere or Kodiakkarai, is a low headland of the Coromandel Coast, in the Nagapattinam district of the Indian state of Tamil Nadu. The Cape is located about 9 kilometres (5.6 mi) south of Vedaranyam in the Kaveri delta, and marks a nearly right-angle turn in the coastline. The antiquity of the area is evidenced by the Kodi Kuzhagar temple built during the Chola period, and a Chola lighthouse, which was destroyed in the 2004 Indian Ocean tsunami.\nKodiakkarai has been designated as a Ramsar site since August 2002. Point Calimere is also associated with the mythological Hindu epic, The Ramayana. The highest point of the cape, at an elevation of 4 metres (13 ft), is Ramarpatham, meaning \"Rama's feet\" in Tamil. A stone slab on the Cape bears the impressions of two feet and is said to be the place where Rama stood and reconnoitered Ravana's kingdom in Sri Lanka, which is 48 kilometres (30 mi) to the south of the Point. It is also mentioned by Kalki in his historical novel Ponniyin Selvan."
+    },
+    {
+      "id": "cuddalore-pichavaram",
+      "name": "Pichavaram",
+      "city": "Cuddalore",
+      "district": "cuddalore",
+      "region": "Central Tamil Nadu",
+      "category": "nature",
+      "description": "Pichavaram is one of the villages of Parangipettai near Chidambaram in Cuddalore District, Tamil Nadu, India. It is located between the Vellar estuary in the north and Coleroon estuary in the south.",
+      "source_urls": [
+        "https://www.tamilnadutourism.tn.gov.in/destinations/pichavaram",
+        "https://en.wikipedia.org/wiki/Pichavaram"
+      ],
+      "sources": [
+        {
+          "name": "Tamil Nadu Tourism",
+          "type": "government-tourism",
+          "url": "https://www.tamilnadutourism.tn.gov.in/destinations/pichavaram",
+          "retrieved_on": "2026-10-05"
+        },
+        {
+          "name": "Wikipedia",
+          "type": "reference-encyclopedia",
+          "url": "https://en.wikipedia.org/wiki/Pichavaram",
+          "retrieved_on": "2026-10-06",
+          "notes": "Coordinates, lead image, and factual summary."
+        }
+      ],
+      "tags": [
+        "cuddalore",
+        "nature"
+      ],
+      "nature_related": true,
+      "family_friendly": true,
+      "latitude": 11.4325,
+      "longitude": 79.780833,
+      "image_reference": "https://upload.wikimedia.org/wikipedia/commons/d/d1/Pichavaram-Pno.png",
+      "detailed_description": "Pichavaram is one of the villages of Parangipettai near Chidambaram in Cuddalore District, Tamil Nadu, India. It is located between the Vellar estuary in the north and Coleroon estuary in the south. The Vellar-Coleroon estuarine complex forms the Killai backwater and the mangroves that are permanently rooted in a few feet of water. It is located at a distance of 243 km from Chennai, 42 km from Cuddalore and 15 km from Chidambaram."
+    },
+    {
+      "id": "ariyalur-gangaikonda-cholapuram",
+      "name": "Gangaikonda Cholapuram",
+      "city": "Ariyalur",
+      "district": "ariyalur",
+      "region": "Central Tamil Nadu",
+      "category": "heritage",
+      "description": "Gaṅgaikoṇḍa Chōḻapuram is a village located near Jayankondam in Ariyalur district of Tamil Nadu, India. The Chola emperor Rajendra I established it as the capital of the Chola dynasty in c.",
+      "source_urls": [
+        "https://www.tamilnadutourism.tn.gov.in/destinations/ariyalur",
+        "https://en.wikipedia.org/wiki/Gangaikonda_Cholapuram"
+      ],
+      "sources": [
+        {
+          "name": "Tamil Nadu Tourism",
+          "type": "government-tourism",
+          "url": "https://www.tamilnadutourism.tn.gov.in/destinations/ariyalur",
+          "retrieved_on": "2026-10-05"
+        },
+        {
+          "name": "Wikipedia",
+          "type": "reference-encyclopedia",
+          "url": "https://en.wikipedia.org/wiki/Gangaikonda_Cholapuram",
+          "retrieved_on": "2026-10-06",
+          "notes": "Coordinates, lead image, and factual summary."
+        }
+      ],
+      "tags": [
+        "ariyalur",
+        "heritage"
+      ],
+      "is_unesco": true,
+      "is_heritage": true,
+      "latitude": 11.206444,
+      "longitude": 79.448333,
+      "image_reference": "https://upload.wikimedia.org/wikipedia/commons/4/48/GangaiKonda_Cholapuram%28Front_View%29.JPG",
+      "detailed_description": "Gaṅgaikoṇḍa Chōḻapuram is a village located near Jayankondam in Ariyalur district of Tamil Nadu, India. The Chola emperor Rajendra I established it as the capital of the Chola dynasty in c. 1025, and it remained the capital for approximately 250 years.\nThe village is situated approximately 125 kilometres (78 mi) northeast of Tiruchirapalli International Airport. The ancient site is designated as a heritage town within the Ariyalur district. The Gangaikonda Cholapuram Temple is second in scale only to the Brihadisvara Temple (Peruvudaiyar Kovil) in Thanjavur, while featuring distinct architectural and sculptural details. It is designated as a UNESCO World Heritage Site."
+    },
+    {
+      "id": "krishnagiri-krishnagiri-dam",
+      "name": "Krishnagiri Dam",
+      "city": "Krishnagiri",
+      "district": "krishnagiri",
+      "region": "North Tamil Nadu",
+      "category": "nature",
+      "description": "The Krishnagiri Dam is a dam that spans the Thenpennai River by the village of Dhuduganahalli, located in the Krishnagiri district, Tamil Nadu, India. The Krishnagiri Dam is also known as Krishnagiri Reservoir Project (KRP) Dam.",
+      "source_urls": [
+        "https://www.tamilnadutourism.tn.gov.in/destinations/krishnagiri",
+        "https://en.wikipedia.org/wiki/Krishnagiri_Dam"
+      ],
+      "sources": [
+        {
+          "name": "Tamil Nadu Tourism",
+          "type": "government-tourism",
+          "url": "https://www.tamilnadutourism.tn.gov.in/destinations/krishnagiri",
+          "retrieved_on": "2026-10-05"
+        },
+        {
+          "name": "Wikipedia",
+          "type": "reference-encyclopedia",
+          "url": "https://en.wikipedia.org/wiki/Krishnagiri_Dam",
+          "retrieved_on": "2026-10-06",
+          "notes": "Coordinates, lead image, and factual summary."
+        }
+      ],
+      "tags": [
+        "krishnagiri",
+        "dam"
+      ],
+      "nature_related": true,
+      "family_friendly": true,
+      "latitude": 12.493733,
+      "longitude": 78.178197,
+      "image_reference": "https://upload.wikimedia.org/wikipedia/commons/8/8d/KRP_Dam.jpg",
+      "detailed_description": "The Krishnagiri Dam is a dam that spans the Thenpennai River by the village of Dhuduganahalli, located in the Krishnagiri district, Tamil Nadu, India. The Krishnagiri Dam is also known as Krishnagiri Reservoir Project (KRP) Dam. The KRP Dam is located 7 km (4.3 mi) from Krishnagiri, between Dharmapuri and Krishnagiri which irrigates thousands of acres of land around Krishnagiri. The dam has been operational since 10 November 1957, inaugurated by the Chief Minister of Tamil Nadu K. Kamaraj."
+    },
+    {
+      "id": "sivaganga-chettinad-palace",
+      "name": "Chettinad Palace",
+      "city": "Karaikudi",
+      "district": "sivaganga",
+      "region": "South Tamil Nadu",
+      "category": "heritage",
+      "description": "Chettinad (also known as Chettinadu) is a region in Tamil Nadu comprising 56 villages in Sivaganga district and 20 villages in Pudukottai district, which was historically ruled by the Ramnad kingdom of Pandya Nadu.",
+      "source_urls": [
+        "https://www.tamilnadutourism.tn.gov.in/destinations/chettinad",
+        "https://en.wikipedia.org/wiki/Chettinad"
+      ],
+      "sources": [
+        {
+          "name": "Tamil Nadu Tourism",
+          "type": "government-tourism",
+          "url": "https://www.tamilnadutourism.tn.gov.in/destinations/chettinad",
+          "retrieved_on": "2026-10-05"
+        },
+        {
+          "name": "Wikipedia",
+          "type": "reference-encyclopedia",
+          "url": "https://en.wikipedia.org/wiki/Chettinad",
+          "retrieved_on": "2026-10-06",
+          "notes": "Coordinates, lead image, and factual summary."
+        }
+      ],
+      "tags": [
+        "karaikudi",
+        "heritage"
+      ],
+      "is_heritage": true,
+      "image_reference": "https://upload.wikimedia.org/wikipedia/commons/d/d0/The_Chettinad_palace_karaikudi_2013-09-07_00-11.jpg",
+      "detailed_description": "Chettinad (also known as Chettinadu) is a region in Tamil Nadu comprising 56 villages in Sivaganga district and 20 villages in Pudukottai district, which was historically ruled by the Ramnad kingdom of Pandya Nadu. It has a small portion extending into the Pudukottai District in Tamil Nadu; Karaikudi is the major city of this area and is considered the urban centre for the Chettinadu villages."
+    }
+  ]
+}

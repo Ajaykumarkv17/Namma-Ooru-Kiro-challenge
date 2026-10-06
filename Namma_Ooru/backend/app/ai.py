@@ -30,8 +30,106 @@ _GROUNDED_SYSTEM_PROMPT = (
 )
 _URL_PATTERN = re.compile(r"https?://[^\s)>\]}]+", re.IGNORECASE)
 _OPERATION_ADAPTER = TypeAdapter(ItineraryOperationEnvelope)
+_SEARCH_INTENT_ADAPTER = TypeAdapter(SearchIntent)
 _Result = TypeVar("_Result")
 logger = logging.getLogger(__name__)
+
+# --- Structured-output prompts -------------------------------------------------
+# Each prompt drives one single-responsibility Bedrock Converse call. This mirrors
+# the Strands "Agents as Tools" multi-agent pattern (an orchestrator delegating to
+# focused specialists): here the itinerary router is the orchestrator and these
+# prompts are the specialist stages — intent extraction, candidate selection &
+# geographic sequencing, and conversational-edit parsing. Every stage must return
+# ONLY strict JSON matching a documented schema; the backend validates the JSON
+# with Pydantic before use and falls back deterministically on any mismatch
+# (AI/RAG steering: "require strict JSON ... validate before use and reject/repair
+# on mismatch"). Structural assembly stays in the deterministic ItineraryService
+# (architecture steering), so these stages only interpret, select, order, and
+# narrate — they never fabricate catalog ids or schedule times themselves.
+
+_SEARCH_INTENT_SYSTEM_PROMPT = (
+    "You convert a traveler's natural-language search query about Tamil Nadu, India into a "
+    "structured JSON search intent. Return ONLY a single JSON object, no prose, no code fences. "
+    "Schema (all fields optional; omit a field or use null when the query does not state it): "
+    '{"location": string|null, "duration_days": integer 1-14|null, "category": string|null, '
+    '"interests": string[], "travel_style": string|null, "budget": string|null, '
+    '"group_context": string|null}. '
+    "location is a Tamil Nadu city or district named in the query. category is one of: "
+    "temples, heritage, beaches, hills, waterfalls, nature, wildlife, food, culture, adventure, "
+    "photography, hidden-gems (pick the closest, else null). interests are short free-text "
+    "themes (e.g. 'architecture', 'photography'). Do not invent a location or category the "
+    "query does not imply; prefer null over a guess."
+)
+
+_ITINERARY_SELECT_SYSTEM_PROMPT = (
+    "You are the planning stage of a Tamil Nadu trip planner. You are given a trip context and a "
+    "list of candidate destination ids already scoped to the requested location. Choose which "
+    "candidates to include and the order to visit them so that geographically close places are "
+    "grouped together and the sequence flows sensibly across the trip. Reason about travel "
+    "between places, but DO NOT invent ids: every id you return MUST be one of the provided "
+    "candidate ids, each at most once. Return ONLY a single JSON object, no prose, no code "
+    'fences: {"ordered_destination_ids": string[]}. Prefer including enough places to fill the '
+    "requested days; order best-first by your plan."
+)
+
+_ITINERARY_EDIT_SYSTEM_PROMPT = (
+    "You translate a traveler's natural-language request to edit an existing itinerary into ONE "
+    "structured operation. Return ONLY a single JSON object, no prose, no code fences, matching "
+    "exactly one of these shapes: "
+    '{"op":"add","destination_id":id,"day_number":n} | '
+    '{"op":"remove","day_number":n,"destination_id":id} | '
+    '{"op":"replace","day_number":n,"target_destination_id":id,"replacement_destination_id":id} | '
+    '{"op":"reorder","day_number":n,"ordered_destination_ids":[id,...]} | '
+    '{"op":"constrain","constraints":{...}}. '
+    "Use only destination ids present in the supplied itinerary (except an added id, which must "
+    "be a real catalog id). day_number is 1-based. If the request maps to no single supported "
+    'operation, return {"op":"none"} so the caller can decline gracefully. Do not invent fields.'
+)
+
+# Low-temperature inference so structured JSON output is stable and parseable.
+_STRUCTURED_INFERENCE_CONFIG: dict[str, object] = {"temperature": 0.0, "maxTokens": 1024}
+
+
+def _extract_json_object(text: str) -> object:
+    """Extract and parse the first balanced top-level JSON object from model text.
+
+    Models sometimes wrap JSON in prose or ```json fences despite instructions.
+    This finds the first ``{`` and its matching ``}`` (brace-depth aware, string
+    and escape sensitive) and parses that span. Raises ``ValueError`` when no
+    parseable JSON object is present so callers fail soft rather than trusting
+    malformed output.
+    """
+    if not text:
+        raise ValueError("Empty model response; no JSON object to parse.")
+    start = text.find("{")
+    if start == -1:
+        raise ValueError("No JSON object found in model response.")
+    depth = 0
+    in_string = False
+    escaped = False
+    for index in range(start, len(text)):
+        char = text[index]
+        if in_string:
+            if escaped:
+                escaped = False
+            elif char == "\\":
+                escaped = True
+            elif char == '"':
+                in_string = False
+            continue
+        if char == '"':
+            in_string = True
+        elif char == "{":
+            depth += 1
+        elif char == "}":
+            depth -= 1
+            if depth == 0:
+                import json
+
+                return json.loads(text[start : index + 1])
+    raise ValueError("Unterminated JSON object in model response.")
+
+
 
 
 def _safe_bedrock_error_code(error: Exception) -> str:
@@ -112,9 +210,32 @@ class BedrockAIProvider:
         self._max_results = max_results
 
     def extract_search_intent(self, query: str) -> SearchIntent:
-        """Bedrock search-intent parsing is introduced separately from chat retrieval."""
-        del query
-        raise DependencyUnavailableError()
+        """Interpret a natural-language query into a validated ``SearchIntent``.
+
+        Runs one bounded, low-temperature Converse call that must return strict
+        JSON matching the ``SearchIntent`` schema, then validates it with Pydantic
+        (AI/RAG steering: strict JSON, validate before use). Any failure — Bedrock
+        error, deadline overrun, non-JSON output, or schema mismatch — is raised as
+        ``DependencyUnavailableError`` so the search router falls back to its
+        deterministic keyword/tag path and flags the fallback to the client
+        (fail-soft on optional AI enrichment, Requirement 4.3).
+        """
+        cleaned = query.strip()
+        if not cleaned:
+            raise DependencyUnavailableError()
+        try:
+            response = self._generate_structured(
+                _SEARCH_INTENT_SYSTEM_PROMPT,
+                f"Traveler search query: {cleaned}",
+            )
+            payload = _extract_json_object(self._generated_text(response))
+            return _SEARCH_INTENT_ADAPTER.validate_python(payload)
+        except DependencyUnavailableError as error:
+            logger.warning("Bedrock intent unavailable: %s", _safe_bedrock_error_code(error))
+            raise
+        except Exception as error:
+            logger.warning("Bedrock intent parse failed: %s", _safe_bedrock_error_code(error))
+            raise DependencyUnavailableError() from error
 
     def answer(self, question: str, filters: RetrievalFilters) -> GroundedAnswer:
         """Retrieve first, then generate strictly from returned excerpts.
@@ -151,14 +272,109 @@ class BedrockAIProvider:
     def select_itinerary_candidates(
         self, destination_context: str, candidate_ids: list[str]
     ) -> list[str]:
-        """Keep structural itinerary selection outside this chat-focused provider task."""
-        del destination_context
-        return validate_itinerary_candidates(candidate_ids, set(candidate_ids))
+        """Select and order candidates with reasoning about geography and flow.
+
+        This is the planning stage of the agentic itinerary workflow (Strands
+        "Agents as Tools" pattern): one bounded Converse call reasons over the
+        location-scoped candidate ids and returns an ordered subset that groups
+        nearby places and sequences the trip sensibly. The model never invents an
+        id — the result is validated to be a subset of ``candidate_ids`` via
+        ``validate_itinerary_candidates``. On any failure the deterministic order
+        (the input list) is returned unchanged, so generation never breaks and the
+        deterministic ``ItineraryService`` still performs all scoring, scheduling,
+        travel-gap insertion, and invariant enforcement (architecture steering).
+        """
+        allowed = set(candidate_ids)
+        if not candidate_ids:
+            return []
+        try:
+            response = self._generate_structured(
+                _ITINERARY_SELECT_SYSTEM_PROMPT,
+                (
+                    f"Trip context: {destination_context}\n"
+                    f"Candidate destination ids: {', '.join(candidate_ids)}"
+                ),
+            )
+            payload = _extract_json_object(self._generated_text(response))
+            ordered = payload.get("ordered_destination_ids") if isinstance(payload, dict) else None
+            selected = validate_itinerary_candidates(ordered, allowed)
+            # Append any candidates the model omitted so the deterministic core
+            # still has the full pool to fill the requested days (it decides how
+            # many to actually schedule). The model's order leads; the rest follow.
+            tail = [cid for cid in candidate_ids if cid not in set(selected)]
+            return selected + tail
+        except Exception as error:
+            logger.warning(
+                "Bedrock itinerary selection fell back to deterministic order: %s",
+                _safe_bedrock_error_code(error),
+            )
+            return validate_itinerary_candidates(candidate_ids, allowed)
 
     def parse_itinerary_edit(self, request: str, itinerary: Itinerary) -> ItineraryOperation:
-        """Bedrock edit parsing is introduced separately from chat retrieval."""
-        del request, itinerary
-        raise DependencyUnavailableError()
+        """Translate a natural-language edit into one validated structured operation.
+
+        Runs one bounded Converse call that must return strict JSON for exactly one
+        of the five supported operations (add, remove, replace, reorder, constrain),
+        then validates it with ``validate_itinerary_operation``. The itinerary's
+        current day/activity ids are supplied so the model targets real activities.
+
+        When the request maps to no single supported operation (e.g. "add day 2 and
+        day 3 plans", which is a regeneration, not an edit), the model returns
+        ``{"op":"none"}``; this method then returns a benign no-op (a remove targeting
+        a non-existent activity) that the deterministic ``ItineraryService`` rejects,
+        so the router responds with ``EditUnavailable`` and a clear explanation
+        instead of a 503. Bedrock/deadline failures still raise
+        ``DependencyUnavailableError`` (a genuine outage, correctly surfaced).
+        """
+        cleaned = request.strip()
+        if not cleaned:
+            return self._declinable_edit(itinerary)
+        try:
+            response = self._generate_structured(
+                _ITINERARY_EDIT_SYSTEM_PROMPT,
+                self._edit_user_prompt(cleaned, itinerary),
+            )
+            payload = _extract_json_object(self._generated_text(response))
+        except DependencyUnavailableError:
+            raise
+        except Exception as error:
+            logger.warning("Bedrock edit parse failed: %s", _safe_bedrock_error_code(error))
+            raise DependencyUnavailableError() from error
+
+        # A sentinel {"op":"none"} (or anything that is not a supported op) means the
+        # request is not a single structured edit; decline gracefully, don't 503.
+        if not isinstance(payload, dict) or payload.get("op") in (None, "none"):
+            return self._declinable_edit(itinerary)
+        try:
+            return validate_itinerary_operation(payload)
+        except ValueError:
+            return self._declinable_edit(itinerary)
+
+    @staticmethod
+    def _edit_user_prompt(request: str, itinerary: Itinerary) -> str:
+        """Describe the current itinerary ids so the model targets real activities."""
+        lines: list[str] = []
+        for day in itinerary.days:
+            ids = ", ".join(activity.destination_id for activity in day.activities) or "(empty)"
+            lines.append(f"Day {day.day_number}: {ids}")
+        current = "\n".join(lines) if lines else "(no days)"
+        return (
+            f"Current itinerary ({itinerary.destination_context}):\n{current}\n\n"
+            f"Edit request: {request}"
+        )
+
+    @staticmethod
+    def _declinable_edit(itinerary: Itinerary) -> ItineraryOperation:
+        """Return an operation the deterministic core will reject (so router declines).
+
+        A remove targeting a day/destination guaranteed absent produces
+        ``changed=False`` in ``ItineraryService.apply_operation``, which the router
+        maps to ``EditUnavailable`` — a 200 response with a safe explanation —
+        rather than an error. Uses an out-of-range day number so it never matches.
+        """
+        return validate_itinerary_operation(
+            {"op": "remove", "day_number": 999, "destination_id": "no-op-unmapped-edit"}
+        )
 
     def summarize_reviews(self, reviews: list[Review]) -> ReviewSummary:
         """Summarize only the reviews supplied by the review service."""
@@ -195,6 +411,40 @@ class BedrockAIProvider:
         if not clauses:
             return None
         return clauses[0] if len(clauses) == 1 else {"andAll": clauses}
+
+    def _generate_structured(
+        self, system_prompt: str, user_text: str
+    ) -> Mapping[str, object]:
+        """Run one bounded, low-temperature Converse call for strict JSON output.
+
+        Shared by the structured-output stages (search intent, candidate selection,
+        edit parsing). Uses the primary inference profile and retries once with the
+        configured fallback, mirroring ``_generate_with_fallback`` but with a
+        caller-supplied single-responsibility system prompt and a deterministic
+        ``inferenceConfig`` (temperature 0) so JSON output is stable. Timeouts and
+        Bedrock errors propagate as ``DependencyUnavailableError`` via
+        ``_run_bounded`` / the caller's handler.
+        """
+        request = {
+            "system": [{"text": system_prompt}],
+            "messages": [{"role": "user", "content": [{"text": user_text}]}],
+            "inferenceConfig": _STRUCTURED_INFERENCE_CONFIG,
+        }
+        try:
+            return self._run_bounded(
+                lambda: self._runtime_client.converse(
+                    modelId=self._primary_model_id, **request
+                )
+            )
+        except Exception:
+            fallback_model_id = self._fallback_model_id
+            if fallback_model_id is None:
+                raise
+            return self._run_bounded(
+                lambda: self._runtime_client.converse(
+                    modelId=fallback_model_id, **request
+                )
+            )
 
     def _generate_with_fallback(
         self, question: str, excerpts: Sequence[Mapping[str, object]]
